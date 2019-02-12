@@ -1,0 +1,31 @@
+version: '3'
+services:
+  redis:
+    image: 'redis'
+    ports:
+      - 127.0.0.1:6380:6379
+  postgres:
+    image: 'postgres:10.5-alpine'
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=password
+    ports:
+      - 127.0.0.1:5434:5432
+  maildev:
+    image: 'djfarrelly/maildev'
+    ports:
+      - 127.0.0.1:1030:25
+      - 127.0.0.1:1081:80
+  dependencies:
+    image: busybox
+    depends_on:
+      - redis
+      - postgres
+      - maildev
+    environment:
+      - MAILER_HOST=maildev
+      - MAILER_PORT=25
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=app
+      - POSTGRES_HOST=postgres
+      - REDIS_URL=redis://redis
