@@ -2,15 +2,16 @@
 
 # == Schema Information
 #
-# Table name: skills
+# Table name: cultures
 #
 #  id          :bigint(8)        not null, primary key
-#  name        :string           not null
-#  description :text             not null
+#  name        :string
+#  description :text
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
 #
 
-class Skill < ApplicationRecord
-  belongs_to :domain
+class Culture < ApplicationRecord
+  has_many :domains, dependent: :destroy
+  validates :name, presence: true
 end
