@@ -1,2 +1,8 @@
 <h1>Lessons#edit</h1>
 <p>Find me in app/views/lessons/edit.html.erb</p>
+
+<%= form_with model: @lesson, local: true do |f| %>
+  <%= f.date_field :date %>
+  <%= f.text_field :daily_schedule %>
+  <%= f.submit %>
+<% end %>
