@@ -25,5 +25,19 @@ RSpec.describe Lesson, type: :model do
     describe 'validation' do
       it { is_expected.to validate_presence_of(:date) }
     end
+
+    describe 'associations' do
+      let(:lesson) { create(:lesson) }
+
+      it { is_expected.to have_many(:skills) }
+      it "responds to #skills" do
+        expect(lesson.skills).to be_truthy
+      end
+
+      it "follows association links from #skills back to itself" do
+        lesson.skills << create(:skill)
+        expect(lesson.skills.first.lessons.first).to eq lesson
+      end
+    end
   end
 end
