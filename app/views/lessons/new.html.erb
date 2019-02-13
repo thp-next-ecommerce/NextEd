@@ -1,0 +1,8 @@
+<h1>Lessons#new</h1>
+<p>Find me in app/views/lessons/new.html.erb</p>
+
+<%= form_with model: @lesson, local: true, class: "form-group" do |f| %>
+  <%= f.date_field :date, class: "form-control" %>
+  <%= f.text_field :daily_schedule, class: "form-control" %>
+  <%= f.submit nil, class: "btn btn-primary" %>
+<% end %>
