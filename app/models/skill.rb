@@ -9,6 +9,7 @@
 #  description :text             not null
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
+#  domain_id   :bigint(8)
 #
 
 class Skill < ApplicationRecord

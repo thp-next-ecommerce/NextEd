@@ -9,11 +9,13 @@
 #  description :text             not null
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
+#  domain_id   :bigint(8)
 #
 
 FactoryBot.define do
   factory :skill do
     name { "MyString" }
     description { "MyText" }
+    domain
   end
 end
