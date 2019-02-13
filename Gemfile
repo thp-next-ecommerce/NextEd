@@ -39,6 +39,8 @@ group :development do
   gem 'annotate', '~> 2.7', '>= 2.7.4'
   gem 'guard-rspec', require: false
   gem 'listen', '>= 3.0.5', '< 3.2'
+  gem 'rubocop', '~> 0.60.0', require: false
+  gem 'rubocop-rspec', '~> 1.30', '>= 1.30.1', require: false
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
   gem 'web-console', '>= 3.3.0'
