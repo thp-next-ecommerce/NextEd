@@ -1,2 +1,7 @@
 <h1>Lessons#show</h1>
 <p>Find me in app/views/lessons/show.html.erb</p>
+<%= @lesson.date %>
+<hr>
+<%= @lesson.daily_schedule %>
+<hr>
+<%= link_to "Éditer", edit_lesson_path(@lesson.id), class: "btn btn-primary" %>
