@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_02_13_135334) do
+ActiveRecord::Schema.define(version: 2019_02_13_141412) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -29,6 +29,13 @@ ActiveRecord::Schema.define(version: 2019_02_13_135334) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["culture_id"], name: "index_domains_on_culture_id"
+  end
+
+  create_table "skills", force: :cascade do |t|
+    t.string "name", null: false
+    t.text "description", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   add_foreign_key "domains", "cultures"
