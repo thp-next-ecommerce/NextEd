@@ -11,5 +11,9 @@
 #  updated_at  :datetime         not null
 #
 
-class Skill < ApplicationRecord
+FactoryBot.define do
+  factory :skill do
+    name { "MyString" }
+    description { "MyText" }
+  end
 end
