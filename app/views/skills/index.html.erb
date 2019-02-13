@@ -1,0 +1,20 @@
+<h1>Skills#index</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Compétance</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @skills.each do |skill|%>
+    <tr>
+      <td><%= skill.name %></td>
+      <td><%= skill.description %></td>
+      <td><%= link_to "Editer", edit_skill_path(skill.id), class: "btn btn-primary" %></td>
+      <td><%= link_to "Voir plus", skill_path(skill.id), class: "btn btn-primary" %></td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>

@@ -1,0 +1,8 @@
+<h1>Skills#edit</h1>
+<div class="form-group">
+  <%= form_for @skill  do |f| %>
+    <%= f.text_field :name, class: "form-item" %>
+    <%= f.text_area :description, class: "form-item" %>
+    <%= f.submit "Valider" %>
+  <% end %>
+</div>

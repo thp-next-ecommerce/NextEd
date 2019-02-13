@@ -1,0 +1,11 @@
+<h1>Skills#show</h1>
+
+<div class="container">
+  <table>
+      <tr>
+        <td><%= @skill.name %></td>
+        <td><%= @skill.description %></td>
+        <td><%= link_to "Editer", edit_skill_path(@skill.id), class: "btn btn-primary" %></td>
+      </tr>
+  </table>
+</div>
