@@ -2,20 +2,18 @@
 
 # == Schema Information
 #
-# Table name: skills
+# Table name: cultures
 #
 #  id          :bigint(8)        not null, primary key
-#  name        :string           not null
-#  description :text             not null
+#  name        :string
+#  description :text
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
-#  domain_id   :bigint(8)
 #
 
 FactoryBot.define do
-  factory :skill do
+  factory :culture do
     name { "MyString" }
-    description { "MyText" }
-    domain
+    description { "Description" }
   end
 end

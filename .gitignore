@@ -7,11 +7,15 @@
 # Ignore bundler config.
 /.bundle
 
+#Ignore coverage folder
+/coverage/*
+
 # Ignore all logfiles and tempfiles.
 /log/*
 /tmp/*
 !/log/.keep
 !/tmp/.keep
+/coverage/*
 
 # Ignore uploaded files in development
 /storage/*
@@ -26,3 +30,5 @@
 # Ignore master key for decrypting credentials and more.
 /config/master.key
 .env
+
+/coverage/*
