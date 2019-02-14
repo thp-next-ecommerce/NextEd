@@ -1,11 +1,24 @@
-<h1>Skills#show</h1>
-
 <div class="container">
-  <table>
-      <tr>
-        <td><%= @skill.name %></td>
-        <td><%= @skill.description %></td>
-        <td><%= link_to "Editer", edit_skill_path(@skill.id), class: "btn btn-primary" %></td>
-      </tr>
-  </table>
+  <div class="card">
+    <div class="table-responsive">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Nom</th>
+            <th>Description</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><%= @skill.name %></td>
+            <td><%= @skill.description %></td>
+            <td><%= link_to "Editer", edit_skill_path(@skill.id), class: "btn btn-primary" %></td>
+            <td></td>
+            <td></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
 </div>
