@@ -13,7 +13,7 @@ class CulturesController < ApplicationController
 
   def update
     if @culture.update(update_params)
-      flash[:notice] = "La culture #{@culture.id}a bien ete mise à jour"
+      flash[:notice] = "La culture #{@culture.id} a bien été mise à jour"
       redirect_to culture_path(@culture)
     else
       flash[:alert] = "La culture #{@culture.id} n'as pas été mise à jour"
