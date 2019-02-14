@@ -11,16 +11,16 @@
 
   <body>
     <div class="wrapper">
-      <div class="d-flex"> 
+      <div class="d-flex">
         <%= render "layouts/sidebar" %>
 
         <div class="main">
           <%= render "layouts/navbar" %>
-          <%= render "layouts/shared/flash_messages" %>
+          <%= render "layouts/shared/flashed_messages" %>
 
           <main class="content">
-            <div class="container-fluid p-0"> 
-              <%= yield %> 
+            <div class="container-fluid p-0">
+              <%= yield %>
             </div>
           </main>
 
