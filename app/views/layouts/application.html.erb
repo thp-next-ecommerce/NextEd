@@ -10,6 +10,18 @@
   </head>
 
   <body>
-    <%= yield %>
+    <div class="wrapper">
+      <div class="d-flex"> 
+        <%= render "layouts/sidebar" %>
+        <div class="main">
+          <%= render "layouts/navbar" %>
+          <main class="content">
+            <div class="container-fluid p-0"> 
+              <%= yield %> 
+            </div>
+          </main>
+        </div>
+      </div>
+    </div>
   </body>
 </html>
