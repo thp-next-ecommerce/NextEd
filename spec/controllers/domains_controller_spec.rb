@@ -2,8 +2,16 @@
 
 require 'rails_helper'
 
-RSpec.describe CulturesController, type: :controller do
+RSpec.describe DomainsController, type: :controller do
+  let(:domain) { create(:domain) }
   let(:culture) { create(:culture) }
+
+  describe "GET #show" do
+    it "returns http success" do
+      get :show, params: { id: domain.id }
+      expect(response).to have_http_status(:success)
+    end
+  end
 
   describe "GET #index" do
     it "returns http success" do
@@ -12,55 +20,47 @@ RSpec.describe CulturesController, type: :controller do
     end
   end
 
-  describe "GET #show" do
-    it "returns http success" do
-      get :show, params: { id: culture.id }
-      expect(response).to have_http_status(:success)
-    end
-  end
-
   describe "GET #edit" do
     it "returns http success" do
-      get :edit, params: { id: culture.id }
+      get :edit, params: { id: domain.id }
       expect(response).to have_http_status(:success)
     end
   end
 
   describe 'PATCH#update' do
-    let(:update) { patch :update, params: { id: culture.id, culture: { name: "test update" } } }
+    let(:wrong_update) { patch :update, params: { id: domain.id, domain: { name: nil, culture_id: nil } } }
 
-    let(:wrong_update) { patch :update, params: { id: culture.id, culture: { name: nil } } }
+    let(:update) { patch :update, params: { id: domain.id, domain: { name: "test update", culture_id: culture.id } } }
 
-    describe 'correct data' do
+    describe 'with correct data' do
       before do
+        domain
         update
-        culture
       end
 
       it 'updates the values' do
-        expect(culture.reload.name).to eq "test update"
+        expect(domain.reload.name).to eq "test update"
       end
 
-      it 'redirects to the created culture' do
-        expect(update).to redirect_to culture_path(culture.id)
+      it 'redirects to the created domain' do
+        expect(update).to redirect_to domain_path(domain.id)
       end
-
-      it 'displays flash notice' do
+      it 'displays a flash notice' do
         expect(controller).to set_flash[:notice]
       end
     end
 
-    describe 'wrong data' do
+    describe 'with wrong data' do
       before do
         wrong_update
-        culture
+        domain
       end
 
       it 'redirects to #edit on failure' do
         expect(response).to render_template(:edit)
       end
 
-      it 'displays flash alert' do
+      it 'displays flash  alert' do
         expect(controller).to set_flash[:alert]
       end
     end
