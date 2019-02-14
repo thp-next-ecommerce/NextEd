@@ -1,2 +1,27 @@
-<h1>Domains#edit</h1>
-<p>Find me in app/views/domains/edit.html.erb</p>
+<div class="container 12 col-lg-6">
+  <div class="row">
+    <div class="col">
+      <h4></h4>
+      <div class="card-header">
+        <h6 class="card-subtitle text-muted">Modifier <%= @domain.name %> </h6>
+        <div class="card-body">
+            <%= form_with model: @domain, local: true do |f| %>
+              <div class="form-group">
+                <%= f.label "Changer le nom :" %> <br>
+                <%= f.text_field :name, class: "form-control"%> <br>
+              </div>
+              <div class="form-group">
+                <%= f.label "Changer la description :" %> <br>
+                <%= f.text_area :description, class: "form-control"%><br>
+              </div>
+              <div class="form-group">
+                <%= f.label "Changer la culture associée :" %> <br>
+                <%= f.select(:culture_id, options_for_select(Culture.pluck(:name, :id))) %><br>
+              </div>              
+                <%= f.submit "Valider", class: "btn btn-primary" %>
+            <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
