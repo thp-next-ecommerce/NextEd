@@ -16,8 +16,12 @@ Skill.destroy_all
 Lesson.destroy_all
 
 Culture.create!(name: "Culture 1")
+Culture.create!(name: "Culture 2")
+Culture.create!(name: "Culture 3")
 
-Domain.create!(name: "Domain 1", culture: Culture.first)
+Domain.create!(name: "Domain 1", culture_id: Culture.first.id)
+Domain.create!(name: "Domain 2", culture_id: Culture.first.id)
+Domain.create!(name: "Domain 3", culture_id: Culture.last.id)
 
 10.times do |i|
   Skill.create!(

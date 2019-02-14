@@ -1,2 +1,26 @@
-<h1>Domains#show</h1>
-<p>Find me in app/views/domains/show.html.erb</p>
+<div class="container">
+  <div class="card">
+    <div class="table-responsive">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Nom</th>
+            <th>Description</th>
+            <th>Culture</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><%= @domain.name %></td>
+            <td><%= @domain.description %></td>
+            <td><%= @domain.culture.name %></td>
+            <td><%= link_to "Editer", edit_domain_path(@domain.id), class: "btn btn-primary" %></td>
+            <td></td>
+            <td></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
