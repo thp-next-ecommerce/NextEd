@@ -16,4 +16,7 @@ class Skill < ApplicationRecord
   belongs_to :domain
   has_many :lesson_skills, dependent: :destroy
   has_many :lessons, through: :lesson_skills
+  validates :name, presence: true
+  validates :description, presence: true
+  default_scope { order(:id) }
 end

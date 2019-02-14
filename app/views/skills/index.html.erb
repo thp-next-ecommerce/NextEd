@@ -6,6 +6,8 @@
         <thead>
           <tr>
             <th>Nom</th>
+            <th>Domaine</th>
+            <th>Culture</th>
             <th>Description</th>
             <th></th>
           </tr>
@@ -14,6 +16,8 @@
           <% @skills.each do |skill|%>
           <tr>
             <td><%= skill.name %></td>
+            <td><%= skill.domain.name %></td>
+            <td><%= skill.domain.culture.name %></td>
             <td><%= skill.description %></td>
             <td><%= link_to "Editer", edit_skill_path(skill.id), class: "btn btn-primary" %> <%= link_to "Voir plus", skill_path(skill.id), class: "btn btn-primary" %></td>
             <td></td>
