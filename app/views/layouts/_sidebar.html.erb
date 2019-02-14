@@ -1,0 +1,55 @@
+<nav class="sidebar">
+  <div class="sidebar-content">
+    <a class="sidebar-brand" href="#">
+      <i class="align-middle" data-feather="box"></i>
+      <span class="align-middle">NextEd</span>
+    </a>
+
+    <ul class="sidebar-nav">
+
+      <li class="sidebar-item">
+        <a href="#lessons" data-toggle="collapse" class="sidebar-link collapsed">
+          <i class="align-middle" data-feather="list"></i> <span class="align-middle">Séances</span>
+        </a>
+        <ul id="lessons" class="sidebar-dropdown list-unstyled collapse ">
+          <li class="sidebar-item"><a class="sidebar-link" href="<%= lessons_path %>">Index</a></li>
+          <li class="sidebar-item"><a class="sidebar-link" href="<%= new_lesson_path %>">Nouvelle séance</a></li>
+        </ul>
+      </li>
+
+      <li class="sidebar-item">
+        <a href="#students" data-toggle="collapse" class="sidebar-link collapsed">
+          <i class="align-middle" data-feather="grid"></i> <span class="align-middle">Élèves</span>
+        </a>
+        <ul id="students" class="sidebar-dropdown list-unstyled collapse ">
+          <li class="sidebar-item"><a class="sidebar-link" href="#">Index</a></li>
+          <li class="sidebar-item"><a class="sidebar-link" href="#">Nouvel élève</a></li>
+          <li class="sidebar-item"><a class="sidebar-link" href="#">Classes</a></li>
+        </ul>
+      </li>
+
+      <li class="sidebar-item">
+        <a href="#ui" data-toggle="collapse" class="sidebar-link collapsed">
+          <i class="align-middle" data-feather="check-square"></i> <span class="align-middle">Compétences</span>
+        </a>
+        <ul id="ui" class="sidebar-dropdown list-unstyled collapse ">
+          <li class="sidebar-item"><a class="sidebar-link" href="<%= skills_path %>">Compétences</a></li>
+          <li class="sidebar-item"><a class="sidebar-link" href="#">Domaines</a></li>
+          <li class="sidebar-item"><a class="sidebar-link" href="#">Cultures</a></li>
+        </ul>
+      </li>
+
+      <li class="sidebar-item">
+        <a href="#" class="sidebar-link">
+          <i class="align-middle" data-feather="book-open"></i> <span class="align-middle">Matières</span>
+        </a>
+      </li>
+
+      <li class="sidebar-item">
+        <a href="#" class="sidebar-link">
+          <i class="align-middle fas fa-chalkboard-teacher" data-feather=""></i> <span class="align-middle">Profs</span>
+        </a>
+      </li>
+
+  </div>
+</nav>
