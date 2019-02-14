@@ -1,0 +1,10 @@
+<h1>Lessons#index</h1>
+<p>Find me in app/views/lessons/index.html.erb</p>
+
+<ul>
+<% @lessons.each { |lesson| %>
+  <li><%= lesson.id %>, <%= lesson.date %>, <%= lesson.daily_schedule %> - <%= link_to "Éditer", edit_lesson_path(lesson.id), class: "btn btn-primary" %></li>  
+<% } %>
+</ul>
+
+  

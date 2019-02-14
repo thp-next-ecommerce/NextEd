@@ -14,4 +14,6 @@
 
 class Skill < ApplicationRecord
   belongs_to :domain
+  has_many :lesson_skills, dependent: :destroy
+  has_many :lessons, through: :lesson_skills
 end
