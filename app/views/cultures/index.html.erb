@@ -1,2 +1,27 @@
-<h1>Cultures#index</h1>
-<p>Find me in app/views/cultures/index.html.erb</p>
+<div class="container">
+  <h2>Cultures</h2>
+  <div class="card">
+    <div class="table-responsive">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Nom</th>
+            <th>Description</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @cultures.each do |culture|%>
+          <tr>
+            <td><%= culture.name %></td>
+            <td><%= culture.description %></td>
+            <td><%= link_to "Editer", edit_culture_path(culture.id), class: "btn btn-primary" %> <%= link_to "Voir plus", culture_path(culture.id), class: "btn btn-primary" %></td>
+            <td></td>
+            <td></td>
+          </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

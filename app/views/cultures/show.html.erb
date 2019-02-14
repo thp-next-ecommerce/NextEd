@@ -1,2 +1,24 @@
-<h1>Cultures#show</h1>
-<p>Find me in app/views/cultures/show.html.erb</p>
+<div class="container">
+  <div class="card">
+    <div class="table-responsive">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Nom</th>
+            <th>Description</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><%= @culture.name %></td>
+            <td><%= @culture.description %></td>
+            <td><%= link_to "Editer", edit_culture_path(@culture.id), class: "btn btn-primary" %></td>
+            <td></td>
+            <td></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

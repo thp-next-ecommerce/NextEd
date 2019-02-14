@@ -13,6 +13,7 @@ require "faker"
 Culture.destroy_all
 Domain.destroy_all
 Skill.destroy_all
+Lesson.destroy_all
 
 Culture.create!(name: "Culture 1")
 Culture.create!(name: "Culture 2")
@@ -23,6 +24,18 @@ Domain.create!(name: "Domain 2", culture_id: Culture.first.id)
 Domain.create!(name: "Domain 3", culture_id: Culture.last.id)
 
 10.times do |i|
-  Skill.create(name: "Compétance #{i}", description: Faker::Lorem.sentence(10), domain_id: 1)
+  Skill.create!(
+    name: "Compétence #{i}",
+    description: Faker::Lorem.sentence(10),
+    domain: Domain.first
+  )
   ++i
+end
+
+10.times do
+  schedule = %w(M1 M2 M3 M4 S1 S2 S3 S4)
+  Lesson.create!(
+    date: Faker::Date.between(1.year.ago, 1.year.from_now),
+    daily_schedule: schedule.sample
+  )
 end
