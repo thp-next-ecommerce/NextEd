@@ -18,4 +18,5 @@ class Skill < ApplicationRecord
   has_many :lessons, through: :lesson_skills
   validates :name, presence: true
   validates :description, presence: true
+  default_scope { order(:id) }
 end
