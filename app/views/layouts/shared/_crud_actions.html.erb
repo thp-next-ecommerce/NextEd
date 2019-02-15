@@ -1,7 +1,7 @@
  <!--show lessons#edit button on navbar-->
 <% if @lesson && !@lesson.new_record? %>
   <% return if current_page?(edit_lesson_path) %>
-  <%= link_to "Editer", edit_lesson_path(@lesson.id), class: "btn btn-secondary ml-auto" %>
+  <%= link_to "Editer la séance", edit_lesson_path(@lesson.id), class: "btn btn-secondary ml-auto" %>
 <% end %>
 
 <!--show lessons#new button on navbar-->

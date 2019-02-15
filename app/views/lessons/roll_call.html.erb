@@ -1,0 +1,32 @@
+
+<h4 class="mb-3 text-center">Appel pour la Séance <%= @lesson.id %> du <%= @lesson.date %> en <%= @lesson.daily_schedule %></h4>
+<div class="card-columns">
+  <div class="card">
+    <div class="card-header">
+      <h4>Matière</h4>
+    </div>
+    <div class="card-body">
+      <ul>
+        <li><a href="#">Matière 1</a></li> 
+        <li><a href="#">Mr Professeur</a> </li> 
+      </ul>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <h4>Décocher les élèves absents</h4>
+    </div>
+    <div class="card-body">
+      <ul>
+        <% 5.times do |i| %>
+        <li>élève <%= i %> <%= check_box_tag "student#{i}", 'student_id', true, class: "ml-3" %></li> 
+        <% end %>
+      </ul>
+    </div>
+    <div class="card-footer">
+      <button class="btn btn-primary">Valider l'appel</button>
+    </div>
+  </div>
+
+</div>
