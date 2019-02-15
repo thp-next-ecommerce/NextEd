@@ -27,15 +27,15 @@
     
   <div class="card">
     <div class="card-header">
-      <h4>Élèves participants</h4>
+      <h4>Élèves participants <a href="<%= lesson_roll_call_path(@lesson.id) %>" class="btn btn-warning ml-3">Faire l'appel</a></h4>
     </div>
     <div class="card-body">
       <ul>
-        <li>élève 1</li> 
-        <li>élève 2</li> 
-        <li>élève 3</li> 
-        <li>élève 4</li> 
-        <li>élève 5</li> 
+        <li>élève 1 <i class="align-middle fa fa-check"></i></li> 
+        <li>élève 2 <i class="align-middle fa fa-times"></i></li> 
+        <li>élève 3 <i class="align-middle fa fa-times"></i></li> 
+        <li>élève 4 <i class="align-middle fa fa-check"></i></li> 
+        <li>élève 5 <i class="align-middle fa fa-check"></i></li> 
       </ul>
     </div>
   </div>

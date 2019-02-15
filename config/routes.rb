@@ -6,5 +6,6 @@ Rails.application.routes.draw do
   resources :cultures, only: %i[index show edit update]
   resources :domains, only: %i[index show edit update]
   resources :lessons
+  get 'lessons/:id/roll_call', to: 'lessons#roll_call', as: 'lesson_roll_call'
   resources :skills
 end

@@ -1,7 +1,9 @@
 # frozen_string_literal: true
 
 class LessonsController < ApplicationController
-  before_action :set_lesson, only: %i[show update edit destroy]
+  before_action :set_lesson, only: %i[show update edit destroy roll_call]
+
+  def roll_call; end
 
   def index; @lessons = Lesson.all end
 
