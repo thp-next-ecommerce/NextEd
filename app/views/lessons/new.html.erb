@@ -1,8 +1,39 @@
-<h1>Lessons#new</h1>
-<p>Find me in app/views/lessons/new.html.erb</p>
-
-<%= form_with model: @lesson, local: true, class: "form-group" do |f| %>
-  <%= f.date_field :date, class: "form-control" %>
-  <%= f.text_field :daily_schedule, class: "form-control" %>
-  <%= f.submit nil, class: "btn btn-primary" %>
-<% end %>
+<div class="container 12 col-lg-6">
+  <div class="row">
+    <h4>Création de séance</h4>
+    <div class="card">
+      <div class="card-body">
+        <h6 class="card-subtitle text-muted mb-2">Quand</h6> 
+        <%= form_with model: @lesson, local: true do |f| %>
+          <div class="form-group">
+            <%= f.date_field :date, class: "form-control" %>
+            <%= f.text_field :daily_schedule, class: "form-control mt-2", placeholder: "crénau (M1, S3, ...)" %>
+          </div>
+          
+        <h6 class="card-subtitle text-muted my-2">Compétences</h6>
+          <div class="form-check">
+            <%= f.collection_check_boxes(:skills, Skill.all, :id, :name) do |b| %>
+            <%= b.label(class: "form-check-label mx-1") { b.check_box + b.text } %>
+            <% end %>
+          </div>
+          
+        <!--Change the following parts when DB is updated-->
+        <h6 class="card-subtitle text-muted my-2">Élèves participants</h6>
+          <div class="form-group">
+            <%= f.text_field :daily_schedule, class: "form-control", placeholder: "Classe" %>
+            <%= f.text_field :daily_schedule, class: "form-control mt-2", placeholder: "Élèves" %>
+          </div>
+          
+        <h6 class="card-subtitle text-muted my-2">Matière</h6>
+          <div class="form-group">
+            <%= f.text_field :daily_schedule, class: "form-control", placeholder: "Matière" %>
+            <%= f.text_field :daily_schedule, class: "form-control mt-2", placeholder: "Professeur" %>
+          </div>
+      </div>
+      <div class="card-footer">
+            <%= f.submit nil, class: "btn btn-primary mt-3 " %>
+        <% end %> 
+      </div>
+    </div>
+  </div>
+</div>
