@@ -15,4 +15,6 @@ class Lesson < ApplicationRecord
   validates :date, presence: true
   has_many :lesson_skills, dependent: :destroy
   has_many :skills, through: :lesson_skills
+
+  default_scope { order({ date: :desc }, :daily_schedule) }
 end

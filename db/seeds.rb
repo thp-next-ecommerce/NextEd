@@ -34,8 +34,11 @@ end
 
 10.times do
   schedule = %w(M1 M2 M3 M4 S1 S2 S3 S4)
+  skills = []
+  5.times do skills.push(Skill.all.sample) end
   Lesson.create!(
     date: Faker::Date.between(1.year.ago, 1.year.from_now),
-    daily_schedule: schedule.sample
+    daily_schedule: schedule.sample,
+    skills: skills
   )
 end

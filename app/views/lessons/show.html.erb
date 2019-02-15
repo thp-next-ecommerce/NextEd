@@ -1,7 +1,54 @@
-<h1>Lessons#show</h1>
-<p>Find me in app/views/lessons/show.html.erb</p>
-<%= @lesson.date %>
-<hr>
-<%= @lesson.daily_schedule %>
-<hr>
-<%= link_to "Éditer", edit_lesson_path(@lesson.id), class: "btn btn-primary" %>
+<h4>Séance <%= @lesson.id %></h4>
+<div class="card-columns">
+  <div class="card">
+    <div class="card-header">
+      <h4>Quand</h4>
+    </div>
+      <div class="card-body">
+        <h6 class="card-subtitle text-muted mb-2">Date</h6> 
+          <%= @lesson.date %>
+        <h6 class="card-subtitle text-muted my-2">Infos</h6>
+          <%= @lesson.daily_schedule %>
+      </div>
+  </div>
+   
+  <div class="card">
+    <div class="card-header">
+      <h4>Compétences associées</h4>
+    </div>
+    <div class="card-body">
+      <ul>
+        <% @lesson.skills.each do |skill| %>
+        <li><%= skill.name %></li> 
+        <% end %>
+      </ul>
+    </div>
+  </div>
+    
+  <div class="card">
+    <div class="card-header">
+      <h4>Élèves participants</h4>
+    </div>
+    <div class="card-body">
+      <ul>
+        <li>élève 1</li> 
+        <li>élève 2</li> 
+        <li>élève 3</li> 
+        <li>élève 4</li> 
+        <li>élève 5</li> 
+      </ul>
+    </div>
+  </div>
+  
+  <div class="card">
+    <div class="card-header">
+      <h4>Matière</h4>
+    </div>
+    <div class="card-body">
+      <ul>
+        <li><a href="#">Matière 1</a></li> 
+        <li><a href="#">Mr Professeur</a> </li> 
+      </ul>
+    </div>
+  </div>
+</div>

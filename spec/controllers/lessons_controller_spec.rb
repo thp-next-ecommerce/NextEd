@@ -54,8 +54,8 @@ RSpec.describe LessonsController, type: :controller do
     end
   end
 
-  describe "POST #update" do
-    subject(:update) { post :update, params: { id: lesson.id, lesson: { date: Date.tomorrow } } }
+  describe "PUT #update" do
+    subject(:update) { put :update, params: { id: lesson.id, lesson: { date: Date.tomorrow } } }
 
     it "updates the passed values" do
       lesson
@@ -68,7 +68,7 @@ RSpec.describe LessonsController, type: :controller do
     end
 
     it "redirects to #edit on failure" do
-      post :update, params: { id: lesson.id, lesson: { date: nil } }
+      put :update, params: { id: lesson.id, lesson: { date: nil } }
       expect(response).to render_template(:edit)
     end
   end
