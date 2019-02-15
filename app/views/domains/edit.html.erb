@@ -3,22 +3,22 @@
     <div class="col">
       <h4></h4>
       <div class="card-header">
-        <h6 class="card-subtitle text-muted">Modifier <%= @domain.name %> </h6>
+        <h6 class="card-subtitle text-muted">Modifier <%= @domain.name %></h6>
         <div class="card-body">
           <%= form_with model: @domain, local: true do |f| %>
             <div class="form-group">
-              <%= f.label "Changer le nom :" %> <br>
-              <%= f.text_field :name, class: "form-control"%> <br>
+              <%= f.label "Changer le nom :" %><br>
+              <%= f.text_field :name, class: "form-control"%><br>
             </div>
             <div class="form-group">
-              <%= f.label "Changer la description :" %> <br>
+              <%= f.label "Changer la description :" %><br>
               <%= f.text_area :description, class: "form-control"%><br>
             </div>
             <div class="form-group">
-              <%= f.label "Changer la culture associée :" %> <br>
+              <%= f.label "Changer la culture associée :" %><br>
               <%= f.select(:culture_id, options_for_select(Culture.pluck(:name, :id)), { :include_blank => "Veuillez choisir la culture"}, {:class => "form-control"}) %><br>
             </div>              
-              <%= f.submit "Valider", class: "btn btn-primary" %>
+            <%= f.submit "Valider", class: "btn btn-primary" %>
           <% end %>
         </div>
       </div>
