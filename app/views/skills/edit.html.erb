@@ -18,10 +18,6 @@
                <%= f.label "Changer le domaine associé :" %> <br>
                <%= f.select(:domain_id, options_for_select(Domain.pluck(:name, :id))) %><br>
              </div>
-             <div class="form-group">
-              <%= f.label "Changer le domaine associé :" %> <br>
-              <%= f.select(:domain_id, options_for_select(Culture.pluck(:name, :id))) %><br>
-            </div>
              <%= f.submit "Valider", class: "btn btn-primary" %>
             <% end %>
         </div>
