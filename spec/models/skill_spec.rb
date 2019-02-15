@@ -24,6 +24,11 @@ RSpec.describe Skill, type: :model do
       it { is_expected.to have_db_column(:description).of_type(:text).with_options(null: false) }
     end
 
+    describe 'validation' do
+      it { is_expected.to validate_presence_of(:name) }
+      it { is_expected.to validate_presence_of(:description) }
+    end
+
     describe 'association' do
       let(:skill) { create(:skill) }
 

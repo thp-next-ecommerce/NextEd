@@ -11,8 +11,13 @@ class SkillsController < ApplicationController
   def edit; end
 
   def update
-    @skill.update(skill_params)
-    redirect_to skills_path
+    if @skill.update(skill_params)
+      flash[:notice] = "La compétence a été mise à jour"
+      redirect_to skills_path
+    else
+      flash[:alert] = "La compétence n'a pas été mise à jour"
+      render action: "edit"
+    end
   end
 
   private
@@ -22,6 +27,6 @@ class SkillsController < ApplicationController
   end
 
   def skill_params
-    params.require(:skill).permit(:name, :description)
+    params.require(:skill).permit(:name, :description, :domain_id)
   end
 end
