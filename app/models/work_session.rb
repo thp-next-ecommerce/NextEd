@@ -15,6 +15,8 @@ class WorkSession < ApplicationRecord
   validates :date, presence: true
   has_many :work_session_skills, dependent: :destroy
   has_many :skills, through: :work_session_skills
+  has_many :student_work_sessions, dependent: :destroy
+  has_many :students, through: :student_work_sessions
 
   default_scope { order({ date: :desc }, :daily_schedule) }
 end
