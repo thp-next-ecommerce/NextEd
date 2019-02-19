@@ -1,4 +1,4 @@
-<h4>Séance <%= @lesson.id %></h4>
+<h4>Séance <%= @work_session.id %></h4>
 <div class="card-columns">
   <div class="card">
     <div class="card-header">
@@ -6,9 +6,9 @@
     </div>
     <div class="card-body">
       <h6 class="card-subtitle text-muted mb-2">Date</h6> 
-      <%= @lesson.date %>
+      <%= @work_session.date %>
       <h6 class="card-subtitle text-muted my-2">Infos</h6>
-      <%= @lesson.daily_schedule %>
+      <%= @work_session.daily_schedule %>
     </div>
   </div>
    
@@ -18,7 +18,7 @@
     </div>
     <div class="card-body">
       <ul>
-        <% @lesson.skills.each do |skill| %>
+        <% @work_session.skills.each do |skill| %>
           <li><%= skill.name %></li> 
         <% end %>
       </ul>
@@ -27,7 +27,7 @@
     
   <div class="card">
     <div class="card-header">
-      <h4>Élèves participants <a href="<%= lesson_roll_call_path(@lesson.id) %>" class="btn btn-warning ml-3">Faire l'appel</a></h4>
+      <h4>Élèves participants <a href="<%= work_session_roll_call_path(@work_session.id) %>" class="btn btn-warning ml-3">Faire l'appel</a></h4>
     </div>
     <div class="card-body">
       <ul>

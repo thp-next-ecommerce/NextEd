@@ -2,7 +2,7 @@
 
 # == Schema Information
 #
-# Table name: lessons
+# Table name: work_sessions
 #
 #  id             :bigint(8)        not null, primary key
 #  date           :date             not null
@@ -11,9 +11,10 @@
 #  updated_at     :datetime         not null
 #
 
-FactoryBot.define do
-  factory :lesson do
-    date { Time.zone.today }
-    daily_schedule { "MyString" }
-  end
+class WorkSession < ApplicationRecord
+  validates :date, presence: true
+  has_many :work_session_skills, dependent: :destroy
+  has_many :skills, through: :work_session_skills
+
+  default_scope { order({ date: :desc }, :daily_schedule) }
 end
