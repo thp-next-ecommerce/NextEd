@@ -33,7 +33,7 @@ RSpec.describe Group, type: :model do
       end
 
       it "follows association links from #students back to itself" do
-        group.students << create(:section)
+        group.students << create(:student)
         expect(group.students.first.groups.first).to eq group
       end
     end
