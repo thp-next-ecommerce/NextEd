@@ -5,9 +5,13 @@ class WorkSessionsController < ApplicationController
 
   def roll_call; end
 
-  def index; @work_sessions = WorkSession.all end
+  def index
+    @work_sessions = WorkSession.all
+  end
 
-  def new; @work_session = WorkSession.new end
+  def new
+    @work_session = WorkSession.new
+  end
 
   def create
     @work_session = WorkSession.new(permitted_params)
@@ -36,8 +40,8 @@ class WorkSessionsController < ApplicationController
   end
 
   def destroy
-    @work_session.destroy ? flash[:notice] = "La séance a été supprimée" : flash[:alert] = "La séance n'as PAS été supprimée"
-    redirect_to(work_sessions_url)
+    @work_session.destroy
+    redirect_back fallback_location: work_sessions_path, alert: "La séance a été supprimée"
   end
 
   private
