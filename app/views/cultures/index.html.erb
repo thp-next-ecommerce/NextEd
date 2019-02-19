@@ -12,13 +12,11 @@
         </thead>
         <tbody>
           <% @cultures.each do |culture|%>
-          <tr>
-            <td><%= culture.name %></td>
-            <td><%= culture.description %></td>
-            <td><%= link_to "Editer", edit_culture_path(culture.id), class: "btn btn-primary" %> <%= link_to "Voir plus", culture_path(culture.id), class: "btn btn-primary" %></td>
-            <td></td>
-            <td></td>
-          </tr>
+            <tr>
+              <td><%= culture.name %></td>
+              <td><%= culture.description %></td>
+              <td><%= link_to "Editer", edit_culture_path(culture.id), class: "btn btn-secondary" %> <%= link_to "Voir plus", culture_path(culture.id), class: "btn btn-primary" %></td>
+            </tr>
           <% end %>
         </tbody>
       </table>

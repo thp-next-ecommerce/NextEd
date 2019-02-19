@@ -4,12 +4,12 @@
     <div class="card-header">
       <h4>Quand</h4>
     </div>
-      <div class="card-body">
-        <h6 class="card-subtitle text-muted mb-2">Date</h6> 
-          <%= @lesson.date %>
-        <h6 class="card-subtitle text-muted my-2">Infos</h6>
-          <%= @lesson.daily_schedule %>
-      </div>
+    <div class="card-body">
+      <h6 class="card-subtitle text-muted mb-2">Date</h6> 
+      <%= @lesson.date %>
+      <h6 class="card-subtitle text-muted my-2">Infos</h6>
+      <%= @lesson.daily_schedule %>
+    </div>
   </div>
    
   <div class="card">
@@ -19,7 +19,7 @@
     <div class="card-body">
       <ul>
         <% @lesson.skills.each do |skill| %>
-        <li><%= skill.name %></li> 
+          <li><%= skill.name %></li> 
         <% end %>
       </ul>
     </div>

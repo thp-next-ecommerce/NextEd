@@ -3,23 +3,23 @@
     <div class="col">
       <h4></h4>
       <div class="card-header">
-        <h6 class="card-subtitle text-muted">Modifier <%= @skill.name %> </h6>
+        <h6 class="card-subtitle text-muted">Modifier <%= @skill.name %></h6>
         <div class="card-body">
-            <%= form_for @skill  do |f| %>
-              <div class="form-group">
-                <%= f.label "Changer le nom:" %> <br>
-                <%= f.text_field :name, class: "form-control"%> <br>
-              </div>
-              <div class="form-group">
-                <%= f.label "Changer la description:" %> <br>
-                <%= f.text_area :description, class: "form-control"%><br>
-              </div>
-              <div class="form-group">
-               <%= f.label "Changer le domaine associé :" %> <br>
-               <%= f.select(:domain_id, options_for_select(Domain.pluck(:name, :id))) %><br>
-             </div>
-             <%= f.submit "Valider", class: "btn btn-primary" %>
-            <% end %>
+          <%= form_for @skill  do |f| %>
+            <div class="form-group">
+              <%= f.label "Changer le nom:" %><br>
+              <%= f.text_field :name, class: "form-control"%><br>
+            </div>
+            <div class="form-group">
+              <%= f.label "Changer la description:" %><br>
+              <%= f.text_area :description, class: "form-control"%><br>
+            </div>
+            <div class="form-group">
+              <%= f.label "Changer le domaine associé :" %><br>
+              <%= f.select(:domain_id, options_for_select(Domain.pluck(:name, :id)), { :include_blank => "Veuillez choisir un domaine"}, {:class => "form-control"}) %><br>
+            </div>
+            <%= f.submit "Valider", class: "btn btn-primary" %>
+          <% end %>
         </div>
       </div>
     </div>

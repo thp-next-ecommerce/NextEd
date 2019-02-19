@@ -12,13 +12,12 @@
       </thead>
       <tbody>
         <% @lessons.each do |lesson|%>
-        <tr>
-          <td><%= lesson.date %></td>
-          <td><%= lesson.daily_schedule %></td>
-          <td></td>
-          <td><%= link_to "Editer", edit_lesson_path(lesson.id), class: "btn btn-secondary" %> <%= link_to "Voir plus", lesson_path(lesson.id), class: "btn btn-primary" %></td>
-          <td></td>
-        </tr>
+          <tr>
+            <td><%= lesson.date %></td>
+            <td><%= lesson.daily_schedule %></td>
+            <td></td>
+            <td><%= link_to "Editer", edit_lesson_path(lesson.id), class: "btn btn-secondary" %> <%= link_to "Voir plus", lesson_path(lesson.id), class: "btn btn-primary" %></td>
+          </tr>
         <% end %>
       </tbody>
     </table>

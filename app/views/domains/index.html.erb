@@ -13,14 +13,12 @@
         </thead>
         <tbody>
           <% @domains.each do |domain|%>
-          <tr>
-            <td><%= domain.name %></td>
-            <td><%= domain.description %></td>
-            <td><%= domain.culture.name %></td>
-            <td><%= link_to "Editer", edit_domain_path(domain.id), class: "btn btn-primary" %> <%= link_to "Voir plus", domain_path(domain.id), class: "btn btn-primary" %></td>
-            <td></td>
-            <td></td>
-          </tr>
+            <tr>
+              <td><%= domain.name %></td>
+              <td><%= domain.description %></td>
+              <td><%= domain.culture.name %></td>
+              <td><%= link_to "Editer", edit_domain_path(domain.id), class: "btn btn-secondary" %> <%= link_to "Voir plus", domain_path(domain.id), class: "btn btn-primary" %></td>
+            </tr>
           <% end %>
         </tbody>
       </table>
