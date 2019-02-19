@@ -28,6 +28,26 @@ RSpec.describe Student, type: :model do
     describe 'associations' do
       let(:student) { create(:student) }
 
+      it { is_expected.to have_many(:sections) }
+      it "responds to #sections" do
+        expect(student.sections).to be_truthy
+      end
+
+      it "follows association links from #sections back to itself" do
+        student.sections << create(:section)
+        expect(student.sections.first.students.first).to eq student
+      end
+
+      it { is_expected.to have_many(:groups) }
+      it "responds to #groups" do
+        expect(student.groups).to be_truthy
+      end
+
+      it "follows association links from #groups back to itself" do
+        student.groups << create(:group)
+        expect(student.groups.first.students.first).to eq student
+      end
+
       it { is_expected.to have_many(:work_sessions) }
       it "responds to #work_sessions" do
         expect(student.work_sessions).to be_truthy

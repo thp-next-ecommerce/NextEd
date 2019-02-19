@@ -14,6 +14,8 @@ Culture.destroy_all
 Domain.destroy_all
 Skill.destroy_all
 WorkSession.destroy_all
+Section.destroy_all
+Group.destroy_all
 Student.destroy_all
 
 Culture.create!(name: "Culture 1")
@@ -46,7 +48,34 @@ puts "created 10 Skills"
 end
 puts "created 10 WorkSessions"
 
+20.times do
+  Section.create!(
+    year: 2019,
+    level: [6, 5, 4, 3].sample,
+    sub_section: %w(A B C D E F G).sample
+  )
+end
+puts "Created 20 sections"
+
+10.times do
+  Group.create!(
+    name: Faker::Company.name,
+    level: [6, 5, 4, 3].sample
+  )
+end
+puts "created 10 groups"
+
 700.times do |i|
-  Student.create!(first_name: "First_name#{i}", last_name: "Student#{i}")
+  sections = []
+  groups = []
+  rand(1..4).times{
+    sections << Section.all.sample
+    groups << Group.all.sample
+  }
+  Student.create!(
+    first_name: "First_name#{i}",
+    last_name: "Student#{i}",
+    sections: sections
+  )
 end
 puts "created 700 Students"
