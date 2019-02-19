@@ -15,6 +15,7 @@ Domain.destroy_all
 Skill.destroy_all
 WorkSession.destroy_all
 Section.destroy_all
+Group.destroy_all
 Student.destroy_all
 
 Culture.create!(name: "Culture 1")
