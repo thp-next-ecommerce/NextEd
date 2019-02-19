@@ -30,10 +30,10 @@ class WorkSessionsController < ApplicationController
   def edit; end
 
   def update
-    if archived_session_rescue && @work_session.update(permitted_params)
+    if unarchived_session? && @work_session.update(permitted_params)
       redirect_to work_session_path, notice: "La séance a été mise à jour"
     else
-      redirect_back fallback_location: work_sessions_path, alert: "Vous ne pouvez pas modifié une séance archivée"
+      redirect_back fallback_location: work_sessions_path, alert: "Vous ne pouvez pas modifier une séance archivée"
     end
   end
 
@@ -52,7 +52,7 @@ class WorkSessionsController < ApplicationController
     @work_session = WorkSession.find(params[:id])
   end
 
-  def archived_session_rescue
+  def unarchived_session?
     Time.zone.now < @work_session.date
   end
 end

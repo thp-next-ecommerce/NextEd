@@ -55,7 +55,7 @@ RSpec.describe WorkSessionsController, type: :controller do
   end
 
   describe "PUT #update" do
-    subject(:update) { put :update, params: { id: work_session.id, work_session: { date: Date.tomorrow } } }
+    subject(:update) { put :update, params: { id: work_session.id, work_session: { date: Date.current } } }
 
     it "updates the passed values" do
       work_session
