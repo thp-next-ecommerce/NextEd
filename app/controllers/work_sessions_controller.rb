@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class WorkSessionsController < ApplicationController
-  before_action :set_work_session, only: %i[show update edit destroy roll_call]
+  before_action :set_work_session, only: %i[show update edit roll_call]
 
   def roll_call; end
 
@@ -35,11 +35,6 @@ class WorkSessionsController < ApplicationController
     else
       redirect_back fallback_location: work_sessions_path, alert: "Vous ne pouvez pas modifier une séance archivée"
     end
-  end
-
-  def destroy
-    @work_session.destroy
-    redirect_back fallback_location: work_sessions_path, alert: "La séance a été supprimée"
   end
 
   private

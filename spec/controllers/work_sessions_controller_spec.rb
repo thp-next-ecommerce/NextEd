@@ -72,17 +72,4 @@ RSpec.describe WorkSessionsController, type: :controller do
       expect(response).to redirect_to work_sessions_path
     end
   end
-
-  describe "DELETE #destroy" do
-    subject(:destroy) { delete :destroy, params: { id: work_session.id } }
-
-    it "deletes the record" do
-      work_session
-      expect { delete :destroy, params: { id: work_session.id } }.to change(WorkSession, :count).by(-1)
-    end
-
-    it "redirects to #index" do
-      expect(destroy).to redirect_to work_sessions_path
-    end
-  end
 end
