@@ -56,9 +56,21 @@ puts "created 10 WorkSessions"
 end
 puts "Created 20 sections"
 
+10.times do
+  Group.create!(
+    name: Faker::Company.name,
+    level: [6, 5, 4, 3].sample
+  )
+end
+puts "created 10 groups"
+
 700.times do |i|
   sections = []
-  rand(1..4).times{ sections << Section.all.sample }
+  groups = []
+  rand(1..4).times{
+    sections << Section.all.sample
+    groups << Group.all.sample
+  }
   Student.create!(
     first_name: "First_name#{i}",
     last_name: "Student#{i}",
