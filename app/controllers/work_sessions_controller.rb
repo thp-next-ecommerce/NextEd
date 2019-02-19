@@ -31,8 +31,7 @@ class WorkSessionsController < ApplicationController
 
   def update
     if archived_session_rescue && @work_session.update(permitted_params)
-      flash[:notice] = "La séance a été mise à jour"
-      redirect_to(@work_session)
+      redirect_to work_session_path, notice: "La séance a été mise à jour"
     else
       redirect_back fallback_location: work_sessions_path, alert: "Vous ne pouvez pas modifié une séance archivée"
     end

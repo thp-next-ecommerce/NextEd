@@ -60,16 +60,16 @@ RSpec.describe WorkSessionsController, type: :controller do
     it "updates the passed values" do
       work_session
       update
-      expect(work_session.reload.date).to eq Date.tomorrow
+      expect(work_session.reload.date).to eq Date.current
     end
 
-    it "redirects to the created work_session" do
-      expect(update).to redirect_to work_session_path(work_session.id)
+    it "redirects to the updated work_session" do
+      expect(update).to redirect_to work_sessions_path
     end
 
     it "redirects to #edit on failure" do
       put :update, params: { id: work_session.id, work_session: { date: nil } }
-      expect(response).to render_template(:edit)
+      expect(response).to redirect_to work_sessions_path
     end
   end
 
