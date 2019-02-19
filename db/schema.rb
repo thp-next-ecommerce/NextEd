@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_02_19_132800) do
+ActiveRecord::Schema.define(version: 2019_02_19_141231) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -29,6 +29,15 @@ ActiveRecord::Schema.define(version: 2019_02_19_132800) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["culture_id"], name: "index_domains_on_culture_id"
+  end
+
+  create_table "section_students", force: :cascade do |t|
+    t.bigint "section_id"
+    t.bigint "student_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["section_id"], name: "index_section_students_on_section_id"
+    t.index ["student_id"], name: "index_section_students_on_student_id"
   end
 
   create_table "sections", force: :cascade do |t|
@@ -72,6 +81,8 @@ ActiveRecord::Schema.define(version: 2019_02_19_132800) do
   end
 
   add_foreign_key "domains", "cultures"
+  add_foreign_key "section_students", "sections"
+  add_foreign_key "section_students", "students"
   add_foreign_key "skills", "domains"
   add_foreign_key "work_session_skills", "skills"
   add_foreign_key "work_session_skills", "work_sessions"

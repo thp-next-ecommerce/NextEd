@@ -1,5 +1,17 @@
 # frozen_string_literal: true
 
+# == Schema Information
+#
+# Table name: sections
+#
+#  id          :bigint(8)        not null, primary key
+#  year        :integer          not null
+#  level       :integer          not null
+#  sub_section :string           not null
+#  created_at  :datetime         not null
+#  updated_at  :datetime         not null
+#
+
 require 'rails_helper'
 
 RSpec.describe Section, type: :model do
@@ -21,17 +33,15 @@ RSpec.describe Section, type: :model do
     describe 'associations' do
       let(:section) { create(:section) }
 
-      skip
-      # setup these tests when associating with lessons
-      # it { is_expected.to have_many(:skills) }
-      # it "responds to #skills" do
-      #   expect(work_session.skills).to be_truthy
-      # end
+      it { is_expected.to have_many(:students) }
+      it "responds to #students" do
+        expect(section.students).to be_truthy
+      end
 
-      # it "follows association links from #skills back to itself" do
-      #   work_session.skills << create(:skill)
-      #   expect(work_session.skills.first.work_sessions.first).to eq work_session
-      # end
+      it "follows association links from #section back to itself" do
+        section.students << create(:student)
+        expect(section.students.first.sections.first).to eq section
+      end
     end
   end
 end

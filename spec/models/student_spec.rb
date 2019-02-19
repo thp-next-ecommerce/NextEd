@@ -28,17 +28,15 @@ RSpec.describe Student, type: :model do
     describe 'associations' do
       let(:student) { create(:student) }
 
-      skip
-      # setup these tests when associating with lessons
-      # it { is_expected.to have_many(:skills) }
-      # it "responds to #skills" do
-      #   expect(work_session.skills).to be_truthy
-      # end
+      it { is_expected.to have_many(:sections) }
+      it "responds to #sections" do
+        expect(student.sections).to be_truthy
+      end
 
-      # it "follows association links from #skills back to itself" do
-      #   work_session.skills << create(:skill)
-      #   expect(work_session.skills.first.work_sessions.first).to eq work_session
-      # end
+      it "follows association links from #sections back to itself" do
+        student.sections << create(:section)
+        expect(student.sections.first.students.first).to eq student
+      end
     end
   end
 end
