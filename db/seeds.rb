@@ -14,6 +14,7 @@ Culture.destroy_all
 Domain.destroy_all
 Skill.destroy_all
 WorkSession.destroy_all
+Student.destroy_all
 
 Culture.create!(name: "Culture 1")
 Culture.create!(name: "Culture 2")
@@ -31,6 +32,7 @@ Domain.create!(name: "Domain 3", culture_id: Culture.last.id)
   )
   ++i
 end
+puts "created 10 Skills"
 
 10.times do
   schedule = %w(M1 M2 M3 M4 S1 S2 S3 S4)
@@ -42,3 +44,9 @@ end
     skills: skills
   )
 end
+puts "created 10 WorkSessions"
+
+700.times do |i|
+  Student.create!(first_name: "First_name#{i}", last_name: "Student#{i}")
+end
+puts "created 700 Students"

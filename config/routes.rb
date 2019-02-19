@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
+  resources :students
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   root 'work_sessions#index'
   resources :cultures, only: %i[index show edit update]
