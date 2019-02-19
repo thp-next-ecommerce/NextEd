@@ -32,14 +32,14 @@ RSpec.describe Skill, type: :model do
     describe 'association' do
       let(:skill) { create(:skill) }
 
-      it { is_expected.to have_many(:lessons) }
-      it "responds to #lessons" do
-        expect(skill.lessons).to be_truthy
+      it { is_expected.to have_many(:work_sessions) }
+      it "responds to #work_sessions" do
+        expect(skill.work_sessions).to be_truthy
       end
 
-      it "follows association links from #lessons back to itself" do
-        skill.lessons << create(:lesson)
-        expect(skill.lessons.first.skills.first).to eq skill
+      it "follows association links from #work_sessions back to itself" do
+        skill.work_sessions << create(:work_session)
+        expect(skill.work_sessions.first.skills.first).to eq skill
       end
     end
   end

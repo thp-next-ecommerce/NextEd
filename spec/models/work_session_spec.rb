@@ -2,7 +2,7 @@
 
 # == Schema Information
 #
-# Table name: lessons
+# Table name: work_sessions
 #
 #  id             :bigint(8)        not null, primary key
 #  date           :date             not null
@@ -13,7 +13,7 @@
 
 require 'rails_helper'
 
-RSpec.describe Lesson, type: :model do
+RSpec.describe WorkSession, type: :model do
   describe 'model instanciation,' do
     describe 'database' do
       it { is_expected.to have_db_column(:date).of_type(:date).with_options(null: false) }
@@ -27,16 +27,16 @@ RSpec.describe Lesson, type: :model do
     end
 
     describe 'associations' do
-      let(:lesson) { create(:lesson) }
+      let(:work_session) { create(:work_session) }
 
       it { is_expected.to have_many(:skills) }
       it "responds to #skills" do
-        expect(lesson.skills).to be_truthy
+        expect(work_session.skills).to be_truthy
       end
 
       it "follows association links from #skills back to itself" do
-        lesson.skills << create(:skill)
-        expect(lesson.skills.first.lessons.first).to eq lesson
+        work_session.skills << create(:skill)
+        expect(work_session.skills.first.work_sessions.first).to eq work_session
       end
     end
   end

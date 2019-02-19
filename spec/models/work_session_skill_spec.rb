@@ -2,18 +2,17 @@
 
 # == Schema Information
 #
-# Table name: lesson_skills
+# Table name: work_session_skills
 #
 #  id         :bigint(8)        not null, primary key
-#  lesson_id  :bigint(8)
+#  work_session_id  :bigint(8)
 #  skill_id   :bigint(8)
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #
 
-FactoryBot.define do
-  factory :lesson_skill do
-    lesson { nil }
-    skill { nil }
-  end
+require 'rails_helper'
+
+RSpec.describe WorkSessionSkill, type: :model do
+  pending "add some examples to (or delete) #{__FILE__}"
 end

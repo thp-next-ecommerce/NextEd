@@ -4,7 +4,7 @@
     <div class="card">
       <div class="card-body">
         <h6 class="card-subtitle text-muted mb-2">Quand</h6> 
-        <%= form_with model: @lesson, local: true do |f| %>
+        <%= form_with model: @work_session, local: true do |f| %>
           <div class="form-group">
             <%= f.date_field :date, class: "form-control" %>
             <%= f.text_field :daily_schedule, class: "form-control mt-2", placeholder: "crénau (M1, S3, ...)" %>

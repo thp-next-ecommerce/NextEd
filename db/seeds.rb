@@ -13,7 +13,7 @@ require "faker"
 Culture.destroy_all
 Domain.destroy_all
 Skill.destroy_all
-Lesson.destroy_all
+WorkSession.destroy_all
 
 Culture.create!(name: "Culture 1")
 Culture.create!(name: "Culture 2")
@@ -36,7 +36,7 @@ end
   schedule = %w(M1 M2 M3 M4 S1 S2 S3 S4)
   skills = []
   5.times do skills.push(Skill.all.sample) end
-  Lesson.create!(
+  WorkSession.create!(
     date: Faker::Date.between(1.year.ago, 1.year.from_now),
     daily_schedule: schedule.sample,
     skills: skills
