@@ -46,6 +46,15 @@ RSpec.describe Student, type: :model do
       it "follows association links from #groups back to itself" do
         student.groups << create(:group)
         expect(student.groups.first.students.first).to eq student
+
+      it { is_expected.to have_many(:work_sessions) }
+      it "responds to #work_sessions" do
+        expect(student.work_sessions).to be_truthy
+      end
+
+      it "follows association links from #work_sessions back to itself" do
+        student.work_sessions << create(:work_session)
+        expect(student.work_sessions.first.students.first).to eq student
       end
     end
   end
