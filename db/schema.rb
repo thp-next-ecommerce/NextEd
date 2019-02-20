@@ -31,6 +31,39 @@ ActiveRecord::Schema.define(version: 2019_02_19_152626) do
     t.index ["culture_id"], name: "index_domains_on_culture_id"
   end
 
+  create_table "group_students", force: :cascade do |t|
+    t.bigint "student_id"
+    t.bigint "group_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["group_id"], name: "index_group_students_on_group_id"
+    t.index ["student_id"], name: "index_group_students_on_student_id"
+  end
+
+  create_table "groups", force: :cascade do |t|
+    t.string "name", null: false
+    t.integer "level"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "section_students", force: :cascade do |t|
+    t.bigint "section_id"
+    t.bigint "student_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["section_id"], name: "index_section_students_on_section_id"
+    t.index ["student_id"], name: "index_section_students_on_student_id"
+  end
+
+  create_table "sections", force: :cascade do |t|
+    t.integer "year", null: false
+    t.integer "level", null: false
+    t.string "sub_section", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "skills", force: :cascade do |t|
     t.string "name", null: false
     t.text "description", null: false
@@ -73,6 +106,10 @@ ActiveRecord::Schema.define(version: 2019_02_19_152626) do
   end
 
   add_foreign_key "domains", "cultures"
+  add_foreign_key "group_students", "groups"
+  add_foreign_key "group_students", "students"
+  add_foreign_key "section_students", "sections"
+  add_foreign_key "section_students", "students"
   add_foreign_key "skills", "domains"
   add_foreign_key "student_work_sessions", "students"
   add_foreign_key "student_work_sessions", "work_sessions"
