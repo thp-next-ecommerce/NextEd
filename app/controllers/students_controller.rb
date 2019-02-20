@@ -3,6 +3,10 @@
 class StudentsController < ApplicationController
   before_action :set_student, only: %i[show edit update destroy]
 
+  def search
+    @students = Student.where(last_name: "Student72")
+  end
+
   # GET /students
   # GET /students.json
   def index
