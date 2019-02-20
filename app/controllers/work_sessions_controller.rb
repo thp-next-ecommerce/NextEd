@@ -33,7 +33,11 @@ class WorkSessionsController < ApplicationController
     if unarchived_session? && @work_session.update(permitted_params)
       redirect_to work_session_path, notice: "La séance a été mise à jour"
     else
-      redirect_back fallback_location: work_sessions_path, alert: "Vous ne pouvez pas modifier une séance archivée"
+      if unarchived_session? == false
+        redirect_back fallback_location: work_sessions_path, alert: "Vous ne pouvez pas modifier une séance archivée"
+      else 
+        redirect_back fallback_location: work_sessions_path, alert: "#{@work_session.errors.full_messages}"
+      end
     end
   end
 
