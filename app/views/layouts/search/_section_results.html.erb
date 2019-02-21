@@ -1,4 +1,4 @@
-this is a test
+<p>Liste des étudiants : </p>
 <% @students.each do |student| %>
-  <input type="checkbox"></input><%= student.last_name %>
+  <input type="checkbox"></input> <%= link_to student.last_name, student_path(student) %>
 <% end %>

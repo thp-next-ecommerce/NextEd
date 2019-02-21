@@ -2,98 +2,36 @@
 
 <h2>Search</h2>
 <!--Search selectors-->
-<div class="row">
-  <div class="col-3">
-    <div class="list-group" id="list-tab" role="tablist">
-      <a class="list-group-item list-group-item-action active" id="list-section-list" data-toggle="list" href="#list-section" role="tab" aria-controls="section">Classe</a>
-      <a class="list-group-item list-group-item-action" id="list-group-list" data-toggle="list" href="#list-group" role="tab" aria-controls="group">Groupe</a>
-      <a class="list-group-item list-group-item-action" id="list-name-list" data-toggle="list" href="#list-name" role="tab" aria-controls="name">Nom</a>
-    </div>
-  </div>
-  <div class="col-9">
-    <div class="tab-content" id="nav-tabContent">
-      <div class="tab-pane fade show active" id="list-section" role="tabpanel" aria-labelledby="list-section-list">
-        <!--Section selectors-->
-        <ul class="nav nav-tabs justify-content-around">
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">6e</a>
-            <div class="dropdown-menu">
-              <a class="dropdown-item" href="#">A</a>
-              <a class="dropdown-item" href="#">B</a>
-              <a class="dropdown-item" href="#">C</a>
-              <a class="dropdown-item" href="#">D</a>
-            </div>
-          </li>
-          
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">5e</a>
-            <div class="dropdown-menu">
-              <a class="dropdown-item" href="#">A</a>
-              <a class="dropdown-item" href="#">B</a>
-              <a class="dropdown-item" href="#">C</a>
-              <a class="dropdown-item" href="#">D</a>
-            </div>
-          </li>
-          
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">4e</a>
-            <div class="dropdown-menu">
-              <a class="dropdown-item" href="#">A</a>
-              <a class="dropdown-item" href="#">B</a>
-              <a class="dropdown-item" href="#">C</a>
-              <a class="dropdown-item" href="#">D</a>
-            </div>
-          </li>
-          
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">3e</a>
-            <div class="dropdown-menu">
-              <%= link_to 'Z', search_path, method: :post, remote: true, class: "dropdown-item" %>
-              <a class="dropdown-item" href="#">A</a>
-              <a class="dropdown-item" href="#">B</a>
-              <a class="dropdown-item" href="#">C</a>
-              <a class="dropdown-item" href="#">D</a>
-            </div>
-          </li>
-        </ul>
-        
-        <!--Sections content-->
-        <div id="section-results"></div>
-      </div>
-      
-      <div class="tab-pane fade" id="list-group" role="tabpanel" aria-labelledby="list-group-list">...</div>
-      
-      <div class="tab-pane fade" id="list-name" role="tabpanel" aria-labelledby="list-name-list">...</div>
-    </div>
-  </div>
-</div>
+<%= render 'search', student: @students %>
 
-<h2>Students</h2>
+<div>
+  <h2>Students</h2>
 
-<table>
-  <thead>
-    <tr>
-      <th>First name</th>
-      <th>Last name</th>
-      <th>Section name</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @students.each do |student| %>
+  <table>
+    <thead>
       <tr>
-        <td><%= student.first_name %></td>
-        <td><%= student.last_name %></td>
-        <td><%= student.sections.first.level %><%= student.sections.first.sub_section %></td>
-        <td><%= link_to 'Show', student %></td>
-        <td><%= link_to 'Edit', edit_student_path(student) %></td>
-        <td><%= link_to 'Destroy', student, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <th>First name</th>
+        <th>Last name</th>
+        <th>Section name</th>
+        <th colspan="3"></th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
 
-<br>
+    <tbody>
+      <% @students.each do |student| %>
+        <tr>
+          <td><%= student.first_name %></td>
+          <td><%= student.last_name %></td>
+          <td><%= student.sections.first.level %><%= student.sections.first.sub_section %></td>
+          <td><%= link_to 'Show', student %></td>
+          <td><%= link_to 'Edit', edit_student_path(student) %></td>
+          <td><%= link_to 'Destroy', student, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
 
-<%= link_to 'New Student', new_student_path %>
+  <br>
+
+  <%= link_to 'New Student', new_student_path %>
+</div>
