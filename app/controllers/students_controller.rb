@@ -5,14 +5,14 @@ class StudentsController < ApplicationController
 
   def search
     if params[:level].present? && params[:sub_section].present?
-      @students = Student.select { |student| 
+      @students = Student.select { |student|
         (student.sections.last.sub_section == params[:sub_section] &&
         student.sections.last.level == params[:level].to_i)
       }
     elsif params[:group].present?
       flash[:notice] = "group"
     elsif params[:student].present?
-      @students = @students.select { |student| 
+      @students = @students.select { |student|
         (student.last_name.capitalize.start_with?(params[:section]) ||
         student.first_name.capitalize.start_with?(params[:section]) )
       }
