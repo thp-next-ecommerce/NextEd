@@ -14,7 +14,14 @@
           <tr>
             <td><%= culture.name %></td>
             <td><%= culture.description %></td>
-            <td><%= link_to "Voir", culture_path(culture.id), class: "btn btn-primary" %> <%= link_to "Editer", edit_culture_path(culture.id), class: "btn btn-secondary" %> </td>
+            <td>
+              <%= link_to culture_path(culture.id) do %>
+                  <i class="align-middle" data-feather="eye"></i>
+              <% end %>
+              <%= link_to  edit_culture_path(culture.id) do %>
+                  <i class="align-middle" data-feather="edit-2"></i>
+              <% end %>
+            </td>
           </tr>
         <% end %>
       </tbody>

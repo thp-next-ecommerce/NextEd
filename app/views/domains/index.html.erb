@@ -16,7 +16,14 @@
             <td><%= domain.name %></td>
             <td><%= domain.description %></td>
             <td><%= domain.culture.name %></td>
-            <td><%= link_to "Voir", domain_path(domain.id), class: "btn btn-primary" %> <%= link_to "Editer", edit_domain_path(domain.id), class: "btn btn-secondary" %> </td>
+            <td>
+              <%= link_to domain_path(domain.id) do %>
+                  <i class="align-middle" data-feather="eye"></i>
+              <% end %>
+              <%= link_to  edit_domain_path(domain.id) do %>
+                  <i class="align-middle" data-feather="edit-2"></i>
+              <% end %>
+            </td>
           </tr>
         <% end %>
       </tbody>

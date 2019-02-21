@@ -1,26 +1,25 @@
-<div class="container">
-  <div class="card">
-    <div class="table-responsive">
-      <table class="table">
-        <thead>
-          <tr>
-            <th>Nom</th>
-            <th>Domaine</th>
-            <th>Culture</th>
-            <th>Description</th>
-            <th></th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td><%= @skill.name %></td>
-            <td><%= @skill.domain.name %></td>
-            <td><%= @skill.domain.culture.name %></td>
-            <td><%= @skill.description %></td>
-            <td><%= link_to "Editer", edit_skill_path(@skill.id), class: "btn btn-secondary" %></td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
+<h4>Compétence "<%= @skill.name %>"</h4>
+
+<div class="card">
+  <div class="table-responsive">
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Domaine</th>
+          <th>Culture</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><%= @skill.domain.name %></td>
+          <td><%= @skill.domain.culture.name %></td>
+          <td><%= @skill.description %></td>
+        </tr>
+      </tbody>
+    </table>
   </div>
 </div>
+
+<%= link_to "Modifier", edit_skill_path(@skill.id), class: "btn btn-secondary ml-auto" %> <br/><br/>
+<%= link_to "Revenir à l'index", skills_path, class:"btn btn-info" %>

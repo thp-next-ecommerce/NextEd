@@ -1,22 +1,25 @@
-<div class="container">
-  <div class="card">
-    <div class="table-responsive">
-      <table class="table">
-        <thead>
-          <tr>
-            <th>Nom</th>
-            <th>Description</th>
-            <th></th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td><%= @culture.name %></td>
-            <td><%= @culture.description %></td>
-            <td><%= link_to "Editer", edit_culture_path(@culture.id), class: "btn btn-secondary" %></td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
+<h4>Culture "<%= @culture.name %>"</h4>
+
+<div class="card">
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Description</th>
+        <th>Domaines</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><%= @culture.description %></td>
+        <td>
+          <% @culture.domains.each do |domain| %>
+            <%= domain.name %><br/>
+          <% end %>
+        </td>
+      </tr>
+    </tbody>
+  </table>
   </div>
-</div>
+
+<%= link_to "Modifier", edit_culture_path(@culture.id), class: "btn btn-secondary ml-auto" %> <br/><br/>
+<%= link_to "Revenir à l'index", cultures_path, class:"btn btn-info" %>
