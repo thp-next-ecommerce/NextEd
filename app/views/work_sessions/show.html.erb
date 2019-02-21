@@ -6,7 +6,7 @@
     </div>
     <div class="card-body">
       <h6 class="card-subtitle text-muted mb-2">Date</h6> 
-      <%= @work_session.date %>
+      <%= @work_session.date.to_s(:long) %>
       <h6 class="card-subtitle text-muted my-2">Infos</h6>
       <%= @work_session.daily_schedule %>
     </div>

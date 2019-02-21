@@ -55,34 +55,21 @@ RSpec.describe WorkSessionsController, type: :controller do
   end
 
   describe "PUT #update" do
-    subject(:update) { put :update, params: { id: work_session.id, work_session: { date: Date.tomorrow } } }
+    subject(:update) { put :update, params: { id: work_session.id, work_session: { date: Date.current } } }
 
     it "updates the passed values" do
       work_session
       update
-      expect(work_session.reload.date).to eq Date.tomorrow
+      expect(work_session.reload.date).to eq Date.current
     end
 
-    it "redirects to the created work_session" do
+    it "redirects to the updated work_session" do
       expect(update).to redirect_to work_session_path(work_session.id)
     end
 
     it "redirects to #edit on failure" do
-      put :update, params: { id: work_session.id, work_session: { date: nil } }
-      expect(response).to render_template(:edit)
-    end
-  end
-
-  describe "DELETE #destroy" do
-    subject(:destroy) { delete :destroy, params: { id: work_session.id } }
-
-    it "deletes the record" do
-      work_session
-      expect { delete :destroy, params: { id: work_session.id } }.to change(WorkSession, :count).by(-1)
-    end
-
-    it "redirects to #index" do
-      expect(destroy).to redirect_to work_sessions_path
+      put :update, params: { id: work_session.id, work_session: { date: Date.yesterday } }
+      expect(response).to redirect_to work_session_path(work_session.id)
     end
   end
 end

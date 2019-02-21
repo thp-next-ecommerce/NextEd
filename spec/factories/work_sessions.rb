@@ -13,7 +13,7 @@
 
 FactoryBot.define do
   factory :work_session do
-    date { Time.zone.today }
+    date { Date.tomorrow }
     daily_schedule { "MyString" }
   end
 end
