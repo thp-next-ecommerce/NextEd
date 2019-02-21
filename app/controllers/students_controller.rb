@@ -4,7 +4,23 @@ class StudentsController < ApplicationController
   before_action :set_student, only: %i[show edit update destroy]
 
   def search
-    @students = Student.where(last_name: "Student72")
+    if params[:level].present? && params[:sub_section].present?
+      @students = Student.select { |student| 
+        (student.sections.last.sub_section == params[:sub_section] &&
+        student.sections.last.level == params[:level].to_i)
+      }
+    elsif params[:group].present?
+      flash[:notice] = "group"
+    elsif params[:student].present?
+      @students = @students.select { |student| 
+        (student.last_name.capitalize.start_with?(params[:section]) ||
+        student.first_name.capitalize.start_with?(params[:section]) )
+      }
+      flash[:notice] = "student"
+    else
+      render 'search'
+      flash[:notice] = "render"
+    end
   end
 
   # GET /students
