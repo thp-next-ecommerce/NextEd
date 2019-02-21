@@ -1,27 +1,25 @@
-<div class="container">
-  <h2>Domaines</h2>
-  <div class="card">
-    <div class="table-responsive">
-      <table class="table">
-        <thead>
+<h2>Domaines</h2>
+<div class="card">
+  <div class="table-responsive">
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Nom</th>
+          <th>Description</th>
+          <th>Culture</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @domains.each do |domain|%>
           <tr>
-            <th>Nom</th>
-            <th>Description</th>
-            <th>Culture</th>
-            <th></th>
+            <td><%= domain.name %></td>
+            <td><%= domain.description %></td>
+            <td><%= domain.culture.name %></td>
+            <td><%= link_to "Voir", domain_path(domain.id), class: "btn btn-primary" %> <%= link_to "Editer", edit_domain_path(domain.id), class: "btn btn-secondary" %> </td>
           </tr>
-        </thead>
-        <tbody>
-          <% @domains.each do |domain|%>
-            <tr>
-              <td><%= domain.name %></td>
-              <td><%= domain.description %></td>
-              <td><%= domain.culture.name %></td>
-              <td><%= link_to "Editer", edit_domain_path(domain.id), class: "btn btn-secondary" %> <%= link_to "Voir plus", domain_path(domain.id), class: "btn btn-primary" %></td>
-            </tr>
-          <% end %>
-        </tbody>
-      </table>
-    </div>
+        <% end %>
+      </tbody>
+    </table>
   </div>
 </div>

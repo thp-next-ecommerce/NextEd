@@ -1,25 +1,23 @@
-<div class="container">
-  <h2>Cultures</h2>
-  <div class="card">
-    <div class="table-responsive">
-      <table class="table">
-        <thead>
+<h2>Cultures</h2>
+<div class="card">
+  <div class="table-responsive">
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Nom</th>
+          <th>Description</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @cultures.each do |culture|%>
           <tr>
-            <th>Nom</th>
-            <th>Description</th>
-            <th></th>
+            <td><%= culture.name %></td>
+            <td><%= culture.description %></td>
+            <td><%= link_to "Voir", culture_path(culture.id), class: "btn btn-primary" %> <%= link_to "Editer", edit_culture_path(culture.id), class: "btn btn-secondary" %> </td>
           </tr>
-        </thead>
-        <tbody>
-          <% @cultures.each do |culture|%>
-            <tr>
-              <td><%= culture.name %></td>
-              <td><%= culture.description %></td>
-              <td><%= link_to "Editer", edit_culture_path(culture.id), class: "btn btn-secondary" %> <%= link_to "Voir plus", culture_path(culture.id), class: "btn btn-primary" %></td>
-            </tr>
-          <% end %>
-        </tbody>
-      </table>
-    </div>
+        <% end %>
+      </tbody>
+    </table>
   </div>
 </div>
