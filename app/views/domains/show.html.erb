@@ -1,24 +1,22 @@
-<div class="container">
-  <div class="card">
-    <div class="table-responsive">
-      <table class="table">
-        <thead>
-          <tr>
-            <th>Nom</th>
-            <th>Description</th>
-            <th>Culture</th>
-            <th></th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td><%= @domain.name %></td>
-            <td><%= @domain.description %></td>
-            <td><%= @domain.culture.name %></td>
-            <td><%= link_to "Editer", edit_domain_path(@domain.id), class: "btn btn-secondary" %></td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
+<h4>Domaine "<%= @domain.name %>"</h4>
+<div class="card">
+  <div class="table-responsive">
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Description</th>
+          <th>Culture</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><%= @domain.description %></td>
+          <td><%= @domain.culture.name %></td>
+        </tr>
+      </tbody>
+    </table>
   </div>
 </div>
+
+<%= link_to "Modifier", edit_domain_path(@domain.id), class: "btn btn-secondary ml-auto" %> <br/><br/>
+<%= link_to "Revenir à l'index", domains_path, class:"btn btn-info" %>

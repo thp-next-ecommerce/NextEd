@@ -1,9 +1,9 @@
-<div class="container 12 col-lg-6">
+<h4>Modifier le domaine "<%= @domain.name %>"</h4>
+<div class="col-6 col-xl-6 pb-3">
   <div class="row">
     <div class="col">
       <h4></h4>
       <div class="card-header">
-        <h6 class="card-subtitle text-muted">Modifier <%= @domain.name %></h6>
         <div class="card-body">
           <%= form_with model: @domain, local: true do |f| %>
             <div class="form-group">

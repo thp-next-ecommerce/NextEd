@@ -18,19 +18,43 @@ Section.destroy_all
 Group.destroy_all
 Student.destroy_all
 
-Culture.create!(name: "Culture 1")
-Culture.create!(name: "Culture 2")
-Culture.create!(name: "Culture 3")
+culture1 = Culture.create!(name: "Les langages pour penser et communiquer", description: "Comprendre et s'exprimer")
+culture2 = Culture.create!(name: "Les méthodes et outils pour apprendre", description: "Apprendre à apprendre, seuls ou collectivement, en classe ou en dehors")
+culture3 = Culture.create!(name: "La formation de la personne et du citoyen", description: "Transmettre les valeurs fondamentales et les principes inscrits dans la Constitution")
+culture4 = Culture.create!(name: "Les systèmes naturels et les systèmes techniques", description: "Donner à l'élève les fondements de la culture mathématique, scientifique et technologique")
+culture5 = Culture.create!(name: "Les représentations du monde et de l'activité humaine", description: "Développer une conscience de l'espace géographique et du temps historique")
 
-Domain.create!(name: "Domain 1", culture_id: Culture.first.id)
-Domain.create!(name: "Domain 2", culture_id: Culture.first.id)
-Domain.create!(name: "Domain 3", culture_id: Culture.last.id)
+puts "Created cultures"
 
-10.times do |i|
+Domain.create!(name: "langue française", description: Faker::Lorem.sentence(10), culture_id: culture1.id)
+Domain.create!(name: "langues vivantes étrangères ou régionales", description: Faker::Lorem.sentence(10), culture_id: culture1.id)
+Domain.create!(name: "langages mathématiques, scientifiques et informatiques", description: Faker::Lorem.sentence(10), culture_id: culture1.id)
+Domain.create!(name: "langages des arts et du corps", description: Faker::Lorem.sentence(10), culture_id: culture1.id)
+
+Domain.create!(name: "accès à l'information et à la documentation", description: Faker::Lorem.sentence(10), culture_id: culture2.id)
+Domain.create!(name: "outils numériques", description: Faker::Lorem.sentence(10), culture_id: culture2.id)
+Domain.create!(name: "conduite de projets individuels et collectifs", description: Faker::Lorem.sentence(10), culture_id: culture2.id)
+Domain.create!(name: "organisation des apprentissages", description: Faker::Lorem.sentence(10), culture_id: culture2.id)
+
+Domain.create!(name: "apprentissage de la vie en société, de l'action collective et de la citoyenneté", description: Faker::Lorem.sentence(10), culture_id: culture3.id)
+Domain.create!(name: "formation morale et civique", description: Faker::Lorem.sentence(10), culture_id: culture3.id)
+Domain.create!(name: "respect des choix personnels et des responsabilités individuelles", description: Faker::Lorem.sentence(10), culture_id: culture3.id)
+
+Domain.create!(name: "approche scientifique et technique de la Terre et de l'univers", description: Faker::Lorem.sentence(10), culture_id: culture4.id)
+Domain.create!(name: "curiosité et sens de l'observation", description: Faker::Lorem.sentence(10), culture_id: culture4.id)
+Domain.create!(name: "capacité à résoudre des problèmes", description: Faker::Lorem.sentence(10), culture_id: culture4.id)
+
+Domain.create!(name: "compréhension des sociétés dans le temps et dans l'espace", description: Faker::Lorem.sentence(10), culture_id: culture5.id)
+Domain.create!(name: "interprétation des productions culturelles humaines", description: Faker::Lorem.sentence(10), culture_id: culture5.id)
+Domain.create!(name: "connaissance du monde social contemporain", description: Faker::Lorem.sentence(10), culture_id: culture5.id)
+
+puts "Created domains"
+
+20.times do |i|
   Skill.create!(
     name: "Compétence #{i}",
     description: Faker::Lorem.sentence(10),
-    domain: Domain.first
+    domain: Domain.all.sample
   )
   ++i
 end
@@ -65,7 +89,7 @@ puts "Created 20 sections"
 end
 puts "created 10 groups"
 
-700.times do |i|
+700.times do |_i|
   sections = []
   groups = []
   rand(1..4).times{
@@ -73,8 +97,8 @@ puts "created 10 groups"
     groups << Group.all.sample
   }
   Student.create!(
-    first_name: "First_name#{i}",
-    last_name: "Student#{i}",
+    first_name: Faker::Name.first_name,
+    last_name: Faker::Name.last_name,
     sections: sections
   )
 end
