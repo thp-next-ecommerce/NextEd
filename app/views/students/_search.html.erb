@@ -27,13 +27,13 @@
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">5e</a>
             <div class="dropdown-menu">
-              <%= link_to 'A', search_path(level: 5, sub_section: "A" ), method: :get, remote: true, class: "dropdown-item" %>
+              <%= link_to 'A', search_path(level: 5, sub_section: "A"), method: :get, remote: true, class: "dropdown-item" %>
               <%= link_to 'B', search_path(level: 5, sub_section: "B"), method: :get, remote: true, class: "dropdown-item" %>
               <%= link_to 'C', search_path(level: 5, sub_section: "C"), method: :get, remote: true, class: "dropdown-item" %>
               <%= link_to 'D', search_path(level: 5, sub_section: "D"), method: :get, remote: true, class: "dropdown-item" %>
-              <%= link_to 'E', search_path(level: 5, sub_section: "E" ), method: :get, remote: true, class: "dropdown-item" %>
-              <%= link_to 'F', search_path(level: 5, sub_section: "F" ), method: :get, remote: true, class: "dropdown-item" %>
-              <%= link_to 'G', search_path(level: 5, sub_section: "G" ), method: :get, remote: true, class: "dropdown-item" %>
+              <%= link_to 'E', search_path(level: 5, sub_section: "E"), method: :get, remote: true, class: "dropdown-item" %>
+              <%= link_to 'F', search_path(level: 5, sub_section: "F"), method: :get, remote: true, class: "dropdown-item" %>
+              <%= link_to 'G', search_path(level: 5, sub_section: "G"), method: :get, remote: true, class: "dropdown-item" %>
  
             </div>
           </li>
@@ -41,13 +41,13 @@
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">4e</a>
             <div class="dropdown-menu">
-              <%= link_to 'A', search_path(level: 4, sub_section: "A" ), method: :get, remote: true, class: "dropdown-item" %>
+              <%= link_to 'A', search_path(level: 4, sub_section: "A"), method: :get, remote: true, class: "dropdown-item" %>
               <%= link_to 'B', search_path(level: 4, sub_section: "B"), method: :get, remote: true, class: "dropdown-item" %>
               <%= link_to 'C', search_path(level: 4, sub_section: "C"), method: :get, remote: true, class: "dropdown-item" %>
               <%= link_to 'D', search_path(level: 4, sub_section: "D"), method: :get, remote: true, class: "dropdown-item" %>
-              <%= link_to 'E', search_path(level: 4, sub_section: "E" ), method: :get, remote: true, class: "dropdown-item" %>
-              <%= link_to 'F', search_path(level: 4, sub_section: "F" ), method: :get, remote: true, class: "dropdown-item" %>
-              <%= link_to 'G', search_path(level: 4, sub_section: "G" ), method: :get, remote: true, class: "dropdown-item" %>
+              <%= link_to 'E', search_path(level: 4, sub_section: "E"), method: :get, remote: true, class: "dropdown-item" %>
+              <%= link_to 'F', search_path(level: 4, sub_section: "F"), method: :get, remote: true, class: "dropdown-item" %>
+              <%= link_to 'G', search_path(level: 4, sub_section: "G"), method: :get, remote: true, class: "dropdown-item" %>
  
             </div>
           </li>
@@ -55,24 +55,31 @@
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">3e</a>
             <div class="dropdown-menu">
-              <%= link_to 'A', search_path(level: 3, sub_section: "A" ), method: :get, remote: true, class: "dropdown-item" %>
+              <%= link_to 'A', search_path(level: 3, sub_section: "A"), method: :get, remote: true, class: "dropdown-item" %>
               <%= link_to 'B', search_path(level: 3, sub_section: "B"), method: :get, remote: true, class: "dropdown-item" %>
               <%= link_to 'C', search_path(level: 3, sub_section: "C"), method: :get, remote: true, class: "dropdown-item" %>
               <%= link_to 'D', search_path(level: 3, sub_section: "D"), method: :get, remote: true, class: "dropdown-item" %>
-              <%= link_to 'E', search_path(level: 3, sub_section: "E" ), method: :get, remote: true, class: "dropdown-item" %>
-              <%= link_to 'F', search_path(level: 3, sub_section: "F" ), method: :get, remote: true, class: "dropdown-item" %>
-              <%= link_to 'G', search_path(level: 3, sub_section: "G" ), method: :get, remote: true, class: "dropdown-item" %>
+              <%= link_to 'E', search_path(level: 3, sub_section: "E"), method: :get, remote: true, class: "dropdown-item" %>
+              <%= link_to 'F', search_path(level: 3, sub_section: "F"), method: :get, remote: true, class: "dropdown-item" %>
+              <%= link_to 'G', search_path(level: 3, sub_section: "G"), method: :get, remote: true, class: "dropdown-item" %>
             </div>
           </li>
         </ul>
         
         <!--Sections content-->
-        <div id="section-results"></div>
+        <div id="section-results-section"></div>
       </div>
       
       <div class="tab-pane fade" id="list-group" role="tabpanel" aria-labelledby="list-group-list">...</div>
       
-      <div class="tab-pane fade" id="list-name" role="tabpanel" aria-labelledby="list-name-list">...</div>
+      <div class="tab-pane fade" id="list-name" role="tabpanel" aria-labelledby="list-name-list">
+        <p>Recherche par éleve</p>
+        <%= form_tag(search_path, method: :get, remote: true) do %>
+          <%= text_field_tag(:student) %>
+          <%= submit_tag 'Rechercher' %>
+        <% end %>
+        <div id="section-results-student"></div>
+      </div>
     </div>
   </div>
 </div>

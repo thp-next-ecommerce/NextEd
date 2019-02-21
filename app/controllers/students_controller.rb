@@ -12,10 +12,12 @@ class StudentsController < ApplicationController
     elsif params[:group].present?
       flash[:notice] = "group"
     elsif params[:student].present?
-      @students = @students.select { |student|
-        (student.last_name.capitalize.start_with?(params[:section]) ||
-        student.first_name.capitalize.start_with?(params[:section]) )
+      puts "-------Students------"
+      @students = Student.select { |student|
+        (student.last_name.upcase.start_with?(params[:student].upcase) ||
+        student.first_name.upcase.start_with?(params[:student].upcase) )
       }
+      puts "-------#{@students.count}------"
       flash[:notice] = "student"
     else
       render 'search'
@@ -90,6 +92,6 @@ class StudentsController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def student_params
-    params.require(:student).permit(:first_name, :last_name)
+    params.require(:student).permit(:first_name, :last_name, :search)
   end
 end
