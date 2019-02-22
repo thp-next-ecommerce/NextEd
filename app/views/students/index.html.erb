@@ -14,6 +14,7 @@
         </tr>
       </thead>
       <tbody>
+
         <% @students.each do |student|%>
           <tr>
             <td><%= student.first_name %></td>
@@ -33,6 +34,11 @@
           </tr>
         <% end %>
       </tbody>
+      <tfoot>
+        <tr>
+          <td><%= paginate @students %></td>
+        </tr>
+      </tfoot>
     </table>
   </div>
 </div>
