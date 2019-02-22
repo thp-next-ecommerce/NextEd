@@ -7,8 +7,14 @@
 
     <ul class="sidebar-nav">
 
-      <li class="sidebar-item"><a class="sidebar-link" href="<%= work_sessions_path %>">
-        <i class="align-middle" data-feather="list"></i>Séances</a>
+       <li class="sidebar-item">
+        <a href="#students" data-toggle="collapse" class="sidebar-link collapsed">
+          <i class="align-middle" data-feather="list"></i> <span class="align-middle">Séances</span>
+        </a>
+        <ul id="students" class="sidebar-dropdown list-unstyled collapse ">
+          <li class="sidebar-item"><a class="sidebar-link" href="<%= work_sessions_path %>">Index</a></li>
+          <li class="sidebar-item"><a class="sidebar-link" href="<%= new_work_session_path %>">Nouvelle séance</a></li>
+        </ul>
       </li>
 
       <li class="sidebar-item">

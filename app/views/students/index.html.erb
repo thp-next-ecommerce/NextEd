@@ -1,4 +1,4 @@
-<p id="notice"><%= notice %></p>
+<h1>Liste des élèves</h1>
 
 <h2>Search</h2>
 <!--Search selectors-->
@@ -7,31 +7,35 @@
 <div>
   <h2>Students</h2>
 
-  <table>
-    <thead>
-      <tr>
-        <th>First name</th>
-        <th>Last name</th>
-        <th>Section name</th>
-        <th colspan="3"></th>
-      </tr>
-    </thead>
-
-    <tbody>
-      <% @students.each do |student| %>
+<div class="card">
+  <div class="table-responsive">
+    <table class="table">
+      <thead>
         <tr>
-          <td><%= student.first_name %></td>
-          <td><%= student.last_name %></td>
-          <td><%= student.sections.first.level %><%= student.sections.first.sub_section %></td>
-          <td><%= link_to 'Show', student %></td>
-          <td><%= link_to 'Edit', edit_student_path(student) %></td>
-          <td><%= link_to 'Destroy', student, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          <th>Prénom</th>
+          <th>Nom</th>
+          <th>Actions</th>
         </tr>
-      <% end %>
-    </tbody>
-  </table>
-
-  <br>
-
-  <%= link_to 'New Student', new_student_path %>
+      </thead>
+      <tbody>
+        <% @students.each do |student|%>
+          <tr>
+            <td><%= student.first_name %></td>
+            <td><%= student.last_name %></td>
+            <td>
+              <%= link_to student_path(student.id) do %>
+                  <i class="align-middle" data-feather="eye"></i>
+              <% end %>
+              <%= link_to  edit_student_path(student.id) do %>
+                  <i class="align-middle" data-feather="edit-2"></i>
+              <% end %>
+              <%= link_to  student_path(student.id), method: :delete, data: { confirm: 'Êtes-vous sûr ?' } do %>
+                  <i class="align-middle" data-feather="trash"></i>
+              <% end %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
 </div>
