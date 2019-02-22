@@ -16,7 +16,7 @@
             </div>
             <div class="form-group">
               <%= f.label "Changer le domaine associé :" %><br>
-              <%= f.select(:domain_id, options_for_select(Domain.pluck(:name, :id)), { :include_blank => "Veuillez choisir un domaine"}, {:class => "form-control"}) %><br>
+              <%= f.select(:domain_id, options_for_select(Domain.pluck(:name, :id)), {:class => "form-control"}) %><br>
             </div>
             <%= f.submit "Valider", class: "btn btn-primary" %>
           <% end %>
