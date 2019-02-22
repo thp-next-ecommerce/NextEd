@@ -1,8 +1,0 @@
-<!--show work_sessions#edit button on navbar-->
-<% if @work_session && !@work_session.new_record? %>
-  <% return if current_page?(edit_work_session_path) %>
-  <%= link_to "Editer la séance", edit_work_session_path(@work_session.id), class: "btn btn-secondary ml-auto" %>
-<% end %>
-
-<!--show work_sessions#new button on navbar-->
-<%= link_to "Créer une séance", new_work_session_path, class: "btn btn-primary ml-auto" if (@work_session && !@work_session.new_record? || @work_sessions) %>
