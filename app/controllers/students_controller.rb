@@ -21,13 +21,10 @@ class StudentsController < ApplicationController
       end
 
     elsif params[:student].present?
-      puts "-------Students------"
       @students = Student.select { |student|
         (student.last_name.upcase.start_with?(params[:student].upcase) ||
         student.first_name.upcase.start_with?(params[:student].upcase) )
       }
-      puts "-------#{@students.count}------"
-      flash[:notice] = "student"
     end
   end
 

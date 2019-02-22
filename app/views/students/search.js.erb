@@ -1,3 +1,9 @@
 $('#section-results').html("<%= j(render 'layouts/search/student_results') %>")
 $('#group-results').html("<%= j(render 'layouts/search/group_results') %>")
 $('#student-results').html("<%= j(render 'layouts/search/student_results') %>")
+
+$( ".clear-result" ).click(function() {
+  $( "#section-results" ).empty()
+  $( "#group-results" ).empty()
+  $( "#student-results" ).empty();
+});
