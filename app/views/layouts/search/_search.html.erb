@@ -9,6 +9,7 @@
   </div>
   <div class="col-9">
     <div class="tab-content" id="nav-tabContent">
+      <!-- Section search -->
       <div class="tab-pane fade show active" id="list-section" role="tabpanel" aria-labelledby="list-section-list">
         <!--Section selectors-->
         <ul class="nav nav-tabs justify-content-around">
@@ -18,19 +19,28 @@
           <%= render  "layouts/search/section_select", section: 3 %> 
         </ul>
         
-        <!--Sections content-->
-        <div id="section-results-section"></div>
+        <!--Sections results content-->
+        <div id="section-results"></div>
+      </div>
+      <!-- Group search -->
+      <div class="tab-pane fade" id="list-group" role="tabpanel" aria-labelledby="list-group-list">
+        <ul class="nav nav-tabs justify-content-around">
+          <%= render  "layouts/search/group_select", section: 6 %>
+          <%= render  "layouts/search/group_select", section: 5 %>
+          <%= render  "layouts/search/group_select", section: 4 %>
+          <%= render  "layouts/search/group_select", section: 3 %> 
+        </ul> 
+        <div id="group-results"></div>
       </div>
       
-      <div class="tab-pane fade" id="list-group" role="tabpanel" aria-labelledby="list-group-list">...</div>
-      
+      <!-- Name search -->
       <div class="tab-pane fade" id="list-name" role="tabpanel" aria-labelledby="list-name-list">
         <p>Recherche par éleve</p>
         <%= form_tag(search_path, method: :get, remote: true) do %>
           <%= text_field_tag(:student) %>
           <%= submit_tag 'Rechercher' %>
         <% end %>
-        <div id="section-results-student"></div>
+        <div id="student-results"></div>
       </div>
     </div>
   </div>

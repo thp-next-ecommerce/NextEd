@@ -9,8 +9,17 @@ class StudentsController < ApplicationController
         (student.sections.last.sub_section == params[:sub_section] &&
         student.sections.last.level == params[:level].to_i)
       }
+
     elsif params[:group].present?
-      flash[:notice] = "group"
+      if params[:group] == "yes"
+        @groups = Group.select { |group|
+          (group.level == params[:level].to_i)
+        }
+      else
+        @group = Group.find(params[:group])
+        @students = @group.students
+      end
+
     elsif params[:student].present?
       puts "-------Students------"
       @students = Student.select { |student|
@@ -19,9 +28,6 @@ class StudentsController < ApplicationController
       }
       puts "-------#{@students.count}------"
       flash[:notice] = "student"
-    else
-      render 'search'
-      flash[:notice] = "render"
     end
   end
 
