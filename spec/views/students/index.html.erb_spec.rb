@@ -4,16 +4,7 @@ require 'rails_helper'
 
 RSpec.describe "students/index", type: :view do
   before do
-    assign(:students, [
-             Student.create!(
-               first_name: "First Name",
-               last_name: "Last Name"
-             ),
-             Student.create!(
-               first_name: "First Name",
-               last_name: "Last Name"
-             )
-           ])
+    assign(:students, create_list(:student, 2))
   end
 
   it "renders a list of students" do
