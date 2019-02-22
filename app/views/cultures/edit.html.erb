@@ -1,9 +1,8 @@
-<div class="container 12 col-lg-6">
+<h3>Modifier la culture "<%= @culture.name %>" </h3>
+<div class="col-6 col-xl-6 pb-3">
   <div class="row">
     <div class="col">
-      <h4></h4>
       <div class="card-header">
-        <h6 class="card-subtitle text-muted">Modifier <%= @culture.name %></h6>
         <div class="card-body">
           <%= form_with model: @culture, local: true do |f| %>
             <div class="form-group">
@@ -21,3 +20,5 @@
     </div>
   </div>
 </div>
+
+<%= link_to "Revenir à l'index", cultures_path, class:"btn btn-info" %>

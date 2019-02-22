@@ -6,8 +6,7 @@
         <tr>
           <th>Date</th>
           <th>Créneau</th>
-          <th>Classe</th>
-          <th></th>
+          <th>Actions</th>
         </tr>
       </thead>
       <tbody>
@@ -15,8 +14,14 @@
           <tr>
             <td><%= work_session.date.to_s(:long) %></td>
             <td><%= work_session.daily_schedule %></td>
-            <td></td>
-            <td><%= link_to "Editer", edit_work_session_path(work_session.id), class: "btn btn-secondary" %> <%= link_to "Voir plus", work_session_path(work_session.id), class: "btn btn-primary" %></td>
+            <td>
+              <%= link_to work_session_path(work_session.id) do %>
+                  <i class="align-middle" data-feather="eye"></i>
+              <% end %>
+              <%= link_to  edit_work_session_path(work_session.id) do %>
+                  <i class="align-middle" data-feather="edit-2"></i>
+              <% end %>
+            </td>
           </tr>
         <% end %>
       </tbody>
