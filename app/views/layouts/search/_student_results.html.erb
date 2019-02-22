@@ -1,0 +1,14 @@
+<p>Liste des étudiants : </p>
+<% if @students == [] %>
+  <p>Aucun élève dans ce niveau</p>
+
+<% elsif @students %>
+  <% if @group %>
+    <p>Élèves du groupe <%= @group.name %></p>
+  <% end %>
+
+  <% @students.each do |student| %>
+    <input type="checkbox"> <%= link_to "#{student.last_name} #{student.first_name} ", student_path(student) %>
+  <% end %>
+
+<% end %>
