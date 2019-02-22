@@ -92,15 +92,18 @@ puts "created 10 groups"
 700.times do |_i|
   sections = []
   groups = []
+  work_sessions = []
   rand(1..4).times{
     sections << Section.all.sample
     groups << Group.all.sample
+    work_sessions << WorkSession.all.sample
   }
   Student.create!(
     first_name: Faker::Name.first_name,
     last_name: Faker::Name.last_name,
     sections: sections,
-    groups: groups
+    groups: groups,
+    work_sessions: work_sessions
   )
 end
 puts "created 700 Students"

@@ -31,11 +31,9 @@
     </div>
     <div class="card-body">
       <ul>
-        <li>élève 1 <i class="align-middle fa fa-check"></i></li> 
-        <li>élève 2 <i class="align-middle fa fa-times"></i></li> 
-        <li>élève 3 <i class="align-middle fa fa-times"></i></li> 
-        <li>élève 4 <i class="align-middle fa fa-check"></i></li> 
-        <li>élève 5 <i class="align-middle fa fa-check"></i></li> 
+        <% @work_session.students.each do |student| %>
+        <li><%= student.first_name %> <%= student.last_name %></li>
+        <% end %>
       </ul>
     </div>
   </div>
