@@ -10,7 +10,7 @@
     <div class="row">
     <% @students.each do |student| %>
       <div class="col-6">
-       <input type="checkbox"> <%= link_to "#{student.last_name} #{student.first_name} ", student_path(student) %>
+       <input type="checkbox" checked> <%= link_to "#{student.last_name} #{student.first_name} ", student_path(student) %>
       </div>
     <% end %>
     </div>
