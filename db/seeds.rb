@@ -99,7 +99,8 @@ puts "created 10 groups"
   Student.create!(
     first_name: Faker::Name.first_name,
     last_name: Faker::Name.last_name,
-    sections: sections
+    sections: sections,
+    groups: groups
   )
 end
 puts "created 700 Students"

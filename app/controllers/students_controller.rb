@@ -4,7 +4,31 @@ class StudentsController < ApplicationController
   before_action :set_student, only: %i[show edit update destroy]
 
   def search
-    @students = Student.where(last_name: "Student72")
+    if params[:level].present? && params[:sub_section].present?
+      @students = Student.select { |student|
+        (student.sections.last.sub_section == params[:sub_section] &&
+        student.sections.last.level == params[:level].to_i)
+      }
+
+    elsif params[:group].present?
+      if params[:group] == "yes"
+        @groups = Group.select { |group|
+          (group.level == params[:level].to_i)
+        }
+      else
+        @group = Group.find(params[:group])
+        @students = @group.students
+      end
+
+    elsif params[:student].present?
+      puts "-------Students------"
+      @students = Student.select { |student|
+        (student.last_name.upcase.start_with?(params[:student].upcase) ||
+        student.first_name.upcase.start_with?(params[:student].upcase) )
+      }
+      puts "-------#{@students.count}------"
+      flash[:notice] = "student"
+    end
   end
 
   # GET /students
@@ -74,6 +98,6 @@ class StudentsController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def student_params
-    params.require(:student).permit(:first_name, :last_name)
+    params.require(:student).permit(:first_name, :last_name, :search)
   end
 end
