@@ -24,7 +24,7 @@
               <a class="dropdown-item" href="#">D</a>
             </div>
           </li>
-          
+
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">5e</a>
             <div class="dropdown-menu">
@@ -34,7 +34,7 @@
               <a class="dropdown-item" href="#">D</a>
             </div>
           </li>
-          
+
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">4e</a>
             <div class="dropdown-menu">
@@ -44,7 +44,7 @@
               <a class="dropdown-item" href="#">D</a>
             </div>
           </li>
-          
+
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">3e</a>
             <div class="dropdown-menu">
@@ -56,13 +56,13 @@
             </div>
           </li>
         </ul>
-        
+
         <!--Sections content-->
         <div id="section-results"></div>
       </div>
-      
+
       <div class="tab-pane fade" id="list-group" role="tabpanel" aria-labelledby="list-group-list">...</div>
-      
+
       <div class="tab-pane fade" id="list-name" role="tabpanel" aria-labelledby="list-name-list">...</div>
     </div>
   </div>
@@ -81,6 +81,7 @@
         </tr>
       </thead>
       <tbody>
+
         <% @students.each do |student|%>
           <tr>
             <td><%= student.first_name %></td>
@@ -99,6 +100,11 @@
           </tr>
         <% end %>
       </tbody>
+      <tfoot>
+        <tr>
+          <td><%= paginate @students %></td>
+        </tr>
+      </tfoot>
     </table>
   </div>
 </div>
