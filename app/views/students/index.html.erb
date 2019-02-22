@@ -1,11 +1,8 @@
+<div class="container">
+  <%= render 'layouts/search/search', student: @students %>
+</div>
+
 <h1>Liste des élèves</h1>
-
-<h2>Search</h2>
-<!--Search selectors-->
-<%= render 'search', student: @students %>
-
-<div>
-  <h2>Students</h2>
 
 <div class="card">
   <div class="table-responsive">
@@ -14,6 +11,7 @@
         <tr>
           <th>Prénom</th>
           <th>Nom</th>
+          <th>Classe</th>
           <th>Actions</th>
         </tr>
       </thead>
@@ -22,6 +20,7 @@
           <tr>
             <td><%= student.first_name %></td>
             <td><%= student.last_name %></td>
+            <td><%= student.sections.last.level %><%= student.sections.last.sub_section %></td>
             <td>
               <%= link_to student_path(student.id) do %>
                   <i class="align-middle" data-feather="eye"></i>
