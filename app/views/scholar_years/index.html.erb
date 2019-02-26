@@ -1,0 +1,109 @@
+<h1>Années scolaires</h1>
+
+<h4>Année en cours</h4>
+
+<div class="card">
+  <div class="table-responsive">
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Début</th>
+          <th>Fin</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @scholar_years.active.each do |scholar_year|%>
+          <tr>
+            <td><%= scholar_year.start_date %></td>
+            <td><%= scholar_year.end_date %></td>
+            <td>
+              <%= link_to archive_scholar_years_path(scholar_year.id), method: :archive, data: { confirm: 'Êtes-vous sûr ?' } do %>
+                  <i class="align-middle" data-feather="x-circle"></i>
+              <% end %>
+            </td>
+           </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<h4>Année(s) passée(s)S</h4>
+
+<div class="card">
+  <div class="table-responsive">
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Début</th>
+          <th>Fin</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @scholar_years.passed.each do |scholar_year|%>
+          <tr>
+            <td><%= scholar_year.start_date %></td>
+            <td><%= scholar_year.end_date %></td>
+            <td>
+              <%= link_to archive_scholar_years_path(scholar_year.id), method: :archive, data: { confirm: 'Êtes-vous sûr ?' } do %>
+                  <i class="align-middle" data-feather="check-circle"></i>
+              <% end %>
+            </td>
+           </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<h4>Créer une année scolaire</h4>
+
+<div class="col-12 col-xl-12 pb-3">
+
+  <div class="form-group row">
+    <div class="col-6 col-xl-6 pb-3">
+      <div class="card">
+        <div class="card-body">
+          <div class="col-sm-10">
+            <%= form_for @scholar_year do |f| %>
+            <form>
+              <% if @scholar_year.errors.any? %>
+                <div id="error_explanation">
+                  <h2><%= pluralize(scholar_year.errors.count, "error") %> prohibited this student from being saved:</h2>
+
+                  <ul>
+                  <% @scholar_year.errors.full_messages.each do |message| %>
+                    <li><%= message %></li>
+                  <% end %>
+                  </ul>
+                </div>
+              <% end %>
+
+              <div class="form-group row">
+                <label class="col-form-label col-sm-2 text-sm-right">Début</label>
+                <div class="col-sm-10">
+                  <%= f.date_field :start_date %>
+                </div>
+              </div>
+
+              <div class="form-group row">
+                <label class="col-form-label col-sm-2 text-sm-right">Fin</label>
+                <div class="col-sm-10">
+                    <%= f.date_field :end_date %>
+                </div>
+              </div>
+
+              <div class="col-sm-10 ml-sm-auto">
+                <%= f.submit "Valider", class:"btn btn-primary" %>
+              </div>
+            </form>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>

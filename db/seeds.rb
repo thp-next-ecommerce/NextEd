@@ -74,7 +74,8 @@ puts "created 10 WorkSessions"
 
 20.times do
   Section.create!(
-    year: 2019,
+    year_start: 2018,
+    year_end: 2019,
     level: [6, 5, 4, 3].sample,
     sub_section: %w(A B C D E F G).sample
   )

@@ -8,10 +8,10 @@
     <ul class="sidebar-nav">
 
        <li class="sidebar-item">
-        <a href="#students" data-toggle="collapse" class="sidebar-link collapsed">
+        <a href="#work-sessions" data-toggle="collapse" class="sidebar-link collapsed">
           <i class="align-middle" data-feather="list"></i> <span class="align-middle">Séances</span>
         </a>
-        <ul id="students" class="sidebar-dropdown list-unstyled collapse ">
+        <ul id="work-sessions" class="sidebar-dropdown list-unstyled collapse ">
           <li class="sidebar-item"><a class="sidebar-link" href="<%= work_sessions_path %>">Index</a></li>
           <li class="sidebar-item"><a class="sidebar-link" href="<%= new_work_session_path %>">Nouvelle séance</a></li>
         </ul>
@@ -29,10 +29,10 @@
       </li>
 
       <li class="sidebar-item">
-        <a href="#ui" data-toggle="collapse" class="sidebar-link collapsed">
+        <a href="#skills" data-toggle="collapse" class="sidebar-link collapsed">
           <i class="align-middle" data-feather="check-square"></i> <span class="align-middle">Compétences</span>
         </a>
-        <ul id="ui" class="sidebar-dropdown list-unstyled collapse ">
+        <ul id="skills" class="sidebar-dropdown list-unstyled collapse ">
           <li class="sidebar-item"><a class="sidebar-link" href="<%= skills_path %>">Compétences</a></li>
           <li class="sidebar-item"><a class="sidebar-link" href="<%= domains_path %>">Domaines</a></li>
           <li class="sidebar-item"><a class="sidebar-link" href="<%= cultures_path %>">Cultures</a></li>
@@ -49,6 +49,16 @@
         <a href="#" class="sidebar-link">
           <i class="align-middle" data-feather="user"></i> <span class="align-middle">Profs</span>
         </a>
+      </li>
+
+       <li class="sidebar-item">
+        <a href="#calender" data-toggle="collapse" class="sidebar-link collapsed">
+          <i class="align-middle" data-feather="calendar"></i> <span class="align-middle">Calendrier</span>
+        </a>
+        <ul id="calender" class="sidebar-dropdown list-unstyled collapse ">
+          <li class="sidebar-item"><a class="sidebar-link" href="<%= scholar_years_path %>">Années scolaires</a></li>
+          <li class="sidebar-item"><a class="sidebar-link" href="#">Séances</a></li>
+        </ul>
       </li>
 
     </ul>

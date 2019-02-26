@@ -11,5 +11,10 @@
   <%= @student.last_name %>
 </p>
 
+<p>
+  <strong>Classe:</strong>
+  <%= @student.sections.last %>
+</p>
+
 <%= link_to 'Modifier', edit_student_path(@student), class:"btn btn-secondary" %>
 <%= link_to "Revenir à l'index", students_path, class:"btn btn-info" %>
