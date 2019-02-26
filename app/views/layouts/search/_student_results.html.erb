@@ -11,8 +11,8 @@
   <div class="container">
     <div class="row">
     <% @students.each do |student| %>
-      <div class="col-6">
-       <input type="checkbox" checked> <%= link_to "#{student.last_name} #{student.first_name} ", student_path(student) %>
+      <div class="col-6"> 
+       <input type="checkbox" value="<%= student.id %>" name="work_session[student_ids][]" checked> <%= link_to "#{student.last_name} #{student.first_name} ", student_path(student) %>
       </div>
     <% end %>
     </div>

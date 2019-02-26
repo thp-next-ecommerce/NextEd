@@ -14,7 +14,7 @@
             <div class="form-check">
               <div class="container">
                 <div class="row">
-                  <%= f.collection_check_boxes(:skills, Skill.all, :id, :name) do |b| %>
+                  <%= f.collection_check_boxes(:skill_ids, Skill.all, :id, :name) do |b| %>
                     <div class="col-4">
                       <%= b.label(class: "form-check-label mx-1") { b.check_box + b.text } %>
                     </div>
