@@ -1,3 +1,4 @@
+<!-- List all selectable groups in a level -->
 <% if params[:group] == "yes" %>
   <p>Liste des groupes en <%= params[:level] %>e : </p>
   <ul>
@@ -6,8 +7,8 @@
   <% end %>
   </ul>
 
+<!-- List students from a selected group -->
 <% else %>
-  test
   <script>
     $('#group-results').html("<%= j(render partial: 'layouts/search/student_results', locals: {students: @students}) %>") 
   </script>
