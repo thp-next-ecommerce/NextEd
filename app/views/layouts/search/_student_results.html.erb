@@ -6,6 +6,8 @@
   <% if @group %>
     <p>Élèves du groupe <%= @group.name %></p>
   <% end %>
+
+  <!-- Display students list -->
   <div class="container">
     <div class="row">
     <% @students.each do |student| %>
@@ -15,4 +17,5 @@
     <% end %>
     </div>
   </div>
+
 <% end %>

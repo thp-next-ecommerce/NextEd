@@ -20,5 +20,5 @@ class Student < ApplicationRecord
   has_many :groups, through: :group_students
   has_many :student_work_sessions, dependent: :destroy
   has_many :work_sessions, through: :student_work_sessions
-  paginates_per 25
+  # paginates_per 25
 end
