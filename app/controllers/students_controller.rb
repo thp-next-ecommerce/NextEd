@@ -1,32 +1,8 @@
 # frozen_string_literal: true
 
 class StudentsController < ApplicationController
+  include StudentSearch
   before_action :set_student, only: %i[show edit update destroy]
-
-  def search
-    if params[:level].present? && params[:sub_section].present?
-      @students = Student.select { |student|
-        (student.sections.last.sub_section == params[:sub_section] &&
-        student.sections.last.level == params[:level].to_i)
-      }
-
-    elsif params[:group].present?
-      if params[:group] == "yes"
-        @groups = Group.select { |group|
-          (group.level == params[:level].to_i)
-        }
-      else
-        @group = Group.find(params[:group])
-        @students = @group.students
-      end
-
-    elsif params[:student].present?
-      @students = Student.select { |student|
-        (student.last_name.upcase.start_with?(params[:student].upcase) ||
-        student.first_name.upcase.start_with?(params[:student].upcase) )
-      }
-    end
-  end
 
   # GET /students
   # GET /students.json
