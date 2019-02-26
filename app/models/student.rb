@@ -22,4 +22,6 @@ class Student < ApplicationRecord
   has_many :work_sessions, through: :student_work_sessions
 
   accepts_nested_attributes_for :student_work_sessions
+
+  paginates_per 25
 end

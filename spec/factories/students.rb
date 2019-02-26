@@ -13,7 +13,8 @@
 
 FactoryBot.define do
   factory :student do
-    first_name { "MyString" }
-    last_name { "MyString" }
+    first_name { "First Name" }
+    last_name { "Last Name" }
+    sections { create_list(:section, 2) }
   end
 end

@@ -1,12 +1,13 @@
 # frozen_string_literal: true
 
 class StudentsController < ApplicationController
+  include StudentSearch
   before_action :set_student, only: %i[show edit update destroy]
 
   # GET /students
   # GET /students.json
   def index
-    @students = Student.all
+    @students = Student.all.page params[:page]
   end
 
   # GET /students/1
@@ -70,6 +71,6 @@ class StudentsController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def student_params
-    params.require(:student).permit(:first_name, :last_name, :session_ids)
+    params.require(:student).permit(:first_name, :last_name, :search, :session_ids)
   end
 end
