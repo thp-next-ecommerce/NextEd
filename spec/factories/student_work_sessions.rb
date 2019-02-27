@@ -15,5 +15,6 @@ FactoryBot.define do
   factory :student_work_session do
     student { nil }
     work_session { nil }
+    present { false }
   end
 end

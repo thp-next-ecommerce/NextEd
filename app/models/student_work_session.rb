@@ -14,4 +14,6 @@
 class StudentWorkSession < ApplicationRecord
   belongs_to :student
   belongs_to :work_session
+
+  validates :present, default: false
 end

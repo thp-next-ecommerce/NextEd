@@ -14,12 +14,12 @@
 
   <div class="card">
     <div class="card-header">
-      <h4>Décocher les élèves absents</h4>
+      <h4>Sélectionner les élèves présents</h4>
     </div>
     <div class="card-body">
       <ul>
-        <% 5.times do |i| %>
-          <li>élève <%= i %> <%= check_box_tag "student#{i}", 'student_id', true, class: "ml-3" %></li> 
+        <% @students.each do |student| %>
+       <input type="checkbox" value="<%= student.id %>" name="work_session[student_ids][]" checked> <%= link_to "#{student.last_name} #{student.first_name} ", student_path(student) %>
         <% end %>
       </ul>
     </div>
