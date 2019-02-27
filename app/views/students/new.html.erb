@@ -2,7 +2,56 @@
 
 <div class="col-12 col-xl-12 pb-3">
 
-<%= render 'form', student: @student %>
+  <div class="form-group row">
+    <div class="col-6 col-xl-6 pb-3">
+      <div class="card">
+        <div class="card-body">
+          <div class="col-sm-10">
+            <%= form_for @student do |f| %>
+            <form>
+              <% if @student.errors.any? %>
+                <div id="error_explanation">
+                  <h2><%= pluralize(student.errors.count, "error") %> prohibited this student from being saved:</h2>
+
+                  <ul>
+                  <% @student.errors.full_messages.each do |message| %>
+                    <li><%= message %></li>
+                  <% end %>
+                  </ul>
+                </div>
+              <% end %>
+
+              <div class="form-group row">
+                <label class="col-form-label col-sm-2 text-sm-right">Prénom</label>
+                <div class="col-sm-10">
+                  <%= f.text_field :first_name, class: "form-control", placeholder:"John" %>
+                </div>
+              </div>
+
+              <div class="form-group row">
+                <label class="col-form-label col-sm-2 text-sm-right">Nom</label>
+                <div class="col-sm-10">
+                    <%= f.text_field :last_name, class: "form-control", placeholder:"Doe" %>
+                </div>
+              </div>
+
+              <div class="form-group row">
+                <label class="col-form-label col-sm-2 text-sm-right">Classe</label>
+                <div class="col-sm-10">                
+                  <%= f.collection_select :section_ids, Section.current_scholar_year, :id, :value, class:"form-control select2"%>
+                </div>
+              </div>
+
+              <div class="col-sm-10 ml-sm-auto">
+                <%= f.submit "Valider", class:"btn btn-primary" %>
+              </div>
+            </form>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 
 <%= link_to "Revenir à l'index", students_path, class:"btn btn-info" %>
 
