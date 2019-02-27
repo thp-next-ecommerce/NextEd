@@ -29,21 +29,30 @@ RSpec.describe WorkSessionsController, type: :controller do
   describe "POST #create" do
     subject(:create) { post :create, params: { work_session: attributes_for(:work_session) } }
 
-    it "creates a record" do
-      expect{ post :create, params: { work_session: attributes_for(:work_session) } }.to change(WorkSession, :count).by(1)
+    context "when only date and schedule are set (basic)" do
+      it "creates a record" do
+        expect{ post :create, params: { work_session: attributes_for(:work_session) } }.to change(WorkSession, :count).by(1)
+      end
+      it "redirects to the created work_session" do
+        expect(create).to redirect_to work_session_path(WorkSession.last.id)
+      end
+      it "does not create a record on failure" do
+        expect{ post :create, params: { work_session: { date: nil } } }.to change(WorkSession, :count).by(0)
+      end
+      it "redirects to #new on failure" do
+        post :create, params: { work_session: { date: nil } }
+        expect(response).to render_template(:new)
+      end
     end
 
-    it "redirects to the created work_session" do
-      expect(create).to redirect_to work_session_path(WorkSession.last.id)
+    it "associates skills to a session" do
+      post :create, params: { work_session: attributes_for(:work_session, :skills) }
+      expect(WorkSession.last.skills.count).to eq 3
     end
 
-    it "does not create a record on failure" do
-      expect{ post :create, params: { work_session: { date: nil } } }.to change(WorkSession, :count).by(0)
-    end
-
-    it "redirects to #new on failure" do
-      post :create, params: { work_session: { date: nil } }
-      expect(response).to render_template(:new)
+    it "associates students to a session" do
+      post :create, params: { work_session: attributes_for(:work_session, :students) }
+      expect(WorkSession.last.students.count).to eq 3
     end
   end
 
