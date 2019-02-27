@@ -1,7 +1,7 @@
 <li class="nav-item dropdown">
-  <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"><%= section %>e</a>
+  <a class="nav-link dropdown-toggle" id="<%= section %>th section" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"><%= section %>e</a>
   <div class="dropdown-menu">
-    <%= link_to 'A', search_path(level: section, sub_section: "A" ), method: :get, remote: true, class: "dropdown-item" %>
+    <%= link_to 'A', search_path(level: section, sub_section: "A" ), method: :get, remote: true, class: "dropdown-item", id: "6-A" %>
     <%= link_to 'B', search_path(level: section, sub_section: "B"), method: :get, remote: true, class: "dropdown-item" %>
     <%= link_to 'C', search_path(level: section, sub_section: "C"), method: :get, remote: true, class: "dropdown-item" %>
     <%= link_to 'D', search_path(level: section, sub_section: "D"), method: :get, remote: true, class: "dropdown-item" %>
