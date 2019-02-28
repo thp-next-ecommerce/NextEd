@@ -13,7 +13,7 @@
 
 FactoryBot.define do
   factory :group do
-    name { "MyString" }
-    level { 1 }
+    name { "MyGroup" }
+    level { 6 }
   end
 end

@@ -35,6 +35,7 @@ group :development, :test do
   gem 'pry-byebug', '~> 3.6'
   gem 'rspec-rails', '~> 3.7', '>= 3.7.2'
   gem 'sandi_meter', '~> 1.2'
+  gem 'selenium-webdriver'
 end
 
 group :development do
