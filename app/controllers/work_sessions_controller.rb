@@ -3,10 +3,6 @@
 class WorkSessionsController < ApplicationController
   before_action :set_work_session, only: %i[show update edit roll_call]
 
-  def roll_call
-    @students = StudentWorkSession.where(work_session_id: params[:id])
-  end
-
   def index
     @work_sessions = WorkSession.all
   end

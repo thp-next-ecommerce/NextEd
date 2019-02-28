@@ -1,0 +1,35 @@
+<div class="card-columns">
+  <div class="card">
+    <div class="card-header">
+      <h4>Elèves présents</h4>
+    </div>
+    <div class="card-body">
+      <ul>
+      <% @student_presents.each do |student| %>
+        <li><%= "#{student.student.last_name} #{student.student.first_name}" %></li> 
+        <% end %>
+      </ul>
+    </div>
+  </div>
+
+  <div class="card">
+  <%= form_with url: update_work_session_roll_call_path, local: true do |f| %>
+    <div class="card-header">
+      <h4>Sélectionner les élèves présents</h4>
+    </div>
+    
+    <div class="card-body">
+      <ul>
+        <% @student_work_sessions.each do |student_work_session| %>
+        <li>
+          <input type="checkbox" value="<%= student_work_session.id %>" name="student_work_session[present][]"> <%= "#{student_work_session.student.last_name} #{student_work_session.student.first_name}" %>
+        </li>
+        <% end %>
+      </ul>
+    </div>
+    <div class="card-footer">
+      <%= f.submit 'Valider', class: "btn btn-primary mt-3 " %>
+    </div>
+  </div>
+  <% end %>
+</div>
