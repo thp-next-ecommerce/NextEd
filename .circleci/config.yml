@@ -3,14 +3,14 @@
 # Check https://circleci.com/docs/2.0/language-ruby/ for more details
 #
 version: 2
-machine:
-  environment:
-    PATH: "${PATH}:${HOME}/${CIRCLE_PROJECT_REPONAME}/drivers"
 dependencies:
   post:
     - mkdir drivers
     - wget https://github.com/mozilla/geckodriver/releases/download/v0.24.0/geckodriver-v0.24.0-linux64.tar.gz && tar -zxvf geckodriver-v0.24.0-linux64.tar.gz:
         pwd: drivers
+machine:
+  environment:
+    PATH: "${PATH}:${HOME}/${CIRCLE_PROJECT_REPONAME}/drivers"
 jobs:
   build:
     docker:
