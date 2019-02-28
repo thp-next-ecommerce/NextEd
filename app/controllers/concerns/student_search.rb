@@ -10,6 +10,7 @@ module StudentSearch
         (student.sections.last.sub_section == params[:sub_section] &&
         student.sections.last.level == params[:level].to_i)
       }
+      render 'search_section'
 
     # Group search
     elsif params[:group].present?
@@ -21,6 +22,7 @@ module StudentSearch
         @group = Group.find(params[:group])
         @students = @group.students
       end
+      render 'search_group'
 
     # Name search
     elsif params[:student].present?
@@ -28,6 +30,7 @@ module StudentSearch
         (student.last_name.upcase.start_with?(params[:student].upcase) ||
         student.first_name.upcase.start_with?(params[:student].upcase) )
       }
+      render 'search_name'
     end
   end
 end

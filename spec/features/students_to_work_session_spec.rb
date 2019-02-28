@@ -19,11 +19,22 @@ RSpec.describe "StudentsToWorkSessions", type: :feature, js: true do
   }
 
   describe "student search" do
-    it "shows a list of students from the section search" do
-      click_link 'Classe'
-      2.times { click_link '6th-section' }
-      click_link '6-A'
-      expect(page).to have_content 'First Name'
+    context "when searching a section" do
+      before {
+        click_link 'Classe'
+        2.times { click_link '6th-section' }
+        click_link '6-A'
+      }
+
+      it "shows a list of students from the section search" do
+        expect(page).to have_content 'First Name'
+      end
+
+      it "associates the correct number of students to a work_session" do
+        fill_in 'work_session_date', with: Date.tomorrow
+        click_button 'Create Work session'
+        expect(page).to have_content('First Name', count: 1)
+      end
     end
 
     context "when searching a group" do
@@ -40,22 +51,31 @@ RSpec.describe "StudentsToWorkSessions", type: :feature, js: true do
         click_link 'MyGroup'
         expect(page).to have_content 'First Name'
       end
+
+      it "associates the correct number of students to a work_session" do
+        fill_in 'work_session_date', with: Date.tomorrow
+        click_link 'MyGroup'
+        click_button 'Create Work session'
+        expect(page).to have_content('First Name', count: 1)
+      end
     end
 
-    it "shows a list of names from the name search" do
-      click_link 'Nom'
-      fill_in('student', with: 'First')
-      click_link 'Rechercher'
-      expect(page).to have_content 'First Name'
-    end
-  end
+    context "when searching by name" do
+      before {
+        click_link 'Nom'
+        fill_in('student', with: 'First')
+        click_link 'Rechercher'
+      }
 
-  describe "student association to a work_session" do
-    it "associates the correct number of students" do
-      fill_in 'work_session_date', with: Date.tomorrow
-      click_link 'Nom'; fill_in('student', with: 'First'); click_link 'Rechercher'
-      click_button 'Create Work session'
-      expect(page).to have_content('First Name', count: 1)
+      it "shows a list of names from the name search" do
+        expect(page).to have_content 'First Name'
+      end
+
+      it "associates the correct number of students to a work_session" do
+        fill_in 'work_session_date', with: Date.tomorrow
+        click_button 'Create Work session'
+        expect(page).to have_content('First Name', count: 1)
+      end
     end
   end
 end
