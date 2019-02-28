@@ -5,7 +5,7 @@
 version: 2
 machine:
   environment:
-    PATH: "${PATH}:${HOME}/${NextEd}/drivers"
+    PATH: "${PATH}:${HOME}/${CIRCLE_PROJECT_REPONAME}/drivers"
 dependencies:
   post:
     - mkdir drivers
