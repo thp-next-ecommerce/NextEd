@@ -40,7 +40,7 @@ RSpec.describe "StudentsToWorkSessions", type: :feature, js: true do
     context "when searching a group" do
       before {
         click_link 'Groupe'
-        2.times { click_link '6e' }
+        3.times { click_link '6e' }
       }
 
       it "shows a list of groups from the group search" do
