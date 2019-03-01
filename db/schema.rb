@@ -70,7 +70,7 @@ ActiveRecord::Schema.define(version: 2019_02_26_152843) do
     t.string "sub_section", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "year_end", null: false
+    t.integer "year_end"
   end
 
   create_table "skills", force: :cascade do |t|

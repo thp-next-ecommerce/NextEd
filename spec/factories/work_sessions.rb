@@ -15,5 +15,13 @@ FactoryBot.define do
   factory :work_session do
     date { Date.tomorrow }
     daily_schedule { "MyString" }
+
+    trait :skills do
+      skill_ids { create_list(:skill, 3) }
+    end
+
+    trait :students do
+      student_ids { create_list(:student, 3) }
+    end
   end
 end
