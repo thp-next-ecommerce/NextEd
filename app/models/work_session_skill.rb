@@ -14,4 +14,5 @@
 class WorkSessionSkill < ApplicationRecord
   belongs_to :work_session
   belongs_to :skill
+  # validates_uniqueness_of :skill_id, scope: :work_session_id
 end
