@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class WorkSessionsController < ApplicationController
-  before_action :set_work_session, only: %i[show update edit roll_call]
+  before_action :set_work_session, only: %i[show update edit]
 
   def index
     @work_sessions = WorkSession.all
