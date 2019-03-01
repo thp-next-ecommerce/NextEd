@@ -13,7 +13,7 @@
           </tr>
         </thead>
           <tbody>
-          <% @student_attended.sort_by { |s| s.student.last_name }.each do |student_work_session| %>
+          <% @students_attended.sort_by { |s| s.student.last_name }.gseach do |student_work_session| %>
             <tr>
               <td><%= student_work_session.student.last_name %></td>
               <td><%= student_work_session.student.first_name %></td>

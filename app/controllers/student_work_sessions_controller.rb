@@ -3,11 +3,12 @@
 class StudentWorkSessionsController < ApplicationController
   def roll_call
     @student_work_sessions = StudentWorkSession.where(work_session_id: params[:id]).not_attended
-    @student_attended = StudentWorkSession.where(work_session_id: params[:id]).has_attended
+    @students_attended = StudentWorkSession.where(work_session_id: params[:id]).has_attended
   end
 
   def update
     if params["student_work_session"].present?
+      # display an error if form is validated without students selection
       @student_work_sessions = StudentWorkSession.find(params["student_work_session"]["attended"])
       @student_work_sessions.each do |student|
         unless student.update(update_params)
