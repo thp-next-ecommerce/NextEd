@@ -9,11 +9,11 @@
           <tr>
             <th scope="col">Nom</th>
             <th scope="col">Prénom</th>
-            <th scope="col">Clase</th>
+            <th scope="col">Classe</th>
           </tr>
         </thead>
           <tbody>
-          <% @students_attended.sort_by { |s| s.student.last_name }.gseach do |student_work_session| %>
+          <% @students_attended.sort_by { |s| s.student.last_name }.each do |student_work_session| %>
             <tr>
               <td><%= student_work_session.student.last_name %></td>
               <td><%= student_work_session.student.first_name %></td>
@@ -36,13 +36,13 @@
           <th scope="col"></th>
           <th scope="col">Nom</th>
           <th scope="col">Prénom</th>
-          <th scope="col">Clase</th>
+          <th scope="col">Classe</th>
         </tr>
       </thead>
         <tbody>
         <% @student_work_sessions.sort_by { |s| s.student.last_name }.each do |student_work_session| %>
           <tr>
-            <td><input type="checkbox" value="<%= student_work_session.id %>" name="student_work_session[attended][]"> </td>
+            <td><input type="checkbox" value="<%= student_work_session.id %>" name="student_work_session[attended][]" checked>
             <td><%= student_work_session.student.last_name %></td>
             <td><%= student_work_session.student.first_name %></td>
             <td><%= "#{student_work_session.student.sections.last.level}#{student_work_session.student.sections.last.sub_section}" %></td>
