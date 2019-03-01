@@ -40,7 +40,7 @@
         </tr>
       </thead>
         <tbody>
-        <% @student_work_sessions.each do |student_work_session| %>
+        <% @student_work_sessions.sort_by { |s| s.student.last_name }.each do |student_work_session| %>
           <tr>
             <td><input type="checkbox" value="<%= student_work_session.id %>" name="student_work_session[attended][]"> </td>
             <td><%= student_work_session.student.last_name %></td>
