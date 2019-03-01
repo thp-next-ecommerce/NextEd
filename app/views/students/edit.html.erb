@@ -7,7 +7,7 @@
         <div class="col-sm-10">
           <%= form_for @student do |f| %>
           <form>
-            <% if student.errors.any? %>
+            <% if @student.errors.any? %>
               <div id="error_explanation">
                 <h2><%= pluralize(@student.errors.count, "error") %> prohibited this student from being saved:</h2>
 
