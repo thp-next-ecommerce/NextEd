@@ -14,4 +14,8 @@
 class StudentWorkSession < ApplicationRecord
   belongs_to :student
   belongs_to :work_session
+
+  validates :present, default: false
+  scope :has_attended, lambda { where(attended: true) }
+  scope :not_attended, lambda { where(attended: false) }
 end
