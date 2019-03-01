@@ -1,4 +1,6 @@
 <h4>Séance <%= @work_session.id %></h4>
+  <%= link_to "Modifier la séance", edit_work_session_path(@work_session.id), class: "btn btn-secondary ml-auto" %>
+  <%= link_to "Retour", work_sessions_path, class:"btn btn-info" %>
 <div class="card-columns">
   <div class="card">
     <div class="card-header">
@@ -29,27 +31,45 @@
     <div class="card-header">
       <h4>Élèves participants <a href="<%= work_session_roll_call_path(@work_session.id) %>" class="btn btn-warning ml-3">Faire l'appel</a></h4>
     </div>
-    <div class="card-body">
-      <ul>
-        <% @work_session.students.each do |student| %>
-        <li><%= student.last_name %> <%= student.first_name %></li>
-        <% end %>
-      </ul>
+    <table class="table table-sm table-striped">
+      <thead>
+        <tr>
+          <th scope="col">Nom</th>
+          <th scope="col">Prénom</th>
+          <th scope="col">Présent ?</th>
+        </tr>
+      </thead>
+        <tbody>
+          <% @work_session.students.each do |student| %>
+          <tr>
+            <td><%= student.last_name %></td>
+            <td><%= student.first_name %></td>
+            <td><% if student.student_work_sessions.find_by(work_session_id: @work_session.id).attended? %> 
+              <i class="align-left" data-feather="check-circle"></i>
+              <% else %>
+              <i class="align-left" data-feather="x"></i>
+              <% end %>
+            </td>
+          </tr>
+          <% end %>
+      </tbody>
+    </table>
     </div>
-  </div>
   
-  <div class="card">
-    <div class="card-header">
-      <h4>Matière</h4>
-    </div>
-    <div class="card-body">
-      <ul>
-        <li><a href="#">Matière 1</a></li> 
-        <li><a href="#">Mr Professeur</a> </li> 
-      </ul>
+    <div class="card">
+      <div class="card-header">
+        <h4>Matière</h4>
+      </div>
+      <div class="card-body">
+        <ul>
+          <li><a href="#">Matière 1</a></li> 
+          <li><a href="#">Mr Professeur</a> </li> 
+        </ul>
+      </div>
     </div>
   </div>
+    <%= link_to "Modifier la séance", edit_work_session_path(@work_session.id), class: "btn btn-secondary ml-auto" %> <br/><br/>
+    <%= link_to "Retour", work_sessions_path, class:"btn btn-info" %>
 </div>
 
-<%= link_to "Modifier la séance", edit_work_session_path(@work_session.id), class: "btn btn-secondary ml-auto" %> <br/><br/>
-<%= link_to "Retour", work_sessions_path, class:"btn btn-info" %>
+
