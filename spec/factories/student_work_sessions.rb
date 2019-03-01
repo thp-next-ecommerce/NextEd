@@ -9,6 +9,7 @@
 #  work_session_id :bigint(8)
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
+#  attended        :boolean          default(FALSE)
 #
 
 FactoryBot.define do
