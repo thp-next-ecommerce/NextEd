@@ -23,5 +23,9 @@ FactoryBot.define do
     trait :groups do
       groups { create_list(:group, 2) }
     end
+
+    trait :work_sessions do
+      work_sessions { create_list(:work_session, 2) }
+    end
   end
 end

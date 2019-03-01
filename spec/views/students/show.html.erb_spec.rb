@@ -4,8 +4,8 @@ require 'rails_helper'
 
 RSpec.describe "students/show", type: :view do
   before do
-    assign(:student, create(:student, :sections))
-    assign(:skills, create_list(:skill, 2))
+    assign(:student, create(:student, :sections, :work_sessions))
+    assign(:skills_recap, create_list(:skill, 2))
   end
 
   it "renders first_name attribute in <p>" do
