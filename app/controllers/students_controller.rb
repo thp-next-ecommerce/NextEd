@@ -12,7 +12,11 @@ class StudentsController < ApplicationController
 
   # GET /students/1
   # GET /students/1.json
-  def show; end
+  def show
+    @skills = @student.student_work_sessions.has_attended.map { |sws|
+      sws.work_session.skills
+    }.flatten
+  end
 
   # GET /students/new
   def new
