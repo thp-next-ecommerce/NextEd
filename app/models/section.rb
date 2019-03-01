@@ -10,7 +10,7 @@
 #  sub_section :string           not null
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
-#  year_end    :integer          not null
+#  year_end    :integer
 #
 
 class Section < ApplicationRecord

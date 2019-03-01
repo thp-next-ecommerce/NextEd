@@ -29,11 +29,13 @@ gem 'uglifier', '>= 1.3.0'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
+  gem 'capybara'
   gem 'dotenv'
   gem 'factory_bot_rails', '~> 4.0'
   gem 'pry-byebug', '~> 3.6'
   gem 'rspec-rails', '~> 3.7', '>= 3.7.2'
   gem 'sandi_meter', '~> 1.2'
+  gem 'selenium-webdriver'
 end
 
 group :development do
