@@ -26,7 +26,7 @@
     </div>
     <div class="card-body">
       <ul class="list list-unstyled">
-        <% if @skills %>
+        <% if @skills_recap %>
         <% @skills_recap.each { |skill_and_count| %>
           <li><a href="<%= skill_path(skill_and_count[0].id) %>"><%= skill_and_count[0].name %></a> - étudié <%= skill_and_count[1] %> fois</li>
         <% } %> 
