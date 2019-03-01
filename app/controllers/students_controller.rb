@@ -13,9 +13,10 @@ class StudentsController < ApplicationController
   # GET /students/1
   # GET /students/1.json
   def show
-    @skills = @student.student_work_sessions.has_attended.map { |sws|
+    skills = @student.student_work_sessions.has_attended.map { |sws|
       sws.work_session.skills
     }.flatten
+    @skills_recap = skills.each_with_object(Hash.new(0)) { |o, h| h[o] += 1 } if skills
   end
 
   # GET /students/new
