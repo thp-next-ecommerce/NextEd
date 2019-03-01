@@ -109,5 +109,5 @@ puts "created 10 groups"
 end
 puts "created 700 Students"
 
-ScholarYear.create(start_date: Date.new(2018,9,4), end_date: Date.new(2019,07,14), current: true)
+ScholarYear.create(start_date: Date.new(2018, 9, 4), end_date: Date.new(2019, 0o7, 14), current: true)
 puts "created ScholarYear"
