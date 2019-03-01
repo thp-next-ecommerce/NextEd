@@ -30,12 +30,17 @@ RSpec.describe StudentsController, type: :controller do
   # Student. As you add validations to Student, be sure to
   # adjust the attributes here as well.
   let(:valid_attributes) {
-    skip("Add a hash of attributes valid for your model")
+    attributes_for(:student)
   }
 
   let(:invalid_attributes) {
-    skip("Add a hash of attributes invalid for your model")
+    {
+      first_name: '',
+      last_name: ''
+    }
   }
+
+  let(:student) { create(:student) }
 
   # This should return the minimal set of values that should be in the session
   # in order to pass any filters (e.g. authentication) defined in
@@ -44,31 +49,28 @@ RSpec.describe StudentsController, type: :controller do
 
   describe "GET #index" do
     it "returns a success response" do
-      Student.create! valid_attributes
-      get :index, params: {}, session: valid_session
+      get :index
       expect(response).to be_successful
     end
   end
 
   describe "GET #show" do
     it "returns a success response" do
-      student = Student.create! valid_attributes
-      get :show, params: { id: student.to_param }, session: valid_session
+      get :show, params: { id: student.to_param }
       expect(response).to be_successful
     end
   end
 
   describe "GET #new" do
     it "returns a success response" do
-      get :new, params: {}, session: valid_session
+      get :new
       expect(response).to be_successful
     end
   end
 
   describe "GET #edit" do
     it "returns a success response" do
-      student = Student.create! valid_attributes
-      get :edit, params: { id: student.to_param }, session: valid_session
+      get :edit, params: { id: student.to_param }
       expect(response).to be_successful
     end
   end
@@ -77,12 +79,12 @@ RSpec.describe StudentsController, type: :controller do
     context "with valid params" do
       it "creates a new Student" do
         expect {
-          post :create, params: { student: valid_attributes }, session: valid_session
+          post :create, params: { student: valid_attributes }
         }.to change(Student, :count).by(1)
       end
 
       it "redirects to the created student" do
-        post :create, params: { student: valid_attributes }, session: valid_session
+        post :create, params: { student: valid_attributes }
         expect(response).to redirect_to(Student.last)
       end
     end
@@ -98,27 +100,24 @@ RSpec.describe StudentsController, type: :controller do
   describe "PUT #update" do
     context "with valid params" do
       let(:new_attributes) {
-        skip("Add a hash of attributes valid for your model")
+        { last_name: 'New Name' }
       }
 
       it "updates the requested student" do
-        student = Student.create! valid_attributes
-        put :update, params: { id: student.to_param, student: new_attributes }, session: valid_session
+        put :update, params: { id: student.to_param, student: new_attributes }
         student.reload
-        skip("Add assertions for updated state")
+        expect(student.last_name).to eq "New Name"
       end
 
       it "redirects to the student" do
-        student = Student.create! valid_attributes
-        put :update, params: { id: student.to_param, student: valid_attributes }, session: valid_session
+        put :update, params: { id: student.to_param, student: valid_attributes }
         expect(response).to redirect_to(student)
       end
     end
 
     context "with invalid params" do
       it "returns a success response (i.e. to display the 'edit' template)" do
-        student = Student.create! valid_attributes
-        put :update, params: { id: student.to_param, student: invalid_attributes }, session: valid_session
+        put :update, params: { id: student.to_param, student: invalid_attributes }
         expect(response).to be_successful
       end
     end
@@ -126,14 +125,13 @@ RSpec.describe StudentsController, type: :controller do
 
   describe "DELETE #destroy" do
     it "destroys the requested student" do
-      student = Student.create! valid_attributes
+      student
       expect {
         delete :destroy, params: { id: student.to_param }, session: valid_session
       }.to change(Student, :count).by(-1)
     end
 
     it "redirects to the students list" do
-      student = Student.create! valid_attributes
       delete :destroy, params: { id: student.to_param }, session: valid_session
       expect(response).to redirect_to(students_url)
     end

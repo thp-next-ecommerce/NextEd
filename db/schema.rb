@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_02_26_152843) do
+ActiveRecord::Schema.define(version: 2019_02_28_191144) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -70,7 +70,7 @@ ActiveRecord::Schema.define(version: 2019_02_26_152843) do
     t.string "sub_section", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "year_end", null: false
+    t.integer "year_end"
   end
 
   create_table "skills", force: :cascade do |t|
@@ -87,6 +87,7 @@ ActiveRecord::Schema.define(version: 2019_02_26_152843) do
     t.bigint "work_session_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "attended", default: false
     t.index ["student_id"], name: "index_student_work_sessions_on_student_id"
     t.index ["work_session_id"], name: "index_student_work_sessions_on_work_session_id"
   end
