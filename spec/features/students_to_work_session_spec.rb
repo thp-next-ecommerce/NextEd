@@ -32,7 +32,7 @@ RSpec.describe "StudentsToWorkSessions", type: :feature, js: true do
 
       it "associates the correct number of students to a work_session" do
         fill_in 'work_session_date', with: Date.tomorrow
-        click_button 'Create Work session'
+        click_button 'Créer'
         expect(page).to have_content('First Name', count: 1)
       end
     end
@@ -55,7 +55,7 @@ RSpec.describe "StudentsToWorkSessions", type: :feature, js: true do
       it "associates the correct number of students to a work_session" do
         fill_in 'work_session_date', with: Date.tomorrow
         click_link 'MyGroup'
-        click_button 'Create Work session'
+        click_button 'Créer'
         expect(page).to have_content('First Name', count: 1)
       end
     end
@@ -73,7 +73,7 @@ RSpec.describe "StudentsToWorkSessions", type: :feature, js: true do
 
       it "associates the correct number of students to a work_session" do
         fill_in 'work_session_date', with: Date.tomorrow
-        click_button 'Create Work session'
+        click_button 'Créer'
         expect(page).to have_content('First Name', count: 1)
       end
     end
