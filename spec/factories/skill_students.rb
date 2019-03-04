@@ -14,8 +14,8 @@
 
 FactoryBot.define do
   factory :skill_student do
-    skill { nil }
-    student { nil }
-    section { nil }
+    skill
+    student
+    section
   end
 end
