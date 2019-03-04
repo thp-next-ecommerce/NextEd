@@ -45,6 +45,8 @@ RSpec.describe Section, type: :model do
         section.students << create(:student)
         expect(section.students.first.sections.first).to eq section
       end
+      
+      it { is_expected.to belong_to(:scholar_year) }
     end
   end
 end

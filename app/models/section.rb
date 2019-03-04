@@ -19,6 +19,7 @@ class Section < ApplicationRecord
   validates :sub_section, presence: true
   has_many :section_students, dependent: :destroy
   has_many :students, through: :section_students
+  belongs_to :scholar_year
 
   validates :level, inclusion: { in: [6, 5, 4, 3] }, presence: true
   validates :sub_section, inclusion: { in: %w(A B C D E F G) }, presence: true

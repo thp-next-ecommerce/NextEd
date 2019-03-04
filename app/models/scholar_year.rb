@@ -13,6 +13,8 @@
 #
 
 class ScholarYear < ApplicationRecord
+  has_many :sections, dependent: :destroy
+
   scope :active, -> { where(current: true) }
   scope :passed, -> { where(current: false) }
 

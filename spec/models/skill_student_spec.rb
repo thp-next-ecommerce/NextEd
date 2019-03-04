@@ -24,7 +24,7 @@ RSpec.describe SkillStudent, type: :model do
       it { is_expected.to have_db_column(:created_at).of_type(:datetime).with_options(null: false) }
       it { is_expected.to have_db_column(:updated_at).of_type(:datetime).with_options(null: false) }
     end
-    
+
     describe 'Associations' do
       it { is_expected.to belong_to(:skill) }
       it { is_expected.to belong_to(:student) }
