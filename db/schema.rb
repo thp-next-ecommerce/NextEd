@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_02_28_191144) do
+ActiveRecord::Schema.define(version: 2019_03_04_165301) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -73,6 +73,17 @@ ActiveRecord::Schema.define(version: 2019_02_28_191144) do
     t.integer "year_end"
   end
 
+  create_table "skill_students", force: :cascade do |t|
+    t.bigint "skill_id"
+    t.bigint "student_id"
+    t.bigint "section_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["section_id"], name: "index_skill_students_on_section_id"
+    t.index ["skill_id"], name: "index_skill_students_on_skill_id"
+    t.index ["student_id"], name: "index_skill_students_on_student_id"
+  end
+
   create_table "skills", force: :cascade do |t|
     t.string "name", null: false
     t.text "description", null: false
@@ -120,6 +131,9 @@ ActiveRecord::Schema.define(version: 2019_02_28_191144) do
   add_foreign_key "group_students", "students"
   add_foreign_key "section_students", "sections"
   add_foreign_key "section_students", "students"
+  add_foreign_key "skill_students", "sections"
+  add_foreign_key "skill_students", "skills"
+  add_foreign_key "skill_students", "students"
   add_foreign_key "skills", "domains"
   add_foreign_key "student_work_sessions", "students"
   add_foreign_key "student_work_sessions", "work_sessions"
