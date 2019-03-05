@@ -4,7 +4,7 @@ class SubjectsController < ApplicationController
   before_action :set_subject, only: %i[show edit update destroy]
 
   def index
-    @subjects = Subject.all
+    @subjects = Subject.all.page params[:page]
   end
 
   def show; end
