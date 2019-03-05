@@ -14,6 +14,8 @@
 
 class ScholarYear < ApplicationRecord
   has_many :sections, dependent: :destroy
+  has_many :work_sessions, dependent: :destroy
+  has_many :groups, dependent: :destroy
 
   scope :active, -> { where(current: true) }
   scope :passed, -> { where(current: false) }

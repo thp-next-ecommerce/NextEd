@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_03_04_172919) do
+ActiveRecord::Schema.define(version: 2019_03_05_094108) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -45,6 +45,8 @@ ActiveRecord::Schema.define(version: 2019_03_04_172919) do
     t.integer "level"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "scholar_year_id"
+    t.index ["scholar_year_id"], name: "index_groups_on_scholar_year_id"
   end
 
   create_table "scholar_years", force: :cascade do |t|
@@ -126,11 +128,14 @@ ActiveRecord::Schema.define(version: 2019_03_04_172919) do
     t.string "daily_schedule"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "scholar_year_id"
+    t.index ["scholar_year_id"], name: "index_work_sessions_on_scholar_year_id"
   end
 
   add_foreign_key "domains", "cultures"
   add_foreign_key "group_students", "groups"
   add_foreign_key "group_students", "students"
+  add_foreign_key "groups", "scholar_years"
   add_foreign_key "section_students", "sections"
   add_foreign_key "section_students", "students"
   add_foreign_key "sections", "scholar_years"
@@ -142,4 +147,5 @@ ActiveRecord::Schema.define(version: 2019_03_04_172919) do
   add_foreign_key "student_work_sessions", "work_sessions"
   add_foreign_key "work_session_skills", "skills"
   add_foreign_key "work_session_skills", "work_sessions"
+  add_foreign_key "work_sessions", "scholar_years"
 end

@@ -1,14 +1,14 @@
 # frozen_string_literal: true
-
 # == Schema Information
 #
 # Table name: work_sessions
 #
-#  id             :bigint(8)        not null, primary key
-#  date           :date             not null
-#  daily_schedule :string
-#  created_at     :datetime         not null
-#  updated_at     :datetime         not null
+#  id              :bigint(8)        not null, primary key
+#  date            :date             not null
+#  daily_schedule  :string
+#  created_at      :datetime         not null
+#  updated_at      :datetime         not null
+#  scholar_year_id :bigint(8)
 #
 
 require 'rails_helper'
@@ -47,6 +47,11 @@ RSpec.describe WorkSession, type: :model do
       it "follows association links from #students back to itself" do
         work_session.students << create(:student)
         expect(work_session.students.first.work_sessions.first).to eq work_session
+      end
+      
+      it { is_expected.to belong_to(:scholar_year) }
+      it "responds to #scholar_year" do
+        expect(work_session.scholar_year).to be_truthy
       end
     end
   end

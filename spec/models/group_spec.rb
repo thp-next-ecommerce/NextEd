@@ -1,14 +1,14 @@
 # frozen_string_literal: true
-
 # == Schema Information
 #
 # Table name: groups
 #
-#  id         :bigint(8)        not null, primary key
-#  name       :string           not null
-#  level      :integer
-#  created_at :datetime         not null
-#  updated_at :datetime         not null
+#  id              :bigint(8)        not null, primary key
+#  name            :string           not null
+#  level           :integer
+#  created_at      :datetime         not null
+#  updated_at      :datetime         not null
+#  scholar_year_id :bigint(8)
 #
 
 require 'rails_helper'
@@ -35,6 +35,11 @@ RSpec.describe Group, type: :model do
       it "follows association links from #students back to itself" do
         group.students << create(:student)
         expect(group.students.first.groups.first).to eq group
+      end
+      
+      it { is_expected.to belong_to(:scholar_year) }
+      it "responds to #scholar_year" do
+        expect(group.scholar_year).to be_truthy
       end
     end
   end

@@ -27,6 +27,8 @@ RSpec.describe ScholarYear, type: :model do
 
     describe 'Associations' do
       it { is_expected.to have_many(:sections) }
+      it { is_expected.to have_many(:groups) }
+      it { is_expected.to have_many(:work_sessions) }
     end
   end
 end
