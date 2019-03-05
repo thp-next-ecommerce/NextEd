@@ -17,6 +17,7 @@ WorkSession.destroy_all
 Section.destroy_all
 Group.destroy_all
 Student.destroy_all
+Teacher.destroy_all
 
 culture1 = Culture.create!(name: "Les langages pour penser et communiquer", description: "Comprendre et s'exprimer")
 culture2 = Culture.create!(name: "Les méthodes et outils pour apprendre", description: "Apprendre à apprendre, seuls ou collectivement, en classe ou en dehors")
@@ -24,7 +25,7 @@ culture3 = Culture.create!(name: "La formation de la personne et du citoyen", de
 culture4 = Culture.create!(name: "Les systèmes naturels et les systèmes techniques", description: "Donner à l'élève les fondements de la culture mathématique, scientifique et technologique")
 culture5 = Culture.create!(name: "Les représentations du monde et de l'activité humaine", description: "Développer une conscience de l'espace géographique et du temps historique")
 
-puts "Created cultures"
+puts "Created 5 Cultures"
 
 Domain.create!(name: "langue française", description: Faker::Lorem.sentence(10), culture_id: culture1.id)
 Domain.create!(name: "langues vivantes étrangères ou régionales", description: Faker::Lorem.sentence(10), culture_id: culture1.id)
@@ -48,7 +49,7 @@ Domain.create!(name: "compréhension des sociétés dans le temps et dans l'espa
 Domain.create!(name: "interprétation des productions culturelles humaines", description: Faker::Lorem.sentence(10), culture_id: culture5.id)
 Domain.create!(name: "connaissance du monde social contemporain", description: Faker::Lorem.sentence(10), culture_id: culture5.id)
 
-puts "Created domains"
+puts "Created 17 Domains"
 
 20.times do |i|
   Skill.create!(
@@ -58,19 +59,30 @@ puts "Created domains"
   )
   ++i
 end
-puts "created 10 Skills"
+puts "Created 20 Skills"
+
+7.times do
+  Teacher.create!(
+    first_name: Faker::Name.first_name,
+    last_name: Faker::Name.last_name
+  )
+end
+puts "Created 7 Teachers"
 
 10.times do
   schedule = %w(M1 M2 M3 M4 S1 S2 S3 S4)
   skills = []
   5.times do skills.push(Skill.all.sample) end
+  teachers = []
+  2.times do teachers.push(Teacher.all.sample) end
   WorkSession.create!(
     date: Faker::Date.between(1.year.ago, 1.year.from_now),
     daily_schedule: schedule.sample,
-    skills: skills
+    skills: skills,
+    teachers: teachers
   )
 end
-puts "created 10 WorkSessions"
+puts "Created 10 WorkSessions"
 
 20.times do
   Section.create!(
@@ -88,7 +100,7 @@ puts "Created 20 sections"
     level: [6, 5, 4, 3].sample
   )
 end
-puts "created 10 groups"
+puts "Created 10 Groups"
 
 700.times do |_i|
   sections = []
@@ -107,7 +119,7 @@ puts "created 10 groups"
     work_sessions: work_sessions
   )
 end
-puts "created 700 Students"
+puts "Created 700 Students"
 
 ScholarYear.create(start_date: Date.new(2018, 9, 4), end_date: Date.new(2019, 0o7, 14), current: true)
-puts "created ScholarYear"
+puts "Created ScholarYear"
