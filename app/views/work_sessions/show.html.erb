@@ -58,6 +58,25 @@
   
     <div class="card">
       <div class="card-header">
+        <h4>Professeur</h4>
+      </div>
+      <table class="table table-sm table-striped">
+        <thead>
+          <tr>
+            <th scope="col">Nom</th>
+            <th scope="col">Prénom</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @work_session.teachers.each do |teacher| %>
+            <tr>
+              <td><a href="<%= teacher_path(teacher.id) %>"><%= teacher.last_name %></td> </a>
+              <td><a href="<%= teacher_path(teacher.id) %>"><%= teacher.first_name %></td> </a>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+      <div class="card-header">
         <h4>Matière</h4>
       </div>
       <div class="card-body">
