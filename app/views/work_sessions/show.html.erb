@@ -58,7 +58,7 @@
   
     <div class="card">
       <div class="card-header">
-        <h4>Professeur</h4>
+        <h4>Professeurs</h4>
       </div>
       <table class="table table-sm table-striped">
         <thead>
@@ -70,8 +70,8 @@
         <tbody>
           <% @work_session.teachers.each do |teacher| %>
             <tr>
-              <td><a href="<%= teacher_path(teacher.id) %>"><%= teacher.last_name %></td> </a>
-              <td><a href="<%= teacher_path(teacher.id) %>"><%= teacher.first_name %></td> </a>
+              <td><%= link_to teacher.last_name, teacher_path(teacher.id) %></td>
+              <td><%= link_to teacher.first_name, teacher_path(teacher.id) %></td>
             </tr>
           <% end %>
         </tbody>
