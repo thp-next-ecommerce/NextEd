@@ -17,6 +17,7 @@ class WorkSession < ApplicationRecord
   has_many :skills, through: :work_session_skills
   has_many :student_work_sessions, dependent: :destroy
   has_many :students, through: :student_work_sessions
+  belongs_to :slot
 
   default_scope { order({ date: :desc }, :daily_schedule) }
 end

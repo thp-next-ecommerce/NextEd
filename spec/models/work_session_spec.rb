@@ -17,7 +17,7 @@ RSpec.describe WorkSession, type: :model do
   describe 'model instanciation,' do
     describe 'database' do
       it { is_expected.to have_db_column(:date).of_type(:date).with_options(null: false) }
-      it { is_expected.to have_db_column(:daily_schedule).of_type(:string) }
+      it { is_expected.to have_db_column(:slot).of_type(:integer) }
       it { is_expected.to have_db_column(:created_at).of_type(:datetime).with_options(null: false) }
       it { is_expected.to have_db_column(:updated_at).of_type(:datetime).with_options(null: false) }
     end

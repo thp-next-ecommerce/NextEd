@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_02_28_191144) do
+ActiveRecord::Schema.define(version: 2019_03_05_161445) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -70,7 +70,7 @@ ActiveRecord::Schema.define(version: 2019_02_28_191144) do
     t.string "sub_section", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "year_end"
+    t.integer "year_end", null: false
   end
 
   create_table "skills", force: :cascade do |t|
@@ -80,6 +80,14 @@ ActiveRecord::Schema.define(version: 2019_02_28_191144) do
     t.datetime "updated_at", null: false
     t.bigint "domain_id"
     t.index ["domain_id"], name: "index_skills_on_domain_id"
+  end
+
+  create_table "slots", force: :cascade do |t|
+    t.string "name"
+    t.time "start_time"
+    t.time "end_time"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "student_work_sessions", force: :cascade do |t|
@@ -110,9 +118,10 @@ ActiveRecord::Schema.define(version: 2019_02_28_191144) do
 
   create_table "work_sessions", force: :cascade do |t|
     t.date "date", null: false
-    t.string "daily_schedule"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "slot_id"
+    t.index ["slot_id"], name: "index_work_sessions_on_slot_id"
   end
 
   add_foreign_key "domains", "cultures"
