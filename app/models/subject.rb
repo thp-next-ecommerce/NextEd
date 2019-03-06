@@ -13,7 +13,6 @@
 
 class Subject < ApplicationRecord
   validates :name, presence: true
-  validates :description, presence: true
   has_many :work_session_subjects, dependent: :destroy
   has_many :work_sessions, through: :work_session_subjects
 end
