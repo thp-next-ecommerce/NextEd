@@ -17,6 +17,7 @@ WorkSession.destroy_all
 Section.destroy_all
 Group.destroy_all
 Student.destroy_all
+ScholarYear.destroy_all
 
 culture1 = Culture.create!(name: "Les langages pour penser et communiquer", description: "Comprendre et s'exprimer")
 culture2 = Culture.create!(name: "Les méthodes et outils pour apprendre", description: "Apprendre à apprendre, seuls ou collectivement, en classe ou en dehors")
@@ -60,6 +61,9 @@ puts "Created domains"
 end
 puts "created 10 Skills"
 
+ScholarYear.create(start_date: Date.new(2018, 9, 4), end_date: Date.new(2019, 0o7, 14), current: true)
+puts "created ScholarYear"
+
 10.times do
   schedule = %w(M1 M2 M3 M4 S1 S2 S3 S4)
   skills = []
@@ -67,7 +71,8 @@ puts "created 10 Skills"
   WorkSession.create!(
     date: Faker::Date.between(1.year.ago, 1.year.from_now),
     daily_schedule: schedule.sample,
-    skills: skills
+    skills: skills,
+    scholar_year: ScholarYear.first
   )
 end
 puts "created 10 WorkSessions"
@@ -77,7 +82,8 @@ puts "created 10 WorkSessions"
     year_start: 2018,
     year_end: 2019,
     level: [6, 5, 4, 3].sample,
-    sub_section: %w(A B C D E F G).sample
+    sub_section: %w(A B C D E F G).sample,
+    scholar_year: ScholarYear.first
   )
 end
 puts "Created 20 sections"
@@ -85,7 +91,8 @@ puts "Created 20 sections"
 10.times do
   Group.create!(
     name: Faker::Company.name,
-    level: [6, 5, 4, 3].sample
+    level: [6, 5, 4, 3].sample,
+    scholar_year: ScholarYear.first
   )
 end
 puts "created 10 groups"
@@ -108,6 +115,3 @@ puts "created 10 groups"
   )
 end
 puts "created 700 Students"
-
-ScholarYear.create(start_date: Date.new(2018, 9, 4), end_date: Date.new(2019, 0o7, 14), current: true)
-puts "created ScholarYear"
