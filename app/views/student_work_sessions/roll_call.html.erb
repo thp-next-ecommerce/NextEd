@@ -1,51 +1,31 @@
 <div class="card-columns">
   <div class="card">
-    <div class="card-header">
-      <h4>Elèves présents</h4>
-    </div>
-    <div class="card-body">
-      <table class="table table-sm table-borderless">
-        <thead>
-          <tr>
-            <th scope="col">Nom</th>
-            <th scope="col">Prénom</th>
-            <th scope="col">Classe</th>
-          </tr>
-        </thead>
-          <tbody>
-          <% @students_attended.sort_by { |s| s.student.last_name }.each do |student_work_session| %>
-            <tr>
-              <td><%= student_work_session.student.last_name %></td>
-              <td><%= student_work_session.student.first_name %></td>
-              <td><%= "#{student_work_session.student.sections.last.level}#{student_work_session.student.sections.last.sub_section}" %></td>
-            </tr>
-            <% end %>
-        </tbody>
-      </table> 
-    </div>
-    </div>
-
-  <div class="card">
   <%= form_with url: update_work_session_roll_call_path, local: true do |f| %>
     <div class="card-header">
-      <h4>Sélectionner les élèves présents</h4>
+      <h4>Appel des élèves</h4>
     </div>
     <table class="table table-sm table-striped">
       <thead>
         <tr>
-          <th scope="col"></th>
           <th scope="col">Nom</th>
           <th scope="col">Prénom</th>
           <th scope="col">Classe</th>
+          <th scope="col">Présence</th>
+          <th scope="col">En retard </th>
+          <th scope="col">Infirmerie</th>
+          <th scope="col">Exclus</th>
         </tr>
       </thead>
         <tbody>
         <% @student_work_sessions.sort_by { |s| s.student.last_name }.each do |student_work_session| %>
           <tr>
-            <td><input type="checkbox" value="<%= student_work_session.id %>" name="student_work_session[attended][]" checked>
             <td><%= student_work_session.student.last_name %></td>
             <td><%= student_work_session.student.first_name %></td>
             <td><%= "#{student_work_session.student.sections.last.level}#{student_work_session.student.sections.last.sub_section}" %></td>
+            <td><input type="checkbox" value="<%= student_work_session.id %>" name="student_work_session[attended][]"></td>
+            <td><input type="checkbox" value="<%= student_work_session.id %>" name="student_work_session[later][]"></td>
+            <td><input type="checkbox" value="<%= student_work_session.id %>" name="student_work_session[medical][]"></td>
+            <td><input type="checkbox" value="<%= student_work_session.id %>" name="student_work_session[suspended][]"></td>
           </tr>
           <% end %>
       </tbody>
