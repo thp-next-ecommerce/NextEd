@@ -5,7 +5,7 @@ class AddColumToStudentWorkSession < ActiveRecord::Migration[5.2]
     change_table :student_work_sessions, bulk: true do |t|
       t.boolean :suspended, default: false
       t.boolean :medical, default: false
-      t.boolean :later, default: false
+      t.boolean :late, default: false
     end
   end
 end

@@ -90,7 +90,7 @@ ActiveRecord::Schema.define(version: 2019_03_04_172618) do
     t.boolean "attended", default: true
     t.boolean "suspended", default: false
     t.boolean "medical", default: false
-    t.boolean "later", default: false
+    t.boolean "late", default: false
     t.index ["student_id"], name: "index_student_work_sessions_on_student_id"
     t.index ["work_session_id"], name: "index_student_work_sessions_on_work_session_id"
   end

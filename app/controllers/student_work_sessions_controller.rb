@@ -10,7 +10,7 @@ class StudentWorkSessionsController < ApplicationController
       # display an error if form is validated without students selection
       @student_work_sessions = StudentWorkSession.find(params["student_work_session"]["attended"] ||
                                                        params["student_work_session"]["later"] ||
-                                                       params["student_work_session"]["suspended"] || 
+                                                       params["student_work_session"]["suspended"] ||
                                                        params["student_work_session"]["medical"])
       @student_work_sessions.each do |student|
         unless student.update(update_params)
