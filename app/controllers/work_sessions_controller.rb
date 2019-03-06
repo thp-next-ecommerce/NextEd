@@ -13,6 +13,7 @@ class WorkSessionsController < ApplicationController
 
   def create
     @work_session = WorkSession.new(permitted_params)
+    @work_session.scholar_year = ScholarYear.first
 
     if @work_session.save
       flash[:notice] = "La séance a été créée"

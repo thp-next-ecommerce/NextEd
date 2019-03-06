@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: work_sessions
@@ -18,11 +19,17 @@ FactoryBot.define do
     scholar_year
 
     trait :skills do
-      skill_ids { create_list(:skill, 3) }
+      skills { create_list(:skill, 3) }
+    end
+
+    trait :skill_ids do
+      skill_ids { create_list(:skill, 3).pluck(:id) }
     end
 
     trait :students do
-      student_ids { create_list(:student, 3) }
+      students { create_list(:student, 3) }
     end
+
+    factory :work_session_with_skills, traits: [:skill_ids]
   end
 end
