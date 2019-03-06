@@ -24,5 +24,8 @@ FactoryBot.define do
     trait :students do
       student_ids { create_list(:student, 3) }
     end
+    
+    factory :work_session_with_skills, traits: [:skills]
+    
   end
 end
