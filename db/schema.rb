@@ -99,6 +99,13 @@ ActiveRecord::Schema.define(version: 2019_03_05_205424) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "subjects", force: :cascade do |t|
+    t.string "name"
+    t.text "description"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "teacher_work_sessions", force: :cascade do |t|
     t.bigint "teacher_id"
     t.bigint "work_session_id"
@@ -124,6 +131,15 @@ ActiveRecord::Schema.define(version: 2019_03_05_205424) do
     t.index ["work_session_id"], name: "index_work_session_skills_on_work_session_id"
   end
 
+  create_table "work_session_subjects", force: :cascade do |t|
+    t.bigint "work_session_id"
+    t.bigint "subject_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["subject_id"], name: "index_work_session_subjects_on_subject_id"
+    t.index ["work_session_id"], name: "index_work_session_subjects_on_work_session_id"
+  end
+
   create_table "work_sessions", force: :cascade do |t|
     t.date "date", null: false
     t.string "daily_schedule"
@@ -143,4 +159,6 @@ ActiveRecord::Schema.define(version: 2019_03_05_205424) do
   add_foreign_key "teacher_work_sessions", "work_sessions"
   add_foreign_key "work_session_skills", "skills"
   add_foreign_key "work_session_skills", "work_sessions"
+  add_foreign_key "work_session_subjects", "subjects"
+  add_foreign_key "work_session_subjects", "work_sessions"
 end
