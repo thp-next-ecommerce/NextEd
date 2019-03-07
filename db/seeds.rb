@@ -70,7 +70,7 @@ puts "created 10 Skills"
     skills: skills
   )
 end
-puts "created 10 WorkSessions"
+puts "created 30 WorkSessions"
 
 20.times do
   Section.create!(
