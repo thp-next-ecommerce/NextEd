@@ -7,7 +7,7 @@
 
     <ul class="sidebar-nav">
 
-       <li class="sidebar-item">
+      <li class="sidebar-item">
         <a href="#work-sessions" data-toggle="collapse" class="sidebar-link collapsed">
           <i class="align-middle" data-feather="list"></i> <span class="align-middle">Séances</span>
         </a>
@@ -39,19 +39,15 @@
         </ul>
       </li>
 
-      <li class="sidebar-item">
-        <a href="<%= subjects_path %>" class="sidebar-link">
-          <i class="align-middle" data-feather="book-open"></i> <span class="align-middle">Matières</span>
-        </a>
-      </li>
+      <%= link_to subjects_path, class: "sidebar-item sidebar-link" do %>
+        <i class="align-middle" data-feather="book-open"></i> <span class="align-middle">Matières</span>
+      <% end %>
+
+      <%= link_to teachers_path, class: "sidebar-item sidebar-link" do %>
+        <i class="align-middle" data-feather="user"></i> <span class="align-middle">Profs</span>
+      <% end %>
 
       <li class="sidebar-item">
-        <a href="#" class="sidebar-link">
-          <i class="align-middle" data-feather="user"></i> <span class="align-middle">Profs</span>
-        </a>
-      </li>
-
-       <li class="sidebar-item">
         <a href="#calender" data-toggle="collapse" class="sidebar-link collapsed">
           <i class="align-middle" data-feather="calendar"></i> <span class="align-middle">Calendrier</span>
         </a>

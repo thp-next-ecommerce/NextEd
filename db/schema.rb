@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_03_05_170450) do
+ActiveRecord::Schema.define(version: 2019_03_05_205424) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -106,6 +106,22 @@ ActiveRecord::Schema.define(version: 2019_03_05_170450) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "teacher_work_sessions", force: :cascade do |t|
+    t.bigint "teacher_id"
+    t.bigint "work_session_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["teacher_id"], name: "index_teacher_work_sessions_on_teacher_id"
+    t.index ["work_session_id"], name: "index_teacher_work_sessions_on_work_session_id"
+  end
+
+  create_table "teachers", force: :cascade do |t|
+    t.string "first_name"
+    t.string "last_name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "work_session_skills", force: :cascade do |t|
     t.bigint "work_session_id"
     t.bigint "skill_id"
@@ -139,6 +155,8 @@ ActiveRecord::Schema.define(version: 2019_03_05_170450) do
   add_foreign_key "skills", "domains"
   add_foreign_key "student_work_sessions", "students"
   add_foreign_key "student_work_sessions", "work_sessions"
+  add_foreign_key "teacher_work_sessions", "teachers"
+  add_foreign_key "teacher_work_sessions", "work_sessions"
   add_foreign_key "work_session_skills", "skills"
   add_foreign_key "work_session_skills", "work_sessions"
   add_foreign_key "work_session_subjects", "subjects"
