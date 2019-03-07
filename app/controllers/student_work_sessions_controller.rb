@@ -12,21 +12,10 @@ class StudentWorkSessionsController < ApplicationController
       return
     end
 
-    if params["student_work_session"]["absent"].present?
-      update_attendance("absent", "attended", false)
-    end
-
-    if params["student_work_session"]["late"].present?
-      update_attendance("late")
-    end
-
-    if params["student_work_session"]["medical"].present?
-      update_attendance("medical")
-    end
-
-    if params["student_work_session"]["suspended"].present?
-      update_attendance("suspended")
-    end
+    update_attendance("absent", "attended", false) if params["student_work_session"]["absent"].present?
+    update_attendance("late") if params["student_work_session"]["late"].present?
+    update_attendance("medical") if params["student_work_session"]["medical"].present?
+    update_attendance("suspended") if params["student_work_session"]["suspended"].present?
 
     redirect_to work_session_path(params[:id])
   end
@@ -38,7 +27,10 @@ class StudentWorkSessionsController < ApplicationController
   end
 
   def update_attendance(params_key, column = params_key, value = true)
-    @students = StudentWorkSession.find(params["student_work_session"][params_key])
-    @students.each { |student| student.update("#{column}": value) }
+    StudentWorkSession.where(
+      id: params["student_work_session"][params_key]
+    ).find_each do |sws|
+      sws.update("#{column}": value)
+    end
   end
 end
