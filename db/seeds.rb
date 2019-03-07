@@ -98,7 +98,6 @@ puts "Created 20 sections"
 10.times do
   Group.create!(
     name: Faker::Company.name,
-    level: [6, 5, 4, 3].sample
   )
 end
 puts "Created 10 Groups"
