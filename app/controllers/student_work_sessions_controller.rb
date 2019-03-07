@@ -2,7 +2,7 @@
 
 class StudentWorkSessionsController < ApplicationController
   def roll_call
-    @student_work_sessions = StudentWorkSession.where(work_session_id: params[:id]).has_attended
+    @student_work_sessions = StudentWorkSession.where(work_session_id: params[:id])
   end
 
   def update
