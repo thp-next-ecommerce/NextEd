@@ -16,8 +16,6 @@ RSpec.describe TeachersController, type: :controller do
 
   let(:teacher) { create(:teacher) }
 
-  let(:valid_session) { {} }
-
   describe "GET #index" do
     it "returns a success response" do
       get :index
