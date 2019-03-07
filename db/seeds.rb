@@ -69,7 +69,7 @@ puts "Created 20 Skills"
 end
 puts "Created 7 Teachers"
 
-10.times do
+30.times do
   schedule = %w(M1 M2 M3 M4 S1 S2 S3 S4)
   skills = []
   5.times do skills.push(Skill.all.sample) end
@@ -82,7 +82,8 @@ puts "Created 7 Teachers"
     teachers: teachers
   )
 end
-puts "Created 10 WorkSessions"
+
+puts "created 30 WorkSessions"
 
 20.times do
   Section.create!(
