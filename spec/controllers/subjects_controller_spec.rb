@@ -16,8 +16,6 @@ RSpec.describe SubjectsController, type: :controller do
 
   let(:session_subject) { create(:subject) }
 
-  let(:valid_session) { {} }
-
   describe "GET #index" do
     it "returns a success response" do
       Subject.create! valid_attributes
