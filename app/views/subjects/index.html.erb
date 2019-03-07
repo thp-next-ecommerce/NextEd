@@ -1,0 +1,39 @@
+<h1>Liste des matières</h1>
+
+<div class="card">
+  <div class="table-responsive">
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Nom</th>
+          <th>Description</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @subjects.each do |subject|%>
+          <tr>
+            <td><%= subject.name %></td>
+            <td><%= subject.description %></td>
+            <td>
+              <%= link_to subject_path(subject.id) do %>
+                  <i class="align-middle" data-feather="eye"></i>
+              <% end %>
+              <%= link_to  edit_subject_path(subject.id) do %>
+                  <i class="align-middle" data-feather="edit-2"></i>
+              <% end %>
+              <%= link_to  subject_path(subject.id), method: :delete, data: { confirm: 'Êtes-vous sûr ?' } do %>
+                  <i class="align-middle" data-feather="trash"></i>
+              <% end %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+      <tfoot>
+        <tr>
+          <td><%= paginate @subjects %></td>
+        </tr>
+      </tfoot>
+    </table>
+  </div>
+</div>
