@@ -26,7 +26,7 @@ class StudentWorkSessionsController < ApplicationController
   private
 
   def update_params
-    params.require(:student_work_session).permit(attended: [], later: [], medical: [], suspended: [])
+    params.require(:student_work_session).permit(attended: [], late: [], medical: [], suspended: [])
   end
 
   def update_attendance(params_key, column = params_key)
