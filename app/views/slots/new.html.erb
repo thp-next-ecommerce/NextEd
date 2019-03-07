@@ -1,0 +1,29 @@
+<h1>Création d'un créneau</h1>
+<div class="col-6 col-xl-6 pb-3">
+  <div class="form-group row">
+    <div class="card">
+      <div class="card-body">
+        <h6 class="card-subtitle text-muted mb-2">Crénaux</h6>
+        <%= form_with model: @slot, local: true do |f| %>
+          <div class="form-group">
+            <%= f.text_field :name, class: "form-control" %>
+          </div>
+
+          <h6 class="card-subtitle text-muted my-2">Début</h6>
+          <div class="form-group">
+            <%= f.time_select :start_time, class: "form-control" %>
+          </div>
+
+          <h6 class="card-subtitle text-muted my-2">Fin</h6>
+          <div class="form-group">
+            <%= f.time_select :end_time, class: "form-control mt-2" %>
+          </div>
+
+          <div class="card-footer">
+            <%= f.submit 'Créer', class: "btn btn-primary mt-3 " %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
