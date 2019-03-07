@@ -13,11 +13,19 @@ class StudentWorkSessionsController < ApplicationController
     end
 
     if params["student_work_session"]["absent"].present?
-      update_attendance("absent", "attended")
+      update_attendance("absent", "attended", false)
     end
 
     if params["student_work_session"]["late"].present?
       update_attendance("late")
+    end
+
+    if params["student_work_session"]["medical"].present?
+      update_attendance("medical")
+    end
+
+    if params["student_work_session"]["suspended"].present?
+      update_attendance("suspended")
     end
 
     redirect_to work_session_path(params[:id])
@@ -29,27 +37,8 @@ class StudentWorkSessionsController < ApplicationController
     params.require(:student_work_session).permit(attended: [], late: [], medical: [], suspended: [])
   end
 
-  def update_attendance(params_key, column = params_key)
+  def update_attendance(params_key, column = params_key, value = true)
     @students = StudentWorkSession.find(params["student_work_session"][params_key])
-    @students.each { |student|
-      student.update("#{column}": false)
-    }
+    @students.each { |student| student.update("#{column}": value) }
   end
 end
-
-# if params["student_work_session"].present?
-#   binding.pry
-#   @student_work_sessions = StudentWorkSession.find(params["student_work_session"]["attended"] ||
-#                                                    params["student_work_session"]["late"] ||
-#                                                    params["student_work_session"]["suspended"] ||
-#                                                    params["student_work_session"]["medical"])
-#   @student_work_sessions.each do |student|
-#     unless student.update(update_params)
-#       redirect_back fallback_location: work_sessions_path, alert: @student_work_sessions.errors.full_messages.to_s
-#     end
-#   end
-#   redirect_back fallback_location: work_sessions_path, notice: "La mise à jour à bien été éffectué"
-# else
-#   # display an error if form is validated without students selection
-#   redirect_back fallback_location: work_sessions_path, alert: "Vous devez sélectionner au moins un élève"
-# end

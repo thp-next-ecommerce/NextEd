@@ -47,12 +47,12 @@
             <td>
               <% if student.student_work_sessions.find_by(work_session_id: @work_session.id).late == true %> 
                 <span>retard</span> 
-              <% elsif student.student_work_sessions.find_by(work_session_id: @work_session.id).attended? %> 
-                <i class="align-left" data-feather="check-circle"></i>
-              <% elsif student.student_work_sessions.find_by(work_session_id: @work_session.id).medical == true %> 
+                <% elsif student.student_work_sessions.find_by(work_session_id: @work_session.id).medical == true %> 
                 <span>infirmerie</span> 
-              <% elsif student.student_work_sessions.find_by(work_session_id: @work_session.id).suspended == true %> 
+                <% elsif student.student_work_sessions.find_by(work_session_id: @work_session.id).suspended == true %> 
                 <span>exclu</span> 
+                <% elsif student.student_work_sessions.find_by(work_session_id: @work_session.id).attended? %> 
+                  <i class="align-left" data-feather="check-circle"></i>
               <% else %>
                 <i class="align-left" data-feather="x"></i>
               <% end %>
