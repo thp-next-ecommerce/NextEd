@@ -32,6 +32,7 @@ RSpec.describe "StudentsToWorkSessions", type: :feature, js: true do
 
       it "associates the correct number of students to a work_session" do
         fill_in 'work_session_date', with: Date.tomorrow
+        select(value = "2", from: "work_session_slot_id") #Cette ligne ne marche pas, je la laissse pour avoir une idée de ce qu'il faut faire, mais comme j'y connais rien à capybara, c'est la misere, commentaire à supprimer.
         click_button 'Créer'
         expect(page).to have_content('First Name', count: 1)
       end

@@ -18,7 +18,7 @@ class WorkSessionsController < ApplicationController
       flash[:notice] = "La séance a été créée"
       redirect_to(@work_session)
     else
-      flash[:alert] = "La séance n'a PAS été créée"
+      flash[:alert] = "La séance n'a PAS été créée, motif : #{@work_session.errors.full_messages}"
       render action: "new"
     end
   end
