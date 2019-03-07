@@ -26,9 +26,15 @@
     </div>
     <div class="card-body">
       <ul class="list list-unstyled">
-        <% if @skills_recap %>
-        <% @skills_recap.each { |skill_and_count| %>
-          <li><a href="<%= skill_path(skill_and_count[0].id) %>"><%= skill_and_count[0].name %></a> - étudié <%= skill_and_count[1] %> fois</li>
+        <% if @skills %>
+        <% @skills.each { |skill, sections| %>
+        <li><a href="<%= skill_path(skill.id) %>"><%= skill.name %></a>
+          <ul>Étudiée en :
+            <% sections.each do |section| %>
+            <li><%= section.level %><%= section.sub_section %></li>
+            <% end %>
+          </ul>
+        </li>
         <% } %> 
         <% end %>
       </ul>
