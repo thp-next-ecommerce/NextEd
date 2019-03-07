@@ -87,7 +87,10 @@ ActiveRecord::Schema.define(version: 2019_03_05_205424) do
     t.bigint "work_session_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.boolean "attended", default: false
+    t.boolean "attended", default: true
+    t.boolean "suspended", default: false
+    t.boolean "medical", default: false
+    t.boolean "late", default: false
     t.index ["student_id"], name: "index_student_work_sessions_on_student_id"
     t.index ["work_session_id"], name: "index_student_work_sessions_on_work_session_id"
   end

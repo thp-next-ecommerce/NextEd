@@ -49,6 +49,16 @@ RSpec.describe WorkSession, type: :model do
         expect(work_session.students.first.work_sessions.first).to eq work_session
       end
 
+      it { is_expected.to have_many(:teachers) }
+      it "responds to #teachers" do
+        expect(work_session.teachers).to be_truthy
+      end
+
+      it "follows association links from #teachers back to itself" do
+        work_session.teachers << create(:teacher)
+        expect(work_session.teachers.first.work_sessions.first).to eq work_session
+      end
+
       it { is_expected.to have_many(:subjects) }
       it "responds to #subjects" do
         expect(work_session.subjects).to be_truthy
