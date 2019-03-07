@@ -1,13 +1,15 @@
 # frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: work_sessions
 #
-#  id         :bigint(8)        not null, primary key
-#  date       :date             not null
-#  created_at :datetime         not null
-#  updated_at :datetime         not null
-#  slot_id    :bigint(8)
+#  id              :bigint(8)        not null, primary key
+#  date            :date             not null
+#  created_at      :datetime         not null
+#  updated_at      :datetime         not null
+#  scholar_year_id :bigint(8)
+#  slot_id         :bigint(8)
 #
 
 require 'rails_helper'

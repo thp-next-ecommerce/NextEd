@@ -61,16 +61,16 @@ puts "Created domains"
 end
 puts "created 10 Skills"
 
-10.times do
+8.times do
   schedule = %w(M1 M2 M3 M4 S1 S2 S3 S4)
-  t = Time.now + rand(0..20000000)
+  t = Time.zone.now + rand(0..20_000_000)
   Slot.create!(
     name: schedule.sample,
     start_time: t,
     end_time: t + 3300
   )
 end
-puts "created 10 Slots"
+puts "created 8 Slots"
 
 10.times do
   skills = []
@@ -78,7 +78,7 @@ puts "created 10 Slots"
   WorkSession.create!(
     date: Faker::Date.between(1.year.ago, 1.year.from_now),
     skills: skills,
-    slot_id: rand(1..10)
+    slot_id: rand(1..8)
   )
 end
 puts "created 10 WorkSessions"

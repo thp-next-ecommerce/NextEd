@@ -9,7 +9,10 @@
 #  work_session_id :bigint(8)
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
-#  attended        :boolean          default(FALSE)
+#  attended        :boolean          default(TRUE)
+#  suspended       :boolean          default(FALSE)
+#  medical         :boolean          default(FALSE)
+#  later           :boolean          default(FALSE)
 #
 
 require 'rails_helper'

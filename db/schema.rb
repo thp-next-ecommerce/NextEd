@@ -45,6 +45,8 @@ ActiveRecord::Schema.define(version: 2019_03_05_161445) do
     t.integer "level"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "scholar_year_id"
+    t.index ["scholar_year_id"], name: "index_groups_on_scholar_year_id"
   end
 
   create_table "scholar_years", force: :cascade do |t|
@@ -71,6 +73,19 @@ ActiveRecord::Schema.define(version: 2019_03_05_161445) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "year_end"
+    t.bigint "scholar_year_id"
+    t.index ["scholar_year_id"], name: "index_sections_on_scholar_year_id"
+  end
+
+  create_table "skill_students", force: :cascade do |t|
+    t.bigint "skill_id"
+    t.bigint "student_id"
+    t.bigint "section_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["section_id"], name: "index_skill_students_on_section_id"
+    t.index ["skill_id"], name: "index_skill_students_on_skill_id"
+    t.index ["student_id"], name: "index_skill_students_on_student_id"
   end
 
   create_table "skills", force: :cascade do |t|
@@ -95,7 +110,10 @@ ActiveRecord::Schema.define(version: 2019_03_05_161445) do
     t.bigint "work_session_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.boolean "attended", default: false
+    t.boolean "attended", default: true
+    t.boolean "suspended", default: false
+    t.boolean "medical", default: false
+    t.boolean "later", default: false
     t.index ["student_id"], name: "index_student_work_sessions_on_student_id"
     t.index ["work_session_id"], name: "index_student_work_sessions_on_work_session_id"
   end
@@ -120,18 +138,26 @@ ActiveRecord::Schema.define(version: 2019_03_05_161445) do
     t.date "date", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "scholar_year_id"
     t.bigint "slot_id"
+    t.index ["scholar_year_id"], name: "index_work_sessions_on_scholar_year_id"
     t.index ["slot_id"], name: "index_work_sessions_on_slot_id"
   end
 
   add_foreign_key "domains", "cultures"
   add_foreign_key "group_students", "groups"
   add_foreign_key "group_students", "students"
+  add_foreign_key "groups", "scholar_years"
   add_foreign_key "section_students", "sections"
   add_foreign_key "section_students", "students"
+  add_foreign_key "sections", "scholar_years"
+  add_foreign_key "skill_students", "sections"
+  add_foreign_key "skill_students", "skills"
+  add_foreign_key "skill_students", "students"
   add_foreign_key "skills", "domains"
   add_foreign_key "student_work_sessions", "students"
   add_foreign_key "student_work_sessions", "work_sessions"
   add_foreign_key "work_session_skills", "skills"
   add_foreign_key "work_session_skills", "work_sessions"
+  add_foreign_key "work_sessions", "scholar_years"
 end

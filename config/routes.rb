@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   get 'work_sessions/:id/roll_call', to: 'student_work_sessions#roll_call', as: 'work_session_roll_call'
   post 'work_sessions/:id/roll_call', to: 'student_work_sessions#update', as: 'update_work_session_roll_call'
   resources :skills
+  resources :slots
   resources :scholar_years, only: %i[index edit update create]
 
   patch '/scholar_years/:id/archive', to: 'scholar_years#archive', as: 'archive_scholar_years'
