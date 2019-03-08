@@ -2,19 +2,16 @@
 
 # == Schema Information
 #
-# Table name: student_work_sessions
+# Table name: work_session_subjects
 #
 #  id              :bigint(8)        not null, primary key
-#  student_id      :bigint(8)
 #  work_session_id :bigint(8)
+#  subject_id      :bigint(8)
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
-#  attended        :boolean          default(FALSE)
 #
 
-FactoryBot.define do
-  factory :student_work_session do
-    student
-    work_session
-  end
+class WorkSessionSubject < ApplicationRecord
+  belongs_to :work_session
+  belongs_to :subject
 end

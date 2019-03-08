@@ -19,6 +19,7 @@ Group.destroy_all
 Student.destroy_all
 ScholarYear.destroy_all
 Teacher.destroy_all
+Subject.destroy_all
 
 culture1 = Culture.create!(name: "Les langages pour penser et communiquer", description: "Comprendre et s'exprimer")
 culture2 = Culture.create!(name: "Les méthodes et outils pour apprendre", description: "Apprendre à apprendre, seuls ou collectivement, en classe ou en dehors")
@@ -62,6 +63,15 @@ puts "Created 17 Domains"
 end
 puts "Created 20 Skills"
 
+5.times do |i|
+  Subject.create!(
+    name: "Matière #{i}",
+    description: Faker::Lorem.sentence(10)
+  )
+  ++i
+end
+puts "Created 5 Subjects"
+
 7.times do
   Teacher.create!(
     first_name: Faker::Name.first_name,
@@ -76,16 +86,18 @@ puts "Created 7 Teachers"
   5.times do skills.push(Skill.all.sample) end
   teachers = []
   2.times do teachers.push(Teacher.all.sample) end
+  subjects = []
+  2.times do subjects.push(Subject.all.sample) end
   WorkSession.create!(
     date: Faker::Date.between(1.year.ago, 1.year.from_now),
     daily_schedule: schedule.sample,
     skills: skills,
     scholar_year: ScholarYear.first,
-    teachers: teachers
+    teachers: teachers,
+    subjects: subjects
   )
 end
-
-puts "created 30 WorkSessions"
+puts "Created 30 WorkSessions"
 
 20.times do
   Section.create!(

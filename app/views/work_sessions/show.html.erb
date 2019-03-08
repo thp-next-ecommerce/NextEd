@@ -88,8 +88,9 @@
       </div>
       <div class="card-body">
         <ul>
-          <li><a href="#">Matière 1</a></li> 
-          <li><a href="#">Matière 2</a> </li> 
+          <% @work_session.subjects.each do |subject| %>
+            <li><%= subject.name %></li> 
+          <% end %>
         </ul>
       </div>
     </div>
