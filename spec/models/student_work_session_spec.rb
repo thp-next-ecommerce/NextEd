@@ -20,7 +20,7 @@ require 'rails_helper'
 RSpec.describe StudentWorkSession, type: :model do
   describe 'model instanciation' do
     describe 'database' do
-      it { is_expected.to have_db_column(:attended).of_type(:boolean).with_options(default: false) }
+      it { is_expected.to have_db_column(:attended).of_type(:boolean).with_options(default: true) }
       it { is_expected.to have_db_column(:student_id).of_type(:integer) }
       it { is_expected.to have_db_column(:work_session_id).of_type(:integer) }
     end
