@@ -45,11 +45,10 @@ RSpec.describe SlotsController, type: :controller do
   end
 
   describe 'PATCH#update' do
-    let(:wrong_update) { patch :update, params: { id: slot.id, slot: { name: nil, start_time: nil, end_time: nil } } }
     start_time = Time.zone.now
     end_time = Time.zone.now + 3300
-
     let(:update) { patch :update, params: { id: slot.id, slot: { name: "test update", start_time: start_time, end_time: end_time } } }
+    let(:wrong_update) { patch :update, params: { id: slot.id, slot: { name: nil, start_time: nil, end_time: nil } } }
 
     describe 'with correct data' do
       before do
