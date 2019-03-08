@@ -4,11 +4,12 @@
 #
 # Table name: work_sessions
 #
-#  id             :bigint(8)        not null, primary key
-#  date           :date             not null
-#  daily_schedule :string
-#  created_at     :datetime         not null
-#  updated_at     :datetime         not null
+#  id              :bigint(8)        not null, primary key
+#  date            :date             not null
+#  created_at      :datetime         not null
+#  updated_at      :datetime         not null
+#  scholar_year_id :bigint(8)
+#  slot_id         :bigint(8)
 #
 
 require 'rails_helper'
@@ -17,7 +18,7 @@ RSpec.describe WorkSession, type: :model do
   describe 'model instanciation,' do
     describe 'database' do
       it { is_expected.to have_db_column(:date).of_type(:date).with_options(null: false) }
-      it { is_expected.to have_db_column(:daily_schedule).of_type(:string) }
+      it { is_expected.to have_db_column(:slot_id).of_type(:integer) }
       it { is_expected.to have_db_column(:created_at).of_type(:datetime).with_options(null: false) }
       it { is_expected.to have_db_column(:updated_at).of_type(:datetime).with_options(null: false) }
     end
@@ -49,6 +50,10 @@ RSpec.describe WorkSession, type: :model do
         expect(work_session.students.first.work_sessions.first).to eq work_session
       end
 
+      it { is_expected.to belong_to(:scholar_year) }
+      it "responds to #scholar_year" do
+        expect(work_session.scholar_year).to be_truthy
+      end
       it { is_expected.to have_many(:teachers) }
       it "responds to #teachers" do
         expect(work_session.teachers).to be_truthy

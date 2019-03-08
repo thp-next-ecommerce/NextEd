@@ -4,13 +4,14 @@
 #
 # Table name: sections
 #
-#  id          :bigint(8)        not null, primary key
-#  year_start  :integer          not null
-#  level       :integer          not null
-#  sub_section :string           not null
-#  created_at  :datetime         not null
-#  updated_at  :datetime         not null
-#  year_end    :integer
+#  id              :bigint(8)        not null, primary key
+#  year_start      :integer          not null
+#  level           :integer          not null
+#  sub_section     :string           not null
+#  created_at      :datetime         not null
+#  updated_at      :datetime         not null
+#  year_end        :integer
+#  scholar_year_id :bigint(8)
 #
 
 require 'rails_helper'
@@ -45,6 +46,8 @@ RSpec.describe Section, type: :model do
         section.students << create(:student)
         expect(section.students.first.sections.first).to eq section
       end
+
+      it { is_expected.to belong_to(:scholar_year) }
     end
   end
 end

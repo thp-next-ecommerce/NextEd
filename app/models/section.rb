@@ -4,13 +4,14 @@
 #
 # Table name: sections
 #
-#  id          :bigint(8)        not null, primary key
-#  year_start  :integer          not null
-#  level       :integer          not null
-#  sub_section :string           not null
-#  created_at  :datetime         not null
-#  updated_at  :datetime         not null
-#  year_end    :integer
+#  id              :bigint(8)        not null, primary key
+#  year_start      :integer          not null
+#  level           :integer          not null
+#  sub_section     :string           not null
+#  created_at      :datetime         not null
+#  updated_at      :datetime         not null
+#  year_end        :integer
+#  scholar_year_id :bigint(8)
 #
 
 class Section < ApplicationRecord
@@ -19,6 +20,7 @@ class Section < ApplicationRecord
   validates :sub_section, presence: true
   has_many :section_students, dependent: :destroy
   has_many :students, through: :section_students
+  belongs_to :scholar_year
 
   validates :level, inclusion: { in: [6, 5, 4, 3] }, presence: true
   validates :sub_section, inclusion: { in: %w(A B C D E F G) }, presence: true

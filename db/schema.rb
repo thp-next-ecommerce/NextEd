@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_03_07_193150) do
+ActiveRecord::Schema.define(version: 2019_03_08_133051) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -44,6 +44,8 @@ ActiveRecord::Schema.define(version: 2019_03_07_193150) do
     t.string "name", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "scholar_year_id"
+    t.index ["scholar_year_id"], name: "index_groups_on_scholar_year_id"
   end
 
   create_table "scholar_years", force: :cascade do |t|
@@ -70,6 +72,20 @@ ActiveRecord::Schema.define(version: 2019_03_07_193150) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "year_end"
+    t.bigint "scholar_year_id"
+    t.index ["scholar_year_id"], name: "index_sections_on_scholar_year_id"
+  end
+
+  create_table "skill_students", force: :cascade do |t|
+    t.bigint "skill_id"
+    t.bigint "student_id"
+    t.bigint "section_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "work_session_id"
+    t.index ["section_id"], name: "index_skill_students_on_section_id"
+    t.index ["skill_id"], name: "index_skill_students_on_skill_id"
+    t.index ["student_id"], name: "index_skill_students_on_student_id"
   end
 
   create_table "skills", force: :cascade do |t|
@@ -79,6 +95,14 @@ ActiveRecord::Schema.define(version: 2019_03_07_193150) do
     t.datetime "updated_at", null: false
     t.bigint "domain_id"
     t.index ["domain_id"], name: "index_skills_on_domain_id"
+  end
+
+  create_table "slots", force: :cascade do |t|
+    t.string "name"
+    t.time "start_time"
+    t.time "end_time"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "student_work_sessions", force: :cascade do |t|
@@ -144,16 +168,24 @@ ActiveRecord::Schema.define(version: 2019_03_07_193150) do
 
   create_table "work_sessions", force: :cascade do |t|
     t.date "date", null: false
-    t.string "daily_schedule"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "scholar_year_id"
+    t.bigint "slot_id"
+    t.index ["scholar_year_id"], name: "index_work_sessions_on_scholar_year_id"
+    t.index ["slot_id"], name: "index_work_sessions_on_slot_id"
   end
 
   add_foreign_key "domains", "cultures"
   add_foreign_key "group_students", "groups"
   add_foreign_key "group_students", "students"
+  add_foreign_key "groups", "scholar_years"
   add_foreign_key "section_students", "sections"
   add_foreign_key "section_students", "students"
+  add_foreign_key "sections", "scholar_years"
+  add_foreign_key "skill_students", "sections"
+  add_foreign_key "skill_students", "skills"
+  add_foreign_key "skill_students", "students"
   add_foreign_key "skills", "domains"
   add_foreign_key "student_work_sessions", "students"
   add_foreign_key "student_work_sessions", "work_sessions"
@@ -163,4 +195,5 @@ ActiveRecord::Schema.define(version: 2019_03_07_193150) do
   add_foreign_key "work_session_skills", "work_sessions"
   add_foreign_key "work_session_subjects", "subjects"
   add_foreign_key "work_session_subjects", "work_sessions"
+  add_foreign_key "work_sessions", "scholar_years"
 end

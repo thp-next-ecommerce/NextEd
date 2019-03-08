@@ -14,12 +14,12 @@ class WorkSessionsController < ApplicationController
 
   def create
     @work_session = WorkSession.new(permitted_params)
-
+    @work_session.update(scholar_year: ScholarYear.current_year)
     if @work_session.save
       flash[:notice] = "La séance a été créée"
       redirect_to(@work_session)
     else
-      flash[:alert] = "La séance n'a PAS été créée"
+      flash[:alert] = "La séance n'a PAS été créée, motif : #{@work_session.errors.full_messages}"
       render action: "new"
     end
   end
@@ -42,7 +42,7 @@ class WorkSessionsController < ApplicationController
   private
 
   def permitted_params
-    params.require(:work_session).permit(:date, :daily_schedule, student_ids: [], skill_ids: [], teacher_ids: [], subject_ids: [])
+    params.require(:work_session).permit(:date, :slot_id, student_ids: [], skill_ids: [], teacher_ids: [], subject_ids: [])
   end
 
   def set_work_session

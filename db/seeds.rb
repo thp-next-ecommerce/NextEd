@@ -9,16 +9,19 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 require "faker"
-
+puts "lancement du seed"
 Culture.destroy_all
 Domain.destroy_all
 Skill.destroy_all
 WorkSession.destroy_all
+Slot.destroy_all
 Section.destroy_all
 Group.destroy_all
 Student.destroy_all
+ScholarYear.destroy_all
 Teacher.destroy_all
 Subject.destroy_all
+puts "fin du destroy all"
 
 culture1 = Culture.create!(name: "Les langages pour penser et communiquer", description: "Comprendre et s'exprimer")
 culture2 = Culture.create!(name: "Les méthodes et outils pour apprendre", description: "Apprendre à apprendre, seuls ou collectivement, en classe ou en dehors")
@@ -52,6 +55,9 @@ Domain.create!(name: "connaissance du monde social contemporain", description: F
 
 puts "Created 17 Domains"
 
+ScholarYear.create(start_date: Date.new(2018, 9, 4), end_date: Date.new(2019, 0o7, 14), current: true)
+puts "Created ScholarYear"
+
 20.times do |i|
   Skill.create!(
     name: "Compétence #{i}",
@@ -79,8 +85,18 @@ puts "Created 5 Subjects"
 end
 puts "Created 7 Teachers"
 
-30.times do
+8.times do
   schedule = %w(M1 M2 M3 M4 S1 S2 S3 S4)
+  t = Time.zone.now + rand(0..20_000_000)
+  Slot.create!(
+    name: schedule.sample,
+    start_time: t,
+    end_time: t + 3300
+  )
+end
+puts "created 8 Slots"
+
+10.times do
   skills = []
   5.times do skills.push(Skill.all.sample) end
   teachers = []
@@ -89,8 +105,9 @@ puts "Created 7 Teachers"
   2.times do subjects.push(Subject.all.sample) end
   WorkSession.create!(
     date: Faker::Date.between(1.year.ago, 1.year.from_now),
-    daily_schedule: schedule.sample,
+    slot_id: rand(1..8),
     skills: skills,
+    scholar_year: ScholarYear.first,
     teachers: teachers,
     subjects: subjects
   )
@@ -102,7 +119,8 @@ puts "Created 30 WorkSessions"
     year_start: 2018,
     year_end: 2019,
     level: [6, 5, 4, 3].sample,
-    sub_section: %w(A B C D E F G).sample
+    sub_section: %w(A B C D E F G).sample,
+    scholar_year: ScholarYear.first
   )
 end
 puts "Created 20 sections"
@@ -110,6 +128,7 @@ puts "Created 20 sections"
 10.times do
   Group.create!(
     name: Faker::Company.name,
+    scholar_year: ScholarYear.first
   )
 end
 puts "Created 10 Groups"
@@ -132,6 +151,3 @@ puts "Created 10 Groups"
   )
 end
 puts "Created 700 Students"
-
-ScholarYear.create(start_date: Date.new(2018, 9, 4), end_date: Date.new(2019, 0o7, 14), current: true)
-puts "Created ScholarYear"

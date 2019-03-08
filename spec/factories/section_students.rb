@@ -13,7 +13,7 @@
 
 FactoryBot.define do
   factory :section_student do
-    section { nil }
-    student { nil }
+    section
+    student
   end
 end

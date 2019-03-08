@@ -2,18 +2,21 @@
 
 # == Schema Information
 #
-# Table name: groups
+# Table name: skill_students
 #
 #  id              :bigint(8)        not null, primary key
-#  name            :string           not null
+#  skill_id        :bigint(8)
+#  student_id      :bigint(8)
+#  section_id      :bigint(8)
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
-#  scholar_year_id :bigint(8)
+#  work_session_id :integer
 #
 
 FactoryBot.define do
-  factory :group do
-    name { "MyGroup" }
-    scholar_year
+  factory :skill_student do
+    skill
+    student
+    section
   end
 end

@@ -7,8 +7,12 @@
         <%= form_with model: @work_session, local: true do |f| %>
           <div class="form-group">
             <%= f.date_field :date, class: "form-control" %>
-            <%= f.text_field :daily_schedule, class: "form-control mt-2", placeholder: "crénau (M1, S3, ...)" %>
-          </div>
+              <div class="form-group row">
+                <label class="col-form-label col-sm-2 text-sm-right">Classe</label>
+                <div class="col-sm-10">
+                  <%= f.collection_select :section_ids, Section.current_scholar_year, :id, :value, class:"form-control select2"%>
+                </div>
+              </div>
           
           <h6 class="card-subtitle text-muted my-2">Compétences</h6>
           <div class="form-check">
@@ -31,22 +35,9 @@
           
           <h6 class="card-subtitle text-muted my-2">Matière</h6>
           <div class="form-group">
-            <%= f.collection_check_boxes(:subject_ids, Subject.all, :id, :name) do |b| %>
-              <div class="col-4">
-                <%= b.label(class: "form-check-label mx-1") { b.check_box + b.text } %>
-              </div>
-            <% end %>
+            <%= f.text_field :daily_schedule, class: "form-control", placeholder: "Matière" %>
+            <%= f.text_field :daily_schedule, class: "form-control mt-2", placeholder: "Professeur" %>
           </div>
-
-          <h6 class="card-subtitle text-muted my-2">Professeur</h6>
-          <div class="form-group">
-            <%= f.collection_check_boxes(:teacher_ids, Teacher.all, :id, :last_name) do |b| %>
-              <div class="col-4">
-                <%= b.label(class: "form-check-label mx-1") { b.check_box + b.text } %>
-              </div>
-            <% end %>
-          </div>
-
           <div class="card-footer">
             <%= f.submit 'Créer', class: "btn btn-primary mt-3 " %>
           </div>

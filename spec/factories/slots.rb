@@ -2,18 +2,20 @@
 
 # == Schema Information
 #
-# Table name: group_students
+# Table name: slots
 #
 #  id         :bigint(8)        not null, primary key
-#  student_id :bigint(8)
-#  group_id   :bigint(8)
+#  name       :string
+#  start_time :time
+#  end_time   :time
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #
 
 FactoryBot.define do
-  factory :group_student do
-    student
-    group
+  factory :slot do
+    name { "MyString" }
+    start_time { "2019-03-05 17:03:30" }
+    end_time { "2019-03-05 17:03:30" }
   end
 end
