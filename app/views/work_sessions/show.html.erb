@@ -44,10 +44,17 @@
           <tr>
             <td><a href="<%= student_path(student.id) %>"><%= student.last_name %></td> </a>
             <td><a href="<%= student_path(student.id) %>"><%= student.first_name %></td> </a>
-            <td><% if student.student_work_sessions.find_by(work_session_id: @work_session.id).attended? %> 
-              <i class="align-left" data-feather="check-circle"></i>
+            <td>
+              <% if student.student_work_sessions.find_by(work_session_id: @work_session.id).late == true %> 
+                <span>retard</span> 
+                <% elsif student.student_work_sessions.find_by(work_session_id: @work_session.id).medical == true %> 
+                <span>infirmerie</span> 
+                <% elsif student.student_work_sessions.find_by(work_session_id: @work_session.id).suspended == true %> 
+                <span>exclu</span> 
+                <% elsif student.student_work_sessions.find_by(work_session_id: @work_session.id).attended? %> 
+                  <i class="align-left" data-feather="check-circle"></i>
               <% else %>
-              <i class="align-left" data-feather="x"></i>
+                <i class="align-left" data-feather="x"></i>
               <% end %>
             </td>
           </tr>
@@ -58,12 +65,32 @@
   
     <div class="card">
       <div class="card-header">
+        <h4>Professeurs</h4>
+      </div>
+      <table class="table table-sm table-striped">
+        <thead>
+          <tr>
+            <th scope="col">Nom</th>
+            <th scope="col">Prénom</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @work_session.teachers.each do |teacher| %>
+            <tr>
+              <td><%= link_to teacher.last_name, teacher_path(teacher.id) %></td>
+              <td><%= link_to teacher.first_name, teacher_path(teacher.id) %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+      <div class="card-header">
         <h4>Matière</h4>
       </div>
       <div class="card-body">
         <ul>
-          <li><a href="#">Matière 1</a></li> 
-          <li><a href="#">Matière 2</a> </li> 
+          <% @work_session.subjects.each do |subject| %>
+            <li><%= subject.name %></li> 
+          <% end %>
         </ul>
       </div>
     </div>

@@ -6,10 +6,13 @@
         <h6 class="card-subtitle text-muted mb-2">Quand</h6>
         <%= form_with model: @work_session, local: true do |f| %>
           <div class="form-group">
-            <%= f.date_field :date, class: "form-control" %><br>
-            <b>crénau (M1, S3, ...)</b>
-            <%= f.select(:slot_id, options_for_select(Slot.pluck(:name, :id),), {:class => "form-control"}) %>
-          </div>
+            <%= f.date_field :date, class: "form-control" %>
+              <div class="form-group row">
+                <label class="col-form-label col-sm-2 text-sm-right">Classe</label>
+                <div class="col-sm-10">
+                  <%= f.collection_select :section_ids, Section.current_scholar_year, :id, :value, class:"form-control select2"%>
+                </div>
+              </div>
           
           <h6 class="card-subtitle text-muted my-2">Compétences</h6>
           <div class="form-check">

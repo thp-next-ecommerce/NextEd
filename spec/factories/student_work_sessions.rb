@@ -12,13 +12,12 @@
 #  attended        :boolean          default(TRUE)
 #  suspended       :boolean          default(FALSE)
 #  medical         :boolean          default(FALSE)
-#  later           :boolean          default(FALSE)
+#  late            :boolean          default(FALSE)
 #
 
 FactoryBot.define do
   factory :student_work_session do
     student
     work_session
-    attended { false }
   end
 end

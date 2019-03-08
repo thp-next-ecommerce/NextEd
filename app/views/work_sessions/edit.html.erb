@@ -31,8 +31,20 @@
           
           <h6 class="card-subtitle text-muted my-2">Matière</h6>
           <div class="form-group">
-            <%= f.text_field :daily_schedule, class: "form-control", placeholder: "Matière" %>
-            <%= f.text_field :daily_schedule, class: "form-control mt-2", placeholder: "Professeur" %>
+            <%= f.collection_check_boxes(:subject_ids, Subject.all, :id, :name) do |b| %>
+              <div class="col-4">
+                <%= b.label(class: "form-check-label mx-1") { b.check_box + b.text } %>
+              </div>
+            <% end %>
+          </div>
+
+          <h6 class="card-subtitle text-muted my-2">Professeur</h6>
+          <div class="form-group">
+            <%= f.collection_check_boxes(:teacher_ids, Teacher.all, :id, :last_name) do |b| %>
+              <div class="col-4">
+                <%= b.label(class: "form-check-label mx-1") { b.check_box + b.text } %>
+              </div>
+            <% end %>
           </div>
           
           <div class="card-footer">
