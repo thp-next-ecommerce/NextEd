@@ -53,6 +53,9 @@ Domain.create!(name: "connaissance du monde social contemporain", description: F
 
 puts "Created 17 Domains"
 
+ScholarYear.create(start_date: Date.new(2018, 9, 4), end_date: Date.new(2019, 0o7, 14), current: true)
+puts "Created ScholarYear"
+
 20.times do |i|
   Skill.create!(
     name: "Compétence #{i}",
@@ -137,6 +140,3 @@ puts "Created 10 Groups"
   )
 end
 puts "Created 700 Students"
-
-ScholarYear.create(start_date: Date.new(2018, 9, 4), end_date: Date.new(2019, 0o7, 14), current: true)
-puts "Created ScholarYear"

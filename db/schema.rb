@@ -184,7 +184,7 @@ ActiveRecord::Schema.define(version: 2019_03_05_205424) do
   add_foreign_key "teacher_work_sessions", "work_sessions"
   add_foreign_key "work_session_skills", "skills"
   add_foreign_key "work_session_skills", "work_sessions"
-  add_foreign_key "work_sessions", "scholar_years"
   add_foreign_key "work_session_subjects", "subjects"
   add_foreign_key "work_session_subjects", "work_sessions"
+  add_foreign_key "work_sessions", "scholar_years"
 end
