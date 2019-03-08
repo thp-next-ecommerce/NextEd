@@ -9,16 +9,18 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 require "faker"
-
+puts "lancement du seed"
 Culture.destroy_all
 Domain.destroy_all
 Skill.destroy_all
 WorkSession.destroy_all
+Slot.destroy_all
 Section.destroy_all
 Group.destroy_all
 Student.destroy_all
 Teacher.destroy_all
 Subject.destroy_all
+puts "fin du destroy all"
 
 culture1 = Culture.create!(name: "Les langages pour penser et communiquer", description: "Comprendre et s'exprimer")
 culture2 = Culture.create!(name: "Les méthodes et outils pour apprendre", description: "Apprendre à apprendre, seuls ou collectivement, en classe ou en dehors")
@@ -79,8 +81,18 @@ puts "Created 5 Subjects"
 end
 puts "Created 7 Teachers"
 
-30.times do
+8.times do
   schedule = %w(M1 M2 M3 M4 S1 S2 S3 S4)
+  t = Time.zone.now + rand(0..20_000_000)
+  Slot.create!(
+    name: schedule.sample,
+    start_time: t,
+    end_time: t + 3300
+  )
+end
+puts "created 8 Slots"
+
+10.times do
   skills = []
   5.times do skills.push(Skill.all.sample) end
   teachers = []
@@ -89,7 +101,7 @@ puts "Created 7 Teachers"
   2.times do subjects.push(Subject.all.sample) end
   WorkSession.create!(
     date: Faker::Date.between(1.year.ago, 1.year.from_now),
-    daily_schedule: schedule.sample,
+    slot_id: rand(1..8),
     skills: skills,
     teachers: teachers,
     subjects: subjects

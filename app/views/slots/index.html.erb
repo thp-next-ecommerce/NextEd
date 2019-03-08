@@ -1,0 +1,27 @@
+<h2>Créneaux horaires</h2>
+<div class="card">
+  <div class="table-responsive">
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Créneau</th>
+          <th>Horaires</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @slots.each do |slot|%>
+          <tr>
+            <td><%= slot.name %></td>
+            <td><%= slot.start_time.strftime("%T") %> - <%= slot.end_time.strftime("%T") %></td>
+            <td>
+              <%= link_to  edit_slot_path(slot.id) do %>
+                  <i class="align-middle" data-feather="edit-2"></i>
+              <% end %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
