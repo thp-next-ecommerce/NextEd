@@ -42,7 +42,7 @@ class WorkSessionsController < ApplicationController
   private
 
   def permitted_params
-    params.require(:work_session).permit(:date, :daily_schedule, student_ids: [], skill_ids: [], teacher_ids: [])
+    params.require(:work_session).permit(:date, :daily_schedule, student_ids: [], skill_ids: [], teacher_ids: [], subject_ids: [])
   end
 
   def set_work_session
