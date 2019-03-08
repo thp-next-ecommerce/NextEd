@@ -15,7 +15,6 @@
 FactoryBot.define do
   factory :work_session do
     date { Date.tomorrow }
-    daily_schedule { "MyString" }
     scholar_year
     slot
 
