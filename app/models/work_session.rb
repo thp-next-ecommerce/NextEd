@@ -18,6 +18,8 @@ class WorkSession < ApplicationRecord
   has_many :skills, through: :work_session_skills
   has_many :student_work_sessions, dependent: :destroy
   has_many :students, through: :student_work_sessions
+  has_many :teacher_work_sessions, dependent: :destroy
+  has_many :teachers, through: :teacher_work_sessions
   belongs_to :scholar_year
 
   default_scope { order({ date: :desc }, :daily_schedule) }

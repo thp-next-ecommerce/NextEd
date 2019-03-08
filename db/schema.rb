@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_03_05_094108) do
+ActiveRecord::Schema.define(version: 2019_03_05_205424) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -102,12 +102,31 @@ ActiveRecord::Schema.define(version: 2019_03_05_094108) do
     t.bigint "work_session_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.boolean "attended", default: false
+    t.boolean "attended", default: true
+    t.boolean "suspended", default: false
+    t.boolean "medical", default: false
+    t.boolean "late", default: false
     t.index ["student_id"], name: "index_student_work_sessions_on_student_id"
     t.index ["work_session_id"], name: "index_student_work_sessions_on_work_session_id"
   end
 
   create_table "students", force: :cascade do |t|
+    t.string "first_name"
+    t.string "last_name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "teacher_work_sessions", force: :cascade do |t|
+    t.bigint "teacher_id"
+    t.bigint "work_session_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["teacher_id"], name: "index_teacher_work_sessions_on_teacher_id"
+    t.index ["work_session_id"], name: "index_teacher_work_sessions_on_work_session_id"
+  end
+
+  create_table "teachers", force: :cascade do |t|
     t.string "first_name"
     t.string "last_name"
     t.datetime "created_at", null: false
@@ -145,6 +164,8 @@ ActiveRecord::Schema.define(version: 2019_03_05_094108) do
   add_foreign_key "skills", "domains"
   add_foreign_key "student_work_sessions", "students"
   add_foreign_key "student_work_sessions", "work_sessions"
+  add_foreign_key "teacher_work_sessions", "teachers"
+  add_foreign_key "teacher_work_sessions", "work_sessions"
   add_foreign_key "work_session_skills", "skills"
   add_foreign_key "work_session_skills", "work_sessions"
   add_foreign_key "work_sessions", "scholar_years"
