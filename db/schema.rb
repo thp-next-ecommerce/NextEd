@@ -98,6 +98,14 @@ ActiveRecord::Schema.define(version: 2019_03_08_133051) do
     t.index ["domain_id"], name: "index_skills_on_domain_id"
   end
 
+  create_table "slots", force: :cascade do |t|
+    t.string "name"
+    t.time "start_time"
+    t.time "end_time"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "student_work_sessions", force: :cascade do |t|
     t.bigint "student_id"
     t.bigint "work_session_id"
@@ -161,11 +169,12 @@ ActiveRecord::Schema.define(version: 2019_03_08_133051) do
 
   create_table "work_sessions", force: :cascade do |t|
     t.date "date", null: false
-    t.string "daily_schedule"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "scholar_year_id"
+    t.bigint "slot_id"
     t.index ["scholar_year_id"], name: "index_work_sessions_on_scholar_year_id"
+    t.index ["slot_id"], name: "index_work_sessions_on_slot_id"
   end
 
   add_foreign_key "domains", "cultures"
