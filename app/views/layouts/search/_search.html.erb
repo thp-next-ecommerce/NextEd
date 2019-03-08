@@ -26,10 +26,13 @@
       <div class="tab-pane fade row" id="list-group" role="tabpanel" aria-labelledby="list-group-list">
         <p>Liste des groupes : </p>
         <ul>
-        <% @groups.each do |group| %>
-          <li class=""> <%= link_to "#{group.name}", search_path(group: group.id), remote: true %> </li> 
-        <% end %>
+        <% if @groups %>
+          <% @groups.each do |group| %>
+            <li class=""> <%= link_to "#{group.name}", search_path(group: group.id), remote: true %> </li> 
+          <% end %>
         </ul>
+            
+        <% end %>
         <div id="group-results">
         </div>
       </div>

@@ -13,6 +13,5 @@
 FactoryBot.define do
   factory :group do
     name { "MyGroup" }
-    level { 6 }
   end
 end

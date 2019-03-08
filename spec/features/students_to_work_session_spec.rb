@@ -9,7 +9,7 @@ RSpec.describe "StudentsToWorkSessions", type: :feature, js: true do
              create(:section, level: 6, sub_section: "A")
            ],
            groups: [
-             create(:group, level: 6)
+             create(:group)
            ])
   }
 
@@ -39,8 +39,7 @@ RSpec.describe "StudentsToWorkSessions", type: :feature, js: true do
 
     context "when searching a group" do
       before {
-        click_link 'Groupe'
-        3.times { click_link '6e' }
+        click_link 'Groupes'
       }
 
       it "shows a list of groups from the group search" do
