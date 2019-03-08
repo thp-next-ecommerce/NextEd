@@ -13,7 +13,7 @@ class SkillStudentsUpdater
   def update_skills(attendees)
     @skills.each do |skill|
       attendees.each do |student, section|
-        SkillStudent.create(student_id: student, section_id: section, skill_id: skill)
+        SkillStudent.find_or_create_by(student_id: student, section_id: section, skill_id: skill, work_session_id: @work_session_id)
       end
     end
   end

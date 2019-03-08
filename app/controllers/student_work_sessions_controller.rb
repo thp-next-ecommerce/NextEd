@@ -17,6 +17,7 @@ class StudentWorkSessionsController < ApplicationController
     update_attendance("medical") if params["student_work_session"]["medical"].present?
     update_attendance("suspended") if params["student_work_session"]["suspended"].present?
 
+    SkillStudentsUpdater.new(params[:id]).perform
     redirect_to work_session_path(params[:id])
   end
 
