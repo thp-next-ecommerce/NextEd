@@ -13,7 +13,7 @@ class WorkSessionsController < ApplicationController
 
   def create
     @work_session = WorkSession.new(permitted_params)
-
+    @work_session.update(scholar_year: ScholarYear.current_year)
     if @work_session.save
       flash[:notice] = "La séance a été créée"
       redirect_to(@work_session)

@@ -23,4 +23,5 @@ class WorkSession < ApplicationRecord
   has_many :teachers, through: :teacher_work_sessions
   has_many :work_session_subjects, dependent: :destroy
   has_many :subjects, through: :work_session_subjects
+  belongs_to :scholar_year
 end

@@ -18,6 +18,7 @@ Slot.destroy_all
 Section.destroy_all
 Group.destroy_all
 Student.destroy_all
+ScholarYear.destroy_all
 Teacher.destroy_all
 Subject.destroy_all
 puts "fin du destroy all"
@@ -53,6 +54,9 @@ Domain.create!(name: "interprétation des productions culturelles humaines", des
 Domain.create!(name: "connaissance du monde social contemporain", description: Faker::Lorem.sentence(10), culture_id: culture5.id)
 
 puts "Created 17 Domains"
+
+ScholarYear.create(start_date: Date.new(2018, 9, 4), end_date: Date.new(2019, 0o7, 14), current: true)
+puts "Created ScholarYear"
 
 20.times do |i|
   Skill.create!(
@@ -103,6 +107,7 @@ puts "created 8 Slots"
     date: Faker::Date.between(1.year.ago, 1.year.from_now),
     slot_id: rand(1..8),
     skills: skills,
+    scholar_year: ScholarYear.first,
     teachers: teachers,
     subjects: subjects
   )
@@ -114,7 +119,8 @@ puts "Created 30 WorkSessions"
     year_start: 2018,
     year_end: 2019,
     level: [6, 5, 4, 3].sample,
-    sub_section: %w(A B C D E F G).sample
+    sub_section: %w(A B C D E F G).sample,
+    scholar_year: ScholarYear.first
   )
 end
 puts "Created 20 sections"
@@ -122,7 +128,8 @@ puts "Created 20 sections"
 10.times do
   Group.create!(
     name: Faker::Company.name,
-    level: [6, 5, 4, 3].sample
+    level: [6, 5, 4, 3].sample,
+    scholar_year: ScholarYear.first
   )
 end
 puts "Created 10 Groups"
@@ -145,6 +152,3 @@ puts "Created 10 Groups"
   )
 end
 puts "Created 700 Students"
-
-ScholarYear.create(start_date: Date.new(2018, 9, 4), end_date: Date.new(2019, 0o7, 14), current: true)
-puts "Created ScholarYear"

@@ -13,7 +13,7 @@
 
 FactoryBot.define do
   factory :work_session_skill do
-    work_session { nil }
-    skill { nil }
+    work_session
+    skill
   end
 end

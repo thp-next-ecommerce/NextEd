@@ -20,5 +20,6 @@ FactoryBot.define do
     year_end { 2019 }
     level { 6 }
     sub_section { "E" }
+    scholar_year
   end
 end

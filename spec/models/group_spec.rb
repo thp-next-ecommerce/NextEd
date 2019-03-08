@@ -37,6 +37,11 @@ RSpec.describe Group, type: :model do
         group.students << create(:student)
         expect(group.students.first.groups.first).to eq group
       end
+
+      it { is_expected.to belong_to(:scholar_year) }
+      it "responds to #scholar_year" do
+        expect(group.scholar_year).to be_truthy
+      end
     end
   end
 end
