@@ -5,11 +5,9 @@ require 'rails_helper'
 RSpec.describe StudentWorkSessionsController, type: :controller do
   describe "POST #update" do
     let(:sws) { create(:student_work_session) }
-    let(:student) { create(:student, :sections) }
 
     context "when student is late" do
       before do
-        student
         sws.attended = false
         post :update, params: {
           id: sws.work_session_id,
