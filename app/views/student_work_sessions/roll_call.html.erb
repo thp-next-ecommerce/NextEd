@@ -24,10 +24,10 @@
           <td><%= sws.student.last_name %></td>
           <td><%= sws.student.first_name %></td>
           <td><%= "#{sws.student.sections.last.level}#{sws.student.sections.last.sub_section}" %></td>
-          <td><input type="checkbox" value="<%= sws.id %>" name="student_work_session[absent][]"></td>
-          <td><input type="checkbox" value="<%= sws.id %>" name="student_work_session[late][]"></td>
-          <td><input type="checkbox" value="<%= sws.id %>" name="student_work_session[medical][]"></td>
-          <td><input type="checkbox" value="<%= sws.id %>" name="student_work_session[suspended][]"></td>
+          <td><%= check_box_tag "student_work_session[absent][]", sws.id, !sws.attended? %> </td>
+          <td><%= check_box_tag "student_work_session[late][]", sws.id, sws.late? %> </td>
+          <td><%= check_box_tag "student_work_session[medical][]", sws.id, sws.medical? %> </td>
+          <td><%= check_box_tag "student_work_session[suspended][]", sws.id, sws.suspended? %> </td>
         </tr>
       </tbody>
       
