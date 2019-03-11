@@ -15,7 +15,7 @@
 FactoryBot.define do
   factory :slot do
     name { "MyString" }
-    start_time { "2019-03-05 17:03:30" }
-    end_time { "2019-03-05 17:03:30" }
+    start_time { 1.hour.from_now }
+    end_time { 2.hours.from_now }
   end
 end
