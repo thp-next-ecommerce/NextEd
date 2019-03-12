@@ -12,9 +12,11 @@ RSpec.describe "StudentsToWorkSessions", type: :feature, js: true do
              create(:group, level: 6)
            ])
   }
+  let(:slot) { create(:slot) }
 
   before {
     student
+    slot
     visit 'work_sessions/new'
   }
 
@@ -32,7 +34,7 @@ RSpec.describe "StudentsToWorkSessions", type: :feature, js: true do
 
       it "associates the correct number of students to a work_session" do
         fill_in 'work_session_date', with: Date.tomorrow
-        select("2", from: "work_session_slot_id")
+        select("MySlot", from: "work_session_slot_id")
         click_button 'Créer'
         expect(page).to have_content('First Name', count: 1)
       end
@@ -55,6 +57,7 @@ RSpec.describe "StudentsToWorkSessions", type: :feature, js: true do
 
       it "associates the correct number of students to a work_session" do
         fill_in 'work_session_date', with: Date.tomorrow
+        select("MySlot", from: "work_session_slot_id")
         click_link 'MyGroup'
         click_button 'Créer'
         expect(page).to have_content('First Name', count: 1)
@@ -74,6 +77,7 @@ RSpec.describe "StudentsToWorkSessions", type: :feature, js: true do
 
       it "associates the correct number of students to a work_session" do
         fill_in 'work_session_date', with: Date.tomorrow
+        select("MySlot", from: "work_session_slot_id")
         click_button 'Créer'
         expect(page).to have_content('First Name', count: 1)
       end
