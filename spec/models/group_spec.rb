@@ -6,7 +6,6 @@
 #
 #  id              :bigint(8)        not null, primary key
 #  name            :string           not null
-#  level           :integer
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
 #  scholar_year_id :bigint(8)
@@ -18,7 +17,6 @@ RSpec.describe Group, type: :model do
   describe 'model instanciation,' do
     describe 'database' do
       it { is_expected.to have_db_column(:name).of_type(:string) }
-      it { is_expected.to have_db_column(:level).of_type(:integer) }
     end
 
     describe 'validation' do

@@ -14,14 +14,8 @@ module StudentSearch
 
     # Group search
     elsif params[:group].present?
-      if params[:group] == "yes"
-        @groups = Group.select { |group|
-          (group.level == params[:level].to_i)
-        }
-      else
-        @group = Group.find(params[:group])
-        @students = @group.students
-      end
+      @group = Group.find(params[:group])
+      @students = @group.students
       render 'search_group'
 
     # Name search
