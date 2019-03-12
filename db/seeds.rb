@@ -85,18 +85,18 @@ puts "Created 5 Subjects"
 end
 puts "Created 7 Teachers"
 
-8.times do
-  schedule = %w(M1 M2 M3 M4 S1 S2 S3 S4)
-  t = Time.zone.now + rand(0..20_000_000)
+schedule = %w(M1 M2 M3 M4 S1 S2 S3 S4)
+schedule.each_with_index do |slot, index|
+  t = Time.zone.parse("08:30") + (index * (60 * 60))
   Slot.create!(
-    name: schedule.sample,
+    name: slot,
     start_time: t,
-    end_time: t + 3300
+    end_time: t + (60 * 55)
   )
 end
 puts "created 8 Slots"
 
-10.times do
+46.times do
   skills = []
   5.times do skills.push(Skill.all.sample) end
   teachers = []
@@ -105,14 +105,14 @@ puts "created 8 Slots"
   2.times do subjects.push(Subject.all.sample) end
   WorkSession.create!(
     date: Faker::Date.between(1.year.ago, 1.year.from_now),
-    slot_id: rand(1..8),
+    slot: Slot.all.sample,
     skills: skills,
     scholar_year: ScholarYear.first,
     teachers: teachers,
     subjects: subjects
   )
 end
-puts "Created 30 WorkSessions"
+puts "Created 46 WorkSessions"
 
 20.times do
   Section.create!(
@@ -128,7 +128,6 @@ puts "Created 20 sections"
 10.times do
   Group.create!(
     name: Faker::Company.name,
-    level: [6, 5, 4, 3].sample,
     scholar_year: ScholarYear.first
   )
 end
@@ -138,7 +137,7 @@ puts "Created 10 Groups"
   sections = []
   groups = []
   work_sessions = []
-  rand(1..4).times{
+  rand(1..2).times{
     sections << Section.all.sample
     groups << Group.all.sample
     work_sessions << WorkSession.all.sample
