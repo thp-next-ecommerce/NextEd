@@ -7,7 +7,12 @@
         <%= form_with model: @work_session, local: true do |f| %>
           <div class="form-group">
             <%= f.date_field :date, class: "form-control" %>
-            <%= f.text_field :daily_schedule, class: "form-control mt-2", placeholder: "crénau (M1, S3, ...)" %>
+          </div>
+          
+          <div class="form-check row"> 
+            <div class="row"> 
+              <%= f.select :slot_id, Slot.all.collect { |s| [ s.name, s.id ] }, include_blank: true %> 
+            </div>
           </div>
           
           <h6 class="card-subtitle text-muted my-2">Compétences</h6>

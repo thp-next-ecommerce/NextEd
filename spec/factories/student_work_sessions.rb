@@ -17,7 +17,7 @@
 
 FactoryBot.define do
   factory :student_work_session do
-    student
+    association :student, factory: %i[student sections]
     work_session
   end
 end
