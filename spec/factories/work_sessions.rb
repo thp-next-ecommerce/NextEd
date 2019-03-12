@@ -16,7 +16,7 @@ FactoryBot.define do
   factory :work_session do
     date { Date.tomorrow }
     scholar_year
-    slot
+    association :slot, factory: :slot
 
     trait :skills do
       skill_ids { create_list(:skill, 3).pluck(:id) }

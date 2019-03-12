@@ -9,6 +9,7 @@ class WorkSessionsController < ApplicationController
 
   def new
     @work_session = WorkSession.new
+    @groups = Group.all
   end
 
   def create
