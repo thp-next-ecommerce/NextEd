@@ -6,16 +6,14 @@ class StudentWorkSessionsController < ApplicationController
   end
 
   def update
-    if params["student_work_session"].blank?
-      # display an error if form is validated without students selection
-      redirect_back fallback_location: work_sessions_path, alert: "Vous devez sélectionner au moins un élève"
-      return
-    end
-
     update_attendance("absent", "attended", false) if params["student_work_session"]["absent"].present?
+    update_attendance("present", "attended") if params["student_work_session"]["present"].present?
     update_attendance("late") if params["student_work_session"]["late"].present?
     update_attendance("medical") if params["student_work_session"]["medical"].present?
     update_attendance("suspended") if params["student_work_session"]["suspended"].present?
+    update_attendance("!late", "late", false) if params["student_work_session"]["!late"].present?
+    update_attendance("!medical", "medical", false) if params["student_work_session"]["!medical"].present?
+    update_attendance("!suspended", "suspended", false) if params["student_work_session"]["!suspended"].present?
 
     UpdateSkillStudentsJob.perform_later(params[:id])
     redirect_to work_session_path(params[:id])

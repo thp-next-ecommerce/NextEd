@@ -62,5 +62,11 @@ RSpec.describe StudentWorkSession, type: :model do
         expect(student_work_session.medical).to be false
       end
     end
+
+    describe 'modification validation' do
+      it 'update value from true to false' do
+        skip
+      end
+    end
   end
 end
