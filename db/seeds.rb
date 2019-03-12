@@ -96,7 +96,7 @@ schedule.each_with_index do |slot, index|
 end
 puts "created 8 Slots"
 
-10.times do
+46.times do
   skills = []
   5.times do skills.push(Skill.all.sample) end
   teachers = []
@@ -112,7 +112,7 @@ puts "created 8 Slots"
     subjects: subjects
   )
 end
-puts "Created 30 WorkSessions"
+puts "Created 46 WorkSessions"
 
 20.times do
   Section.create!(
@@ -137,7 +137,7 @@ puts "Created 10 Groups"
   sections = []
   groups = []
   work_sessions = []
-  rand(1..4).times{
+  rand(1..2).times{
     sections << Section.all.sample
     groups << Group.all.sample
     work_sessions << WorkSession.all.sample
