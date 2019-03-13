@@ -24,13 +24,24 @@
           <td><%= sws.student.last_name %></td>
           <td><%= sws.student.first_name %></td>
           <td><%= "#{sws.student.sections.last.level}#{sws.student.sections.last.sub_section}" %></td>
-          <td><input type="checkbox" value="<%= sws.id %>" name="student_work_session[absent][]"></td>
-          <td><input type="checkbox" value="<%= sws.id %>" name="student_work_session[late][]"></td>
-          <td><input type="checkbox" value="<%= sws.id %>" name="student_work_session[medical][]"></td>
-          <td><input type="checkbox" value="<%= sws.id %>" name="student_work_session[suspended][]"></td>
+          <td>
+            <%= check_box_tag "student_work_session[absent][]", sws.id, !sws.attended? %>
+            <%= hidden_field_tag "student_work_session[present][]", sws.id unless sws.attended %>
+          </td>
+          <td>
+            <%= check_box_tag "student_work_session[late][]", sws.id, sws.late? %>
+            <%= hidden_field_tag "student_work_session[!late][]", sws.id if sws.late %>
+          </td>
+          <td>
+            <%= check_box_tag "student_work_session[medical][]", sws.id, sws.medical? %>
+            <%= hidden_field_tag "student_work_session[!medical][]", sws.id if sws.medical %>
+          </td>
+          <td>
+            <%= check_box_tag "student_work_session[suspended][]", sws.id, sws.suspended? %>
+            <%= hidden_field_tag "student_work_session[!suspended][]", sws.id if sws.suspended %>
+          </td>
         </tr>
-      </tbody>
-      
+      </tbody>  
       <% end %>
     </table>
   </div>
