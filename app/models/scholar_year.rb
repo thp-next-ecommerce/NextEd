@@ -26,7 +26,7 @@ class ScholarYear < ApplicationRecord
   scope :passed, -> { where(current: false) }
   scope :between, ->(start_date, end_date) { where('end_date > ? AND start_date < ?', start_date, end_date) }
 
-  def up_to_date?
+  def self.up_to_date?
     ScholarYear.between(Time.zone.today, Time.zone.today).any?
   end
 

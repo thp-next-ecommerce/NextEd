@@ -14,12 +14,12 @@ class WorkSessionsController < ApplicationController
 
   def create
     @work_session = WorkSession.new(permitted_params)
-    unless ScholarYear.current_year.up_to_date?
+    unless ScholarYear.up_to_date?
       flash[:alert] = "Veuillez créer une année courante."
       render action: "new"
       return
     end
-    @work_session.update(scholar_year: ScholarYear.current_year)
+    @work_session.update(scholar_year: ScholarYear.current_year.first)
     if @work_session.save
       flash[:notice] = "La séance a été créée"
       redirect_to(@work_session)
