@@ -6,16 +6,14 @@ class StudentWorkSessionsController < ApplicationController
   end
 
   def update
-    if params["student_work_session"].blank?
-      # display an error if form is validated without students selection
-      redirect_back fallback_location: work_sessions_path, alert: "Vous devez sélectionner au moins un élève"
-      return
-    end
-
-    update_attendance("absent", "attended", false) if params["student_work_session"]["absent"].present?
-    update_attendance("late") if params["student_work_session"]["late"].present?
-    update_attendance("medical") if params["student_work_session"]["medical"].present?
-    update_attendance("suspended") if params["student_work_session"]["suspended"].present?
+    update_attendance("absent", "attended", false) if params_present?("absent")
+    update_attendance("present", "attended") if params_present?("present")
+    update_attendance("late") if params_present?("late")
+    update_attendance("medical") if params_present?("medical")
+    update_attendance("suspended") if params_present?("suspended")
+    update_attendance("!late", "late", false) if params_present?("!late")
+    update_attendance("!medical", "medical", false) if params_present?("!medical")
+    update_attendance("!suspended", "suspended", false) if params_present?("!suspended")
 
     UpdateSkillStudentsJob.perform_later(params[:id])
     redirect_to work_session_path(params[:id])
@@ -33,5 +31,9 @@ class StudentWorkSessionsController < ApplicationController
     ).find_each do |sws|
       sws.update("#{column}": value)
     end
+  end
+
+  def params_present?(params_key)
+    params["student_work_session"][params_key]
   end
 end
