@@ -15,7 +15,7 @@
 FactoryBot.define do
   factory :scholar_year do
     start_date { Time.zone.today }
-    end_date { Time.zone.today }
+    end_date { 1.year.from_now }
     current { true }
   end
 end

@@ -27,14 +27,14 @@ RSpec.describe WorkSessionsController, type: :controller do
   end
 
   describe "POST #create" do
-    subject(:create_request) { post :create, params: { work_session: build(:work_session).attributes } }
+    subject(:create_request) { post :create, params: { work_session: attributes_for(:work_session, slot_id: slot.id) } }
 
     let(:slot) { create(:slot) }
-    let(:scholar_year) { create(:scholar_year) }
+    let!(:scholar_year) { create(:scholar_year) }
 
     context "when only date and schedule are set (basic)" do
       it "creates a record" do
-        expect{ post :create, params: { work_session: build(:work_session).attributes } }.to change(WorkSession, :count).by(1)
+        expect{ post :create, params: { work_session: attributes_for(:work_session, slot_id: slot.id) } }.to change(WorkSession, :count).by(1)
       end
       it "redirects to the created work_session" do
         expect(create_request).to redirect_to work_session_path(WorkSession.last.id)

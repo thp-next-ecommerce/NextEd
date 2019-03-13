@@ -22,7 +22,7 @@ class ScholarYear < ApplicationRecord
   validate :overlap?
   validate :cannot_end_before_start
 
-  scope :current_year, -> { where(current: true) }
+  scope :current_year, -> { find_by(current: true) }
   scope :passed, -> { where(current: false) }
   scope :between, ->(start_date, end_date) { where('end_date > ? AND start_date < ?', start_date, end_date) }
 
@@ -34,7 +34,7 @@ class ScholarYear < ApplicationRecord
 
   def set_current_year
     if Time.zone.today.between?(start_date, end_date)
-      ScholarYear.current_year.update(current: false)
+      ScholarYear.current_year.current = false if ScholarYear.current_year.any?
       self.current = true
     else
       self.current = false
@@ -42,7 +42,12 @@ class ScholarYear < ApplicationRecord
   end
 
   def overlap?
-    errors.add(:base, "Years cannot overlaps") if ScholarYear.between(start_date, end_date).where.not(id: id).any?
+    if ScholarYear.between(start_date, end_date).where.not(id: id).any?
+      errors.add(:base, "Years cannot overlaps")
+      false
+    else
+      true
+    end
   end
 
   def cannot_end_before_start

@@ -16,6 +16,12 @@ FactoryBot.define do
   factory :work_session do
     date { Date.tomorrow }
     scholar_year
+    before(:create) {
+      if ScholarYear.current_year.present?
+        scholar_year { ScholarYear.current_year }
+      end
+    }
+
     association :slot, factory: :slot
 
     trait :skills do
