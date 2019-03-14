@@ -8,13 +8,13 @@
           <div class="form-group">
             <%= f.date_field :date, class: "form-control" %>
           </div>
-          
-          <div class="form-check row"> 
-            <div class="row"> 
-              <%= f.select :slot_id, Slot.all.collect { |s| [ s.name, s.id ] }, include_blank: true %> 
+
+          <div class="form-check row">
+            <div class="row">
+              <%= f.select :slot_id, Slot.all.collect { |s| [ s.name, s.id ] }, include_blank: true %>
             </div>
           </div>
-          
+
           <h6 class="card-subtitle text-muted my-2">Compétences</h6>
           <div class="form-check">
             <div class="container">
@@ -33,7 +33,7 @@
           <div class="form-group">
             <%= render 'layouts/search/search', student: @students %>
           </div>
-          
+
           <h6 class="card-subtitle text-muted my-2">Matière</h6>
           <div class="form-group">
             <%= f.collection_check_boxes(:subject_ids, Subject.all, :id, :name) do |b| %>
@@ -51,7 +51,7 @@
               </div>
             <% end %>
           </div>
-          
+
           <div class="card-footer">
             <%= f.submit 'Modifier', class: "btn btn-primary mt-3 " %>
           </div>

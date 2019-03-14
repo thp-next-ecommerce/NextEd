@@ -1,8 +1,8 @@
 <h1 class="h3 mb-3">Élève n°<%= @student.id%></h1>
 
-<div class="card-columns"> 
+<div class="card-columns">
   <div class="card">
-    <div class="card-body"> 
+    <div class="card-body">
       <p>
         <strong>Prénom:</strong>
         <%= @student.first_name %>
@@ -22,26 +22,26 @@
 
   <div class="card">
     <div class="card-header">
-      <h6 class="h6">Compétences étudiées</h6> 
+      <h6 class="h6">Compétences étudiées</h6>
     </div>
     <div class="card-body">
       <ul class="list list-unstyled">
         <% if @skills %>
-        <% @skills.each { |skill, sections| %>
-        <li><a href="<%= skill_path(skill.id) %>"><%= skill.name %></a>
-          <ul>Étudiée en :
-            <% sections.each do |section| %>
-            <li><%= section.level %><%= section.sub_section %></li>
-            <% end %>
-          </ul>
-        </li>
-        <% } %> 
+          <% @skills.each { |skill, sections| %>
+            <li>
+              <a href="<%= skill_path(skill.id) %>"><%= skill.name %></a>
+              <ul>Étudiée en :
+                <% sections.each do |section| %>
+                  <li><%= section.level %><%= section.sub_section %></li>
+                <% end %>
+              </ul>
+            </li>
+          <% } %>
         <% end %>
       </ul>
     </div>
   </div>
 </div>
-
 
 <%= link_to 'Modifier', edit_student_path(@student), class:"btn btn-secondary mt-3" %>
 <%= link_to "Retour", students_path, class:"btn btn-info mt-3" %>

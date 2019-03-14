@@ -2,15 +2,14 @@
 <% if params[:group] == "yes" %>
   <p>Liste des groupes en <%= params[:level] %>e : </p>
   <ul>
-  <% @groups.each do |group| %>
-    <li> <%= link_to "#{group.name}", search_path(level: group.level, group: group.id), remote: true %> </li>
-  <% end %>
+    <% @groups.each do |group| %>
+      <li><%= link_to "#{group.name}", search_path(level: group.level, group: group.id), remote: true %></li>
+    <% end %>
   </ul>
 
 <!-- List students from a selected group -->
 <% else %>
   <script>
-    $('#group-results').html("<%= j(render partial: 'layouts/search/student_results', locals: {students: @students}) %>") 
+    $('#group-results').html("<%= j(render partial: 'layouts/search/student_results', locals: {students: @students}) %>")
   </script>
-
 <% end %>

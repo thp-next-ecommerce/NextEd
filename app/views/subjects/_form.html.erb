@@ -4,9 +4,9 @@
       <h2><%= pluralize(subject.errors.count, "error") %> prohibited this subject from being saved:</h2>
 
       <ul>
-      <% subject.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
+        <% subject.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
       </ul>
     </div>
   <% end %>
