@@ -85,6 +85,6 @@ class StudentsController < ApplicationController
   end
 
   def valid_file(file)
-    file.content_type.include? "csv"
+    (file.content_type.include? "csv") || (file.content_type.include? "application/vnd.ms-excel")
   end
 end
