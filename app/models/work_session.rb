@@ -24,4 +24,16 @@ class WorkSession < ApplicationRecord
   has_many :work_session_subjects, dependent: :destroy
   has_many :subjects, through: :work_session_subjects
   belongs_to :scholar_year
+
+  def start_time
+    d = date
+    t = slot.start_time
+    _dt = Time.new(d.year, d.month, d.day, t.hour, t.min, t.sec, "+01:00")
+  end
+
+  def end_time
+    d = date
+    t = slot.end_time
+    _dt = Time.new(d.year, d.month, d.day, t.hour, t.min, t.sec, "+01:00")
+  end
 end

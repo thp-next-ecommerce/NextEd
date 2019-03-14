@@ -1,28 +1,15 @@
-<h2>Séances</h2>
-<div class="card">
-  <div class="table-responsive">
-    <table class="table">
-      <thead>
-        <tr>
-          <th>Date</th>
-          <th>Actions</th>
-        </tr>
-      </thead>
-      <tbody>
-        <% @work_sessions.each do |work_session|%>
-          <tr>
-            <td><%= work_session.date.to_s(:long) %></td>
-            <td>
-              <%= link_to work_session_path(work_session.id) do %>
-                <i class="align-middle" data-feather="eye"></i>
-              <% end %>
-              <%= link_to  edit_work_session_path(work_session.id) do %>
-                <i class="align-middle" data-feather="edit-2"></i>
-              <% end %>
-            </td>
-          </tr>
-        <% end %>
-      </tbody>
-    </table>
-  </div>
-</div>
+<%= month_calendar events: @work_sessions do |date, work_sessions| %>
+  <%= date.strftime("%d") %>
+  <% work_sessions.each do |work_session| %>
+    <div>
+      <%= work_session.slot.name %> <%= work_session.slot.start_time.strftime("%T")%>
+      <%= link_to work_session_path(work_session.id) do %>
+        <i class="align-middle" data-feather="eye"></i>
+      <% end %>
+      <%= link_to  edit_work_session_path(work_session.id) do %>
+        <i class="align-middle" data-feather="edit-2"></i>
+      <% end %>
+      <hr>
+    </div>
+  <% end %>
+<% end %>
