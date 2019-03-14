@@ -1,5 +1,18 @@
-<div class="container">
+<div class="container row">
   <%= render 'layouts/search/search', student: @students %>
+  <div class="col-12 col-lg-4">
+				<div class="card">
+					<div class="card-header">
+						<h1 class="h3 mt-2">Importer une liste</h1>
+					</div>
+					<div class="card-body">
+						<%= form_tag import_students_path, multipart: true do %>
+							<%= file_field_tag :students_csv, accept: 'text/csv', class: "mr-3 mb-3" %>
+							<%= submit_tag "Importer le CSV", disabled: true, class: "btn btn-primary btn-lg" %>
+						<% end %>
+					</div>
+				</div>
+			</div>
 </div>
 
 <h1>Liste des élèves</h1>
