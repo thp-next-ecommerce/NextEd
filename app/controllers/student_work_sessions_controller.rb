@@ -6,17 +6,13 @@ class StudentWorkSessionsController < ApplicationController
   end
 
   def update
-    update_attendance("absent", "attended", false) if params_present?("absent")
-    update_attendance("present", "attended") if params_present?("present")
-    update_attendance("late") if params_present?("late")
-    update_attendance("medical") if params_present?("medical")
-    update_attendance("suspended") if params_present?("suspended")
-    update_attendance("!late", "late", false) if params_present?("!late")
-    update_attendance("!medical", "medical", false) if params_present?("!medical")
-    update_attendance("!suspended", "suspended", false) if params_present?("!suspended")
-
-    UpdateSkillStudentsJob.perform_later(params[:id])
-    redirect_to work_session_path(params[:id])
+    puts params.inspect
+    update_record
+      UpdateSkillStudentsJob.perform_later(params[:id])
+      redirect_to work_session_path(params[:id])
+    # else
+    #   redirect_back fallback_location: work_session_path(params[:id], alert: "Erreur lors de la sauvegarde des données"
+    # end
   end
 
   private
@@ -31,6 +27,17 @@ class StudentWorkSessionsController < ApplicationController
     ).find_each do |sws|
       sws.update("#{column}": value)
     end
+  end
+
+  def update_record
+    update_attendance("present", "attended") if params_present?("present")
+    update_attendance("absent", "attended", false) if params_present?("absent")
+    update_attendance("!late", "late", false) if params_present?("!late")
+    update_attendance("late") if params_present?("late")
+    update_attendance("!medical", "medical", false) if params_present?("!medical")
+    update_attendance("medical") if params_present?("medical")
+    update_attendance("!suspended", "suspended", false) if params_present?("!suspended")
+    update_attendance("suspended") if params_present?("suspended")
   end
 
   def params_present?(params_key)
