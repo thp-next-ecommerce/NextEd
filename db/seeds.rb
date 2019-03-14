@@ -94,7 +94,7 @@ schedule.each_with_index do |slot, index|
     end_time: t + (60 * 55)
   )
 end
-puts "created 8 Slots"
+puts "Created 8 Slots"
 
 46.times do
   skills = []
