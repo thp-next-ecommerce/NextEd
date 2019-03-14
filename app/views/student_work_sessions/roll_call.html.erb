@@ -20,10 +20,13 @@
       <%= form_with url: update_work_session_roll_call_path, local: true do |f| %>
       <tbody>
       <% @student_work_sessions.sort_by { |sws| sws.student.last_name }.each do |sws| %>
+        <% sws.errors.full_messages.each do |message| %>
+          <%= message %>
+        <% end %>
         <tr>
           <td><%= sws.student.last_name %></td>
           <td><%= sws.student.first_name %></td>
-          <td><%= "#{sws.student.sections.last.level}#{sws.student.sections.last.sub_section}" %></td>
+          <td><%= "#{sws.student.sections.last.level}#{sws.student.sections.last.sub_section}"%></td>
           <td>
             <%= check_box_tag "student_work_session[absent][]", sws.id, !sws.attended? %>
             <%= hidden_field_tag "student_work_session[present][]", sws.id unless sws.attended %>
