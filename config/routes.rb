@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   resources :students do
     collection { post :import }
   end
+  get 'report', to: 'import_report#report'
   resources :teachers
   resources :subjects
   get 'search', to: 'students#search'
