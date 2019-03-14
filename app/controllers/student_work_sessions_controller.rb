@@ -6,13 +6,13 @@ class StudentWorkSessionsController < ApplicationController
   end
 
   def update
-    puts params.inspect
-    update_record
-      UpdateSkillStudentsJob.perform_later(params[:id])
+    if params["student_work_session"].blank?
       redirect_to work_session_path(params[:id])
-    # else
-    #   redirect_back fallback_location: work_session_path(params[:id], alert: "Erreur lors de la sauvegarde des données"
-    # end
+      return
+    end
+    update_record
+    UpdateSkillStudentsJob.perform_later(params[:id])
+    redirect_to work_session_path(params[:id])
   end
 
   private
