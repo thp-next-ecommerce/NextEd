@@ -41,6 +41,16 @@ class StudentsController < ApplicationController
     redirect_to students_url, notice: 'Student was successfully destroyed.'
   end
 
+  def import
+    if valid_file(params[:students_csv])
+      CsvManager::CheckCsv.check_students(params[:students_csv])
+      flash[:notice] = "Import en cours (#{ImportError.count} erreurs de formatage rencontrées, consultez l'onglet Rapport d'importation pour plus de détails)"
+    else
+      flash[:alert] = "Le fichier doit être au format CSV!"
+    end
+    redirect_to students_path
+  end
+
   private
 
   def set_student
@@ -49,5 +59,9 @@ class StudentsController < ApplicationController
 
   def student_params
     params.require(:student).permit(:first_name, :last_name, :search, :session_ids)
+  end
+
+  def valid_file(file)
+    (file.content_type.include? "csv") || (file.content_type.include? "application/vnd.ms-excel")
   end
 end

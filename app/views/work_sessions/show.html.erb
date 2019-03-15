@@ -46,11 +46,11 @@
             <td><a href="<%= student_path(student.id) %>"><%= student.first_name %></a></td>
             <td>
               <% if student.student_work_sessions.find_by(work_session_id: @work_session.id).late == true %>
-                <span>retard</span>
+                <span>Retard</span>
               <% elsif student.student_work_sessions.find_by(work_session_id: @work_session.id).medical == true %>
-                <span>infirmerie</span>
+                <span>Infirmerie</span>
               <% elsif student.student_work_sessions.find_by(work_session_id: @work_session.id).suspended == true %>
-                <span>exclu</span>
+                <span>Exclus</span>
               <% elsif student.student_work_sessions.find_by(work_session_id: @work_session.id).attended? %>
                 <i class="align-left" data-feather="check-circle"></i>
               <% else %>

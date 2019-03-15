@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_03_08_133051) do
+ActiveRecord::Schema.define(version: 2019_03_14_152632) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -46,6 +46,15 @@ ActiveRecord::Schema.define(version: 2019_03_08_133051) do
     t.datetime "updated_at", null: false
     t.bigint "scholar_year_id"
     t.index ["scholar_year_id"], name: "index_groups_on_scholar_year_id"
+  end
+
+  create_table "import_errors", force: :cascade do |t|
+    t.string "error_entries", null: false
+    t.string "line", null: false
+    t.string "error_type", null: false
+    t.string "data_type", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "scholar_years", force: :cascade do |t|
