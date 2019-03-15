@@ -16,9 +16,9 @@
           <%= render  "layouts/search/section_select", section: 6 %>
           <%= render  "layouts/search/section_select", section: 5 %>
           <%= render  "layouts/search/section_select", section: 4 %>
-          <%= render  "layouts/search/section_select", section: 3 %> 
+          <%= render  "layouts/search/section_select", section: 3 %>
         </ul>
-        
+
         <!--Sections results content-->
         <div id="section-results"></div>
       </div>
@@ -26,23 +26,22 @@
       <div class="tab-pane fade row" id="list-group" role="tabpanel" aria-labelledby="list-group-list">
         <p>Liste des groupes : </p>
         <ul>
-        <% if @groups %>
-          <% @groups.each do |group| %>
-            <li class=""> <%= link_to "#{group.name}", search_path(group: group.id), remote: true %> </li> 
+          <% if @groups %>
+            <% @groups.each do |group| %>
+              <li class=""><%= link_to "#{group.name}", search_path(group: group.id), remote: true %></li>
+            <% end %>
           <% end %>
         </ul>
-            
-        <% end %>
-        <div id="group-results">
-        </div>
+
+        <div id="group-results"></div>
       </div>
-      
+
       <!-- Name search -->
       <div class="tab-pane fade" id="list-name" role="tabpanel" aria-labelledby="list-name-list">
         <p>Recherche par éleve</p>
         <div class="d-flex">
           <input onchange="$('#student-search').attr('href', '/search?student=' + this.value);" type="text" name="student" id="student" class="form-control w-50">
-          <a class="btn btn-secondary" id="student-search" data-remote="true" data-method="get" href="/search?student=">Rechercher</a> 
+          <a class="btn btn-secondary" id="student-search" data-remote="true" data-method="get" href="/search?student=">Rechercher</a>
         </div>
         <div id="student-results"></div>
       </div>

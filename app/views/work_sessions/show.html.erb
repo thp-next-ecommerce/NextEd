@@ -1,13 +1,13 @@
 <h4>Séance <%= @work_session.id %></h4>
-  <%= link_to "Modifier la séance", edit_work_session_path(@work_session.id), class: "btn btn-secondary ml-auto" %>
-  <%= link_to "Retour", work_sessions_path, class:"btn btn-info" %>
+<%= link_to "Modifier la séance", edit_work_session_path(@work_session.id), class: "btn btn-secondary ml-auto" %>
+<%= link_to "Retour", work_sessions_path, class:"btn btn-info" %>
 <div class="card-columns">
   <div class="card">
     <div class="card-header">
       <h4>Quand</h4>
     </div>
     <div class="card-body">
-      <h6 class="card-subtitle text-muted mb-2">Date</h6> 
+      <h6 class="card-subtitle text-muted mb-2">Date</h6>
       <%= @work_session.date.to_s(:long) %>
       <h6 class="card-subtitle text-muted my-2">Infos</h6>
       <%= @work_session.slot.name %>
@@ -21,7 +21,7 @@
     <div class="card-body">
       <ul>
         <% @work_session.skills.each do |skill| %>
-          <li><%= skill.name %></li> 
+          <li><%= skill.name %></li>
         <% end %>
       </ul>
     </div>
@@ -39,29 +39,28 @@
           <th scope="col">Présent ?</th>
         </tr>
       </thead>
-        <tbody>
-          <% @work_session.students.each do |student| %>
+      <tbody>
+        <% @work_session.students.each do |student| %>
           <tr>
-            <td><a href="<%= student_path(student.id) %>"><%= student.last_name %></td> </a>
-            <td><a href="<%= student_path(student.id) %>"><%= student.first_name %></td> </a>
+            <td><a href="<%= student_path(student.id) %>"><%= student.last_name %></a></td>
+            <td><a href="<%= student_path(student.id) %>"><%= student.first_name %></a></td>
             <td>
-              <% if student.student_work_sessions.find_by(work_session_id: @work_session.id).late == true %> 
-                <span>Retard</span> 
-                <% elsif student.student_work_sessions.find_by(work_session_id: @work_session.id).medical == true %> 
-                <span>Infirmerie</span> 
-                <% elsif student.student_work_sessions.find_by(work_session_id: @work_session.id).suspended == true %> 
-                <span>Exclus</span> 
-                <% elsif student.student_work_sessions.find_by(work_session_id: @work_session.id).attended? %> 
-                  <i class="align-left" data-feather="check-circle"></i>
+              <% if student.student_work_sessions.find_by(work_session_id: @work_session.id).late == true %>
+                <span>Retard</span>
+              <% elsif student.student_work_sessions.find_by(work_session_id: @work_session.id).medical == true %>
+                <span>Infirmerie</span>
+              <% elsif student.student_work_sessions.find_by(work_session_id: @work_session.id).suspended == true %>
+                <span>Exclus</span>
+              <% elsif student.student_work_sessions.find_by(work_session_id: @work_session.id).attended? %>
+                <i class="align-left" data-feather="check-circle"></i>
               <% else %>
                 <i class="align-left" data-feather="x"></i>
               <% end %>
             </td>
           </tr>
-          <% end %>
+        <% end %>
       </tbody>
     </table>
-    </div>
   
     <div class="card">
       <div class="card-header">
@@ -89,14 +88,12 @@
       <div class="card-body">
         <ul>
           <% @work_session.subjects.each do |subject| %>
-            <li><%= subject.name %></li> 
+            <li><%= subject.name %></li>
           <% end %>
         </ul>
       </div>
     </div>
   </div>
-    <%= link_to "Modifier la séance", edit_work_session_path(@work_session.id), class: "btn btn-secondary ml-auto" %> <br/><br/>
-    <%= link_to "Retour", work_sessions_path, class:"btn btn-info" %>
+  <%= link_to "Modifier la séance", edit_work_session_path(@work_session.id), class: "btn btn-secondary ml-auto" %> <br/><br/>
+  <%= link_to "Retour", work_sessions_path, class:"btn btn-info" %>
 </div>
-
-

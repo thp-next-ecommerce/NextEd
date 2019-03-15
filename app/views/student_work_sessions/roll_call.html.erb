@@ -2,7 +2,7 @@
   <div class="card-header">
     <h4>Appel des élèves</h4>
   </div>
-  
+
   <div class="card-body">
     <table class="table table-sm table-striped">
       <thead>
@@ -16,40 +16,37 @@
           <th scope="col">Exclus</th>
         </tr>
       </thead>
-      
-      <%= form_with url: update_work_session_roll_call_path, local: true do |f| %>
+
       <tbody>
-      <% @student_work_sessions.sort_by { |sws| sws.student.last_name }.each do |sws| %>
-        <tr>
-          <td><%= sws.student.last_name %></td>
-          <td><%= sws.student.first_name %></td>
-          <td><%= "#{sws.student.sections.last.level}#{sws.student.sections.last.sub_section}"%></td>
-          <td>
-            <%= check_box_tag "student_work_session[absent][]", sws.id, !sws.attended? %>
-            <%= hidden_field_tag "student_work_session[present][]", sws.id unless sws.attended %>
-          </td>
-          <td>
-            <%= check_box_tag "student_work_session[late][]", sws.id, sws.late? %>
-            <%= hidden_field_tag "student_work_session[!late][]", sws.id if sws.late %>
-          </td>
-          <td>
-            <%= check_box_tag "student_work_session[medical][]", sws.id, sws.medical? %>
-            <%= hidden_field_tag "student_work_session[!medical][]", sws.id if sws.medical %>
-          </td>
-          <td>
-            <%= check_box_tag "student_work_session[suspended][]", sws.id, sws.suspended? %>
-            <%= hidden_field_tag "student_work_session[!suspended][]", sws.id if sws.suspended %>
-          </td>
-        </tr>
-      </tbody>  
-      <% end %>
+        <% @student_work_sessions.sort_by { |sws| sws.student.last_name }.each do |sws| %>
+          <tr>
+            <td><%= sws.student.last_name %></td>
+            <td><%= sws.student.first_name %></td>
+            <td><%= "#{sws.student.sections.last.level}#{sws.student.sections.last.sub_section}" %></td>
+            <td>
+              <%= check_box_tag "student_work_session[absent][]", sws.id, !sws.attended? %>
+              <%= hidden_field_tag "student_work_session[present][]", sws.id unless sws.attended %>
+            </td>
+            <td>
+              <%= check_box_tag "student_work_session[late][]", sws.id, sws.late? %>
+              <%= hidden_field_tag "student_work_session[!late][]", sws.id if sws.late %>
+            </td>
+            <td>
+              <%= check_box_tag "student_work_session[medical][]", sws.id, sws.medical? %>
+              <%= hidden_field_tag "student_work_session[!medical][]", sws.id if sws.medical %>
+            </td>
+            <td>
+              <%= check_box_tag "student_work_session[suspended][]", sws.id, sws.suspended? %>
+              <%= hidden_field_tag "student_work_session[!suspended][]", sws.id if sws.suspended %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
     </table>
   </div>
-  
+
   <div class="card-footer">
-    <%= f.submit 'Valider', class: "btn btn-primary mt-3 " %>
+    <%= f.submit 'Valider', class: "btn btn-primary mt-3" %>
     <%= link_to "Retour", work_session_path, class:"btn btn-info mt-3" %>
   </div>
-<% end %>
 </div>
-

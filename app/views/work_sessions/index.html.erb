@@ -1,15 +1,15 @@
 <%= month_calendar events: @work_sessions do |date, work_sessions| %>
-<%= date.strftime("%d") %>
+  <%= date.strftime("%d") %>
   <% work_sessions.each do |work_session| %>
-  <div>
-    <%= work_session.slot.name %> <%= work_session.slot.start_time.strftime("%T")%>
-    <%= link_to work_session_path(work_session.id) do %>
-      <i class="align-middle" data-feather="eye"></i>
-    <% end %>
-    <%= link_to  edit_work_session_path(work_session.id) do %>
-      <i class="align-middle" data-feather="edit-2"></i>
-    <% end %>
-    <hr>
-  </div>
+    <div>
+      <%= work_session.slot.name %> <%= work_session.slot.start_time.strftime("%T")%>
+      <%= link_to work_session_path(work_session.id) do %>
+        <i class="align-middle" data-feather="eye"></i>
+      <% end %>
+      <%= link_to  edit_work_session_path(work_session.id) do %>
+        <i class="align-middle" data-feather="edit-2"></i>
+      <% end %>
+      <hr>
+    </div>
   <% end %>
 <% end %>
