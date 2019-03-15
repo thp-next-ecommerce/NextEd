@@ -23,7 +23,7 @@
         <tr>
           <td><%= sws.student.last_name %></td>
           <td><%= sws.student.first_name %></td>
-          <td><%= "#{sws.student.sections.last.level}#{sws.student.sections.last.sub_section}" %></td>
+          <td><%= "#{sws.student.sections.last.level}#{sws.student.sections.last.sub_section}"%></td>
           <td>
             <%= check_box_tag "student_work_session[absent][]", sws.id, !sws.attended? %>
             <%= hidden_field_tag "student_work_session[present][]", sws.id unless sws.attended %>
