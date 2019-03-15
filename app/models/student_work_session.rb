@@ -16,9 +16,19 @@
 #
 
 class StudentWorkSession < ApplicationRecord
+  before_update :update_attended_status_if_needed
   belongs_to :student
   belongs_to :work_session
 
   scope :has_attended, lambda { where(attended: true) }
   scope :not_attended, lambda { where(attended: false) }
+
+  def update_attended_status_if_needed
+    if late == true && suspended == true
+      self.attended = false
+    else
+      self.attended = true if late
+      self.attended = false if suspended
+    end
+  end
 end
